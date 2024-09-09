@@ -56,5 +56,5 @@ npx cypress open
 #### Headless Mode (for running tests in CI):
 Run the following command in root folder to run the tests in headless mode:
 ```bash
-npx cypress run
+npm test:e2e
 ```
