@@ -20,6 +20,14 @@ Then, you can start the database and the application with the following commands
 source start-database.sh
 ```
 
+### Pre-commit hooks
+
+To ensure the quality of the codebase, we use pre-commit hooks to run linting and formatting checks before committing the code. This will help to catch any issues early and maintain a consistent code style.
+
+```bash
+ln -s ../../scripts/pre-commit .git/hooks/pre-commit
+```
+
 ## Usage
 To run the project, you can use the following commands:
 ```bash
