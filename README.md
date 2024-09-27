@@ -7,7 +7,7 @@ Before you start, make sure the following tools are installed on your system:
 - **Docker:** To containerize the application and ensure it runs consistently across different environments [Download Docker](https://www.docker.com/products/docker-desktop)
 
 ## Setup
-Start by making a copy of the `.env.example` file and renaming it to `.env`. This file contains the environment variables that the application needs to run. Open the `.env` file and update the environment variables according to your local or production setup.
+Start by going into the `/frontend` folder, making a copy of the `.env.example` file and renaming it to `.env`. This file contains the environment variables that the application needs to run. Open the `.env` file and update the environment variables according to your local or production setup.
 
 
 ## Usage
@@ -15,7 +15,8 @@ To run the project, you can use the following commands:
 ```bash
 docker compose up --build -d
 ```
-This command will build the Docker images (if necessary) and run the containers in the background. YOu can access the application at `http://localhost:3000`.
+This command will build the Docker images (if necessary) and run the containers in the background. You can access the clientside code at [http://localhost:3000](http://localhost:3000) and the API at [http://localhost:8000](http://localhost:8000). 
+The Swagger documentation for the API is available at [http://localhost:8000/docs](http://localhost:8000/docs).
 
 To stop the containers, you can use the following command:
 ```bash
