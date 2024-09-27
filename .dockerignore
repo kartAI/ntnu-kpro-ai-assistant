@@ -1,4 +1,4 @@
-.env
+frontend/.env
 Dockerfile
 .dockerignore
 node_modules
