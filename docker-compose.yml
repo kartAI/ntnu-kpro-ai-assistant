@@ -2,7 +2,7 @@ services:
   app:
     platform: "linux/amd64"
     build:
-      context: .
+      context: ./frontend
       dockerfile: Dockerfile
       args:
         NEXT_PUBLIC_CLIENTVAR: "clientvar"
