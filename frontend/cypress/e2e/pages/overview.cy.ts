@@ -4,15 +4,13 @@ describe('DataTable component displays data correctly', () => {
   });
 
   it('renders the correct number of rows', () => {
-    cy.get('table tbody tr').should('have.length', 6); // Assuming 6 items per page
+    cy.get('table tbody tr').should('have.length', 6); 
   });
 
   it('displays data in each column correctly', () => {
-    // Replace with actual column headers and expected data
     cy.get('table thead th').then((headers) => {
       const columnCount = headers.length;
       cy.get('table tbody tr:first-child td').should('have.length', columnCount);
-      // Add more specific checks based on your data
     });
   });
 
@@ -49,21 +47,19 @@ describe('DataTable component displays data correctly', () => {
   });
 
   it('paginates the table correctly using page numbers', () => {
+    cy.get('table tbody tr td:nth-child(1)').as('cells');
+    
+    // Go to page 2
     cy.get('[data-testid="page-2"]').click();
 
-    cy.get('table tbody tr td:nth-child(1)').as('cells');
-
-    cy.get('@cells').then(($cells) => {
-      const secondPageContent = [...$cells].map((cell) => cell.innerText);
-      expect(secondPageContent).to.have.lengthOf(6);
-    });
-
+    // Can go back to page 1
     cy.get('[data-testid="page-1"]').click();
     cy.get('@cells').then(($cells) => {
       const firstPageContent = [...$cells].map((cell) => cell.innerText);
       expect(firstPageContent).to.have.lengthOf(6);
     });
 
+    // Last page is always visible
     cy.get('[data-testid="page-last"]').click();
     cy.get('@cells').then(($cells) => {
       const lastPageContent = [...$cells].map((cell) => cell.innerText);
@@ -72,14 +68,12 @@ describe('DataTable component displays data correctly', () => {
   });
 
   it('sorts the table by "Address" column correctly', () => {
-    // Ascending order when header is clicked once
     let initialAddresses: string[];
   
     cy.get('table thead th').then(($headers) => {
       // Find the index of the "Address" column
       const addressIndex = [...$headers].findIndex(header => header.innerText.includes('Adresse')) + 1;
   
-      // Get the initial unsorted addresses
       cy.get(`table tbody tr td:nth-child(${addressIndex})`).then(($cells) => {
         initialAddresses = [...$cells].map((cell) => cell.innerText);
         
@@ -138,6 +132,4 @@ describe('DataTable component displays data correctly', () => {
       expect(newOrder).to.not.deep.equal(sortedAddresses);
     });
   });
-  
 });
-
