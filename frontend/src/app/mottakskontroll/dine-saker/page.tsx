@@ -1,4 +1,4 @@
-import { DataTable } from "./DataTable";
+import DataTable from "./DataTable";
 import { columns } from "./columns";
 import { applications } from "~/types/application";
 

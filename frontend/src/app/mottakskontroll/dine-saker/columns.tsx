@@ -1,80 +1,38 @@
 "use client";
 
-import { type ColumnDef } from "@tanstack/react-table";
-import { ArrowDown, ArrowUp, ArrowUpDown } from "lucide-react";
-import { Button } from "~/components/ui/button";
+import { type Row, type ColumnDef } from "@tanstack/react-table";
 import { type Application } from "~/types/application";
+import ColumnHeader from "./ColumnHeader";
 
-export const columns: ColumnDef<Application>[] = [
+// Add or remove columns here
+const columnConfigMap = new Map<
+  string, // Accessor key
   {
-    accessorKey: "id",
-    header: "Saksnummer",
-  },
-  {
-    accessorKey: "address",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting()}
-          data-testid="address-header"
-        >
-          Adresse
-          {column.getIsSorted() === "asc" ? (
-            <ArrowUp className="ml-2 h-4 w-4" />
-          ) : column.getIsSorted() === "desc" ? (
-            <ArrowDown className="ml-2 h-4 w-4" />
-          ) : (
-            <ArrowUpDown className="ml-2 h-4 w-4" />
-          )}
-        </Button>
-      )
+    hasSort: boolean; // Whether the column should be sortable
+    headerName: string;
+    cellFunction?: (row: Row<Application>) => string; // Optional function for formatting the cell data
+  }
+>([
+  ["id", { hasSort: false, headerName: "Saksnummer" }],
+  ["address", { hasSort: true, headerName: "Adresse" }],
+  ["name", { hasSort: true, headerName: "Navn" }],
+  [
+    "date",
+    {
+      hasSort: true,
+      headerName: "Innsendingsdato",
+      cellFunction: (row) => {
+        const date = row.original.date;
+        return date.toLocaleDateString();
+      },
     },
-  },
-  {
-    accessorKey: "name",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting()}
-          data-testid="name-header"
-        >
-          Navn
-          {column.getIsSorted() === "asc" ? (
-            <ArrowUp className="ml-2 h-4 w-4" />
-          ) : column.getIsSorted() === "desc" ? (
-            <ArrowDown className="ml-2 h-4 w-4" />
-          ) : (
-            <ArrowUpDown className="ml-2 h-4 w-4" />
-          )}
-        </Button>
-      )
-    },
-  },
-  {
-    accessorKey: "date",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting()}
-          data-testid="name-header"
-        >
-          Innsendingsdato
-          {column.getIsSorted() === "asc" ? (
-            <ArrowUp className="ml-2 h-4 w-4" />
-          ) : column.getIsSorted() === "desc" ? (
-            <ArrowDown className="ml-2 h-4 w-4" />
-          ) : (
-            <ArrowUpDown className="ml-2 h-4 w-4" />
-          )}
-        </Button>
-      )
-    },
-    cell: ({ row }) => {
-      const date = new Date(row.original.date);
-      return date.toLocaleDateString();
-    }
-  },
-];
+  ],
+]);
+
+export const columns: ColumnDef<Application>[] = Array.from(
+  columnConfigMap,
+).map(([accessorKey, { hasSort, headerName: header, cellFunction }]) => ({
+  accessorKey,
+  header: ({ column }) => ColumnHeader(column, header, hasSort),
+  ...(cellFunction && { cell: ({ row }) => cellFunction(row) }), // Conditionally include the cell function if it exists
+}));
