@@ -50,7 +50,7 @@ jobs:
             --platform ${{ matrix.platform }} \
             -t ghcr.io/kartAI/ntnu-kpro-ai-assistant:${{ github.sha }} \
             -t ghcr.io/kartAI/ntnu-kpro-ai-assistant:latest \
-            --push .
+            --push frontend/
 
       - name: Clean up
         run: docker builder prune -f
