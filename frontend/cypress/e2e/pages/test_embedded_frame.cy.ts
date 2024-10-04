@@ -17,3 +17,14 @@ describe('Iframe Tests', () => {
       .and('be.visible')
   });
 });
+
+describe("The page must ", () => {
+  it("should load the title", () => {
+    cy.visit(PAGE_URL)
+    cy.get('[data-cy="title"]')
+    .should("exist")
+    .and("contain.text", "3D tiltaksvisning")
+    .and('be.visible')
+  }
+  )
+})
