@@ -16,6 +16,7 @@ const columnConfigMap = new Map<
   ["id", { hasSort: false, headerName: "Saksnummer" }],
   ["address", { hasSort: true, headerName: "Adresse" }],
   ["name", { hasSort: true, headerName: "Navn" }],
+  ["municipality", { hasSort: false, headerName: "Kommune" }],
   [
     "date",
     {
