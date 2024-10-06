@@ -1,14 +1,14 @@
-
+const BASE_URL = "http://localhost:3000"
 describe('Landing page', () => {
   it('should load the landing page successfully', () => {
-    cy.visit('http://localhost:3000/'); 
-    cy.url().should("eq", "http://localhost:3000/")
+    cy.visit(BASE_URL + "/"); 
+    cy.url().should("eq", BASE_URL + "/")
   });
 });
 
 describe("Make sure landing page is visitable/ displays data properly", () => {
     beforeEach(() => {
-        cy.visit("http://localhost:3000/")
+        cy.visit(BASE_URL + "/")
     })
 
     it("test landingpage has navigation bar", () => {
@@ -26,25 +26,24 @@ describe("Make sure landing page is visitable/ displays data properly", () => {
     })
 });
 
-//todo: update when navbar is made
 describe("Make sure navbar on landing page get you to intended target", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/")
+    cy.visit(BASE_URL + "/")
   })
 
   it("test før søknad", () => {
     cy.contains("Før Søknad").click();
-    cy.url().should("eq", "http://localhost:3000/bygget")
+    cy.url().should("eq", BASE_URL +"/bygget")
   })
 
   it("test under søknad", () => {
     cy.contains("Under Søknad").click();
-    cy.url().should("eq", "http://localhost:3000/soknad")
+    cy.url().should("eq", BASE_URL + "/soknad")
   })
 
   it("test Mottakskontroll", () => {
     cy.contains("Mottakskontroll").click();
-    cy.url().should("eq", "http://localhost:3000/admin")
+    cy.url().should("eq", BASE_URL + "/admin")
   })
 })
 

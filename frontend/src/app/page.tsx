@@ -6,7 +6,7 @@ export default async function Home() {
   return (
       <main className="flex min-h-screen flex-col items-center justify-center bg-white">
         {/*           
-          to be removed when navbar is added
+          TODO: remove when navbar is added 
            */}
         <div className="flex flex-row gap-4 top-0 fixed" >
           <Link href={"/bygget"} className="bg-blue-500 rounded-xl p-4">
