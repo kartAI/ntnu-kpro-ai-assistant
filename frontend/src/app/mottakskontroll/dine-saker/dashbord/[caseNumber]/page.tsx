@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import React from "react";
 
-const CaseDashboard: React.FC = () => {
+export default function CaseDashboard() {
   const { caseNumber } = useParams();
 
   return (
@@ -11,6 +11,4 @@ const CaseDashboard: React.FC = () => {
       <h1>Dashbord for saksnummer: {caseNumber}</h1>
     </div>
   );
-};
-
-export default CaseDashboard;
+}
