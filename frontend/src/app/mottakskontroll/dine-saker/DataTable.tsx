@@ -23,6 +23,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { type Application } from "~/types/application";
 import FilterDropdown from "../../_components/FilterDropdown";
+import { useRouter } from "next/navigation";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -33,6 +34,8 @@ const DataTable = <TData extends Application, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) => {
+  const router = useRouter();
+
   const [sorting, setSorting] = useState<SortingState>([]);
   const [filteredData, setFilteredData] = useState<TData[]>(data);
   const [selectedMunicipalities, setSelectedMunicipalities] = useState<
@@ -155,7 +158,11 @@ const DataTable = <TData extends Application, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  onClick={() => console.log(row.original)}
+                  onClick={() =>
+                    router.push(
+                      `/mottakskontroll/dine-saker/dashbord/${row.original.id}`,
+                    )
+                  }
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id} className="w-[calc(100%/6)]">

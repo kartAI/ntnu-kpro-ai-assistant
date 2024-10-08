@@ -204,4 +204,27 @@ describe("DataTable component displays data correctly", () => {
 
     cy.get("table tbody tr").as("rows").should("have.length", 6);
   });
+
+  it("navigates to new page when clicked on row", () => {
+    // Find the index for the case number column
+    cy.get("table thead th").then(($headers) => {
+      const caseNumberIndex =
+        [...$headers].findIndex((header) =>
+          header.innerText.includes("Saksnummer"),
+        ) + 1;
+      // Get the case number of the first row
+      cy.get(`table tbody tr td:nth-child(${caseNumberIndex})`)
+        .first()
+        .invoke("text")
+        .then((caseNumber) => {
+          // Click on the first
+          cy.get("table tbody tr").first().click();
+          // Check that the URL has changed to the correct case number
+          cy.url().should(
+            "include",
+            `/mottakskontroll/dine-saker/dashbord/${caseNumber}`,
+          );
+        });
+    });
+  });
 });
