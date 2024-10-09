@@ -7,6 +7,7 @@ import Dropdown from './Dropdown';
 import BreakLine from './Breakline';
 import Icons from './Icons';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Navbar = () => {
   const [openedNavbarSection, setOpenedNavbarSection] = useState<number>(-1);
@@ -44,7 +45,7 @@ const Navbar = () => {
   }, [openedNavbarSection]); // Add openedNavbarSection as a dependency
 
   return (
-    <nav ref={navbarRef} className="py-2 fixed sticky top-0 bottom-auto z-50 font-semibold w-full bg-white shadow-xl">
+    <nav ref={navbarRef} className="py-2 sticky top-0 bottom-auto z-50 font-semibold w-full bg-white shadow-xl">
       {/* Backdrop when a dropdown is open */}
       {openedNavbarSection !== -1 && ReactDOM.createPortal(
         <div className="fixed inset-0 bg-black bg-opacity-25 z-10" />,
@@ -53,10 +54,12 @@ const Navbar = () => {
       <div className="flex justify-between items-center w-full">
         <div className="flex items-center pl-4 mb-1 lg:pl-10">
           <Link href={"/"}>
-            <img
-              src="/Kartai-logo_white.jpg" // Update with the correct path to your logo if different
+            <Image
+              src="/Kartai-logo_white.jpg" // Path to your image in the public folder
               alt="KartAI Logo"
-              className="h-10 pr-2" // Adjust height, width, and margin as needed
+              width={130} 
+              height={40}
+              className="h-10 pr-2" 
             />
           </Link>
         </div>
@@ -88,7 +91,7 @@ const Navbar = () => {
                                 <div key={linkIndex} className={`${subgroup.links.length > 3 ? 'w-1/2' : 'w-full'} p-1`}> {/* Conditional width based on number of links */}
                                   <a
                                     href={link.url}
-                                    className="block text-sm text-black hover:text-gray-600 py-1 flex flex-row gap-4"
+                                    className="text-sm text-black hover:text-gray-600 py-1 flex flex-row gap-4"
                                   >
                                     {link.label}
                                     {subgroup.arrow && <Icons name="ArrowRight_sm" />}
