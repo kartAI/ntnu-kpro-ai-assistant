@@ -20,10 +20,6 @@ describe("DataTable component displays data correctly", () => {
   it('shows "No results." when there is no data', () => {
     // Simulate no data scenario
     // TODO: Replace with actual API call
-    // cy.intercept('GET', '/api/data', { body: [] }).as('getData');
-    // cy.visit('/mottakskontroll/dine-saker');
-    // cy.wait('@getData');
-    // cy.get('table tbody tr td').should('contain', 'No results.');
   });
 
   it("paginates the table correctly using chevrons", () => {

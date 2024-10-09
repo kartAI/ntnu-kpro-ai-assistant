@@ -28,12 +28,16 @@ import { useRouter } from "next/navigation";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  pageSize: number;
 }
 
 const DataTable = <TData extends Application, TValue>({
   columns,
   data,
+  pageSize,
 }: DataTableProps<TData, TValue>) => {
+  const PAGE_OFFSET = 2;
+
   const router = useRouter();
 
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -55,7 +59,7 @@ const DataTable = <TData extends Application, TValue>({
     getPaginationRowModel: getPaginationRowModel(),
     initialState: {
       pagination: {
-        pageSize: 6,
+        pageSize: pageSize,
       },
     },
     onSortingChange: (updater) => {
@@ -89,39 +93,37 @@ const DataTable = <TData extends Application, TValue>({
 
   const getPageNumbers = () => {
     const pageNumbers = [];
-    const maxPagesToShow = 5;
 
-    if (totalPages <= maxPagesToShow) {
-      // Show all pages
-      for (let i = 1; i <= totalPages; i++) {
-        pageNumbers.push(i);
-      }
-    } else {
-      // Always show the first page
-      pageNumbers.push(1);
+    // Always add first page
+    pageNumbers.push(1);
 
-      // Use dots to indicate more pages before the current page
-      if (currentPage > 3) {
-        pageNumbers.push("...");
-      }
-
-      // Show up to 3 pages before and after the current page
-      for (
-        let i = Math.max(2, currentPage - 1);
-        i <= Math.min(totalPages - 1, currentPage + 1);
-        i++
-      ) {
-        pageNumbers.push(i);
-      }
-
-      // Use dots to indicate more pages after the current page
-      if (currentPage < totalPages - 2) {
-        pageNumbers.push("...");
-      }
-
-      // Always show the last page
-      pageNumbers.push(totalPages);
+    // Add dots if there are more pages
+    if (currentPage > PAGE_OFFSET + 1) {
+      pageNumbers.push("...");
     }
+
+    // Add page before current page
+    if (currentPage > PAGE_OFFSET) {
+      pageNumbers.push(currentPage - 1);
+    }
+
+    // Add current page
+    if (!(currentPage === 1 || currentPage === totalPages)) {
+      pageNumbers.push(currentPage);
+    }
+
+    // Add page after current page
+    if (currentPage <= totalPages - PAGE_OFFSET) {
+      pageNumbers.push(currentPage + 1);
+    }
+
+    // Add dots if there are more pages
+    if (currentPage < totalPages - PAGE_OFFSET) {
+      pageNumbers.push("...");
+    }
+
+    // Always add last page
+    pageNumbers.push(totalPages);
 
     return pageNumbers;
   };
