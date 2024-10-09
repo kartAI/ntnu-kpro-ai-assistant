@@ -27,6 +27,9 @@ export default {
           yellow: "#FFE9AE",
           darkgreen: "#003C2D",
         },
+        kartAI: {
+          blue: "#002855", // Add your custom color here
+        }
       },
     },
   },
