@@ -4,11 +4,8 @@ import Image from "next/image";
 
 export default async function Home() {
   return (
-      <main className="flex min-h-screen flex-col items-center justify-center bg-white">
-        {/*           
-          TODO: remove when navbar is added 
-           */}
-        <div className="flex flex-row gap-4 top-0 fixed" >
+      <main className="flex min-h-screen flex-col items-center justify-center bg-white text-white">
+        <div className="flex flex-row gap-4">
           <Link href={"/bygget"} className="bg-blue-500 rounded-xl p-4">
             Før Søknad
           </Link>
