@@ -1,17 +1,18 @@
-from typing import Union
+from typing import Optional
 from pydantic import BaseModel
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Query, UploadFile
 
 app = FastAPI()
 
+
 class SummaryResponse(BaseModel):
-    summary: dict
-    cad_aid_summary: dict
-    arkivgpt_summary: dict
+    summary: str
+    cad_aid_summary: Optional[str]
+    arkivgpt_summary: Optional[str]
 
 
-@app.post("/summarize")
-def summarize(files: list[UploadFile], include_modules: bool = False) -> :
+@app.post("/summarize", response_model=SummaryResponse)
+def summarize(files: list[UploadFile], include_modules: bool = Query(False)) -> SummaryResponse:
     """
     Summarize a file.
 
@@ -22,5 +23,15 @@ def summarize(files: list[UploadFile], include_modules: bool = False) -> :
         ResponseSummary: The summarization response.
 
     """
-    response = SummaryResponse(summary={}, cad_aid_summary={}, arkivgpt_summary={})
+    contents = [file.file.read() for file in files]
+
+    for content in contents:
+        if not content:
+            raise HTTPException(status_code=400, detail="File is empty")
+
+    response = SummaryResponse(
+        summary="",
+        cad_aid_summary="",
+        arkivgpt_summary=""
+    )
     return response
