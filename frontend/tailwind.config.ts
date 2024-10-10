@@ -23,14 +23,7 @@ export default {
   				DEFAULT: 'hsl(var(--secondary))',
   				foreground: 'hsl(var(--secondary-foreground))'
   			},
-        background: {
-          light: "#CCE7FA",
-          blue: "#DDF3EB",
-          pink: "#FFD0D0",
-          purple: "#EBE8FE",
-          yellow: "#FFE9AE",
-          darkgreen: "#003C2D",
-        },  	
+        background: 'hsl(var(--background))',
         kartAI: {
           blue: "#002855", // Add your custom color here
         },
