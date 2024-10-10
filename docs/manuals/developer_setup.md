@@ -11,7 +11,8 @@ Before you start, make sure the following tools are installed on your system:
 ## Setup
 Start by making a copy of the `.env.example` file and renaming it to `.env`. This file contains the environment variables that the application needs to run. You can change the values of the variables to match your environment.
 
-Run the following command in the root folder to copy the `.env.example` file:
+Run the following command in the `frontend/`
+ folder to copy the `.env.example` file:
 ```bash
 cp .env.example .env
 ```
