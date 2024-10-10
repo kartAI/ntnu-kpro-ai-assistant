@@ -69,6 +69,7 @@ const Navbar = () => {
             return (
               <div key={index} className="relative">
                 <button
+                  data-cy={`dropdown-button-${index}`} // Added data-cy for testing
                   onClick={() => handleClick(index)}
                   className={`relative group px-2 md:px-8 lg:px-5 py-2 text-md flex flex-row gap-2 cursor-hover items-center ${isActive ? 'text-kartAI-blue' : 'text-secondary-black'}`}
                   style={isActive ? { textDecoration: 'underline', textUnderlineOffset: '6px', textDecorationThickness: '2px' } : {}}
@@ -78,18 +79,19 @@ const Navbar = () => {
                   </p>
                 </button>
                 {isActive && (
-                  <div className="fixed left-0 right-0 pt-4 bg-white shadow-lg z-40 w-screen">
+                  <div data-cy="dropdown-content" className="fixed left-0 right-0 pt-4 bg-white shadow-lg z-40 w-screen">
                     <BreakLine />
                     {/* Dynamically rendering subgroups and links for this section */}
-                    <div className="w-screen-lg flex flex-col mt-4" >
+                    <div className="w-screen-lg flex flex-col mt-4">
                       <div className="px-10 md:px-20 pb-10 flex flex-wrap">
                         {shortcut.subgroups.map((subgroup, subgroupIndex) => (
                           <div key={subgroupIndex} className="w-full md:w-1/2 xl:w-1/3 p-2">
                             <h3 className="text-xl font-bold mb-2">{subgroup.title}</h3>
                             <div className={`flex flex-wrap ${subgroup.links.length > 3 ? '' : 'flex-col'}`}> {/* Adjust flex direction based on number of links */}
                               {subgroup.links.map((link, linkIndex) => (
-                                <div key={linkIndex} className={`${subgroup.links.length > 3 ? 'w-1/2' : 'w-full'} p-1`}> {/* Conditional width based on number of links */}
+                                <div key={linkIndex} className={`${subgroup.links.length > 3 ? 'w-1/2' : 'w-full'} py-1`}>
                                   <a
+                                    data-cy={`link-${subgroupIndex}-${linkIndex}`} // Added data-cy for each link
                                     href={link.url}
                                     className="text-sm text-black hover:text-gray-600 py-1 flex flex-row gap-4"
                                   >
@@ -109,9 +111,7 @@ const Navbar = () => {
             );
           })}
         </div>
-        <div className="my-1 w-full sm:hidden flex items-center justify-between pl-4 relative text-white">
-          <p>
-          </p>
+        <div className="sm:hidden">
           <Dropdown />
         </div>
       </div>

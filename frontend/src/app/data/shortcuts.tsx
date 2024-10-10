@@ -31,6 +31,7 @@ const shortcuts: ShortcutLink[] = [
                     { label: 'Tiltakskart', url: '/for-soknad/tiltakskart' },
                     { label: '3D-situasjonsmodell', url: '/for-soknad/3d-situasjon' },
                     { label: 'Saken oppsummert', url: '/for-soknad/oppsummering' },
+                    
                 ],
             },
             {
