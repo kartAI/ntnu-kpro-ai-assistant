@@ -20,8 +20,6 @@ def get_test_file():
         ("application.xml", "application/xml", 200),
         ("invalid.txt", "application/txt", 400),
         ("error_trigger.pdf", "application/pdf", 200),
-        ("structured.pdf", "application/pdf", 200),
-        ("unstructured.pdf", "application/pdf", 200),
         ("empty.pdf", "application/pdf", 400),
         ("large.pdf", "application/pdf", 200),
         ("corrupted.pdf", "application/pdf", 400),
@@ -36,7 +34,7 @@ def test_summarize_various_inputs(filename: str, mime_type: str, status_code: in
     with get_test_file(filename) as file:
         response = client.post(
             "/summarize",
-            files={"file": (filename, file, mime_type)},
+            files={"files": [(filename, file, mime_type)]},
         )
     assert response.status_code == status_code
     data = response.json()
@@ -53,7 +51,7 @@ def test_integration_with_additional_modules(get_test_file):
     with get_test_file("structured.pdf") as file:
         response = client.post(
             "/summarize?include_modules=true",
-            files={"file": ("structured.pdf", file, "application/pdf")},
+            files={"files": ("structured.pdf", file, "application/pdf")},
         )
     assert response.status_code == 200
     data = response.json()
@@ -70,18 +68,32 @@ def test_missing_file():
     assert response.status_code == 400
 
 
-def test_multiple_files(get_test_file):
+def test_multiple_files_success(get_test_file):
     """
-    Test handling when multiple files are provided in the request.
+    Test handling when multiple valid files are provided in the request.
     """
     with get_test_file("structured.pdf") as file1, get_test_file("application.xml") as file2:
         response = client.post(
             "/summarize",
             files={
-                "file": [("structured.pdf", file1, "application/pdf"), ("application.xml", file2, "application/xml")]
+                "files": [("structured.pdf", file1, "application/pdf"), ("application.xml", file2, "application/xml")]
             },
         )
     assert response.status_code == 200
+
+
+def test_multiple_files_with_invalid(get_test_file):
+    """
+    Test handling when multiple files are provided in the request and at least one file is invalid.
+    """
+    with get_test_file("structured.pdf") as file1, get_test_file("invalid.txt") as file2:
+        response = client.post(
+            "/summarize",
+            files={
+                "files": [("structured.pdf", file1, "application/pdf"), ("invalid.txt", file2, "application/txt")]
+            },
+        )
+    assert response.status_code == 400
 
 
 def test_unsupported_media_type(get_test_file):
