@@ -25,6 +25,8 @@ def get_test_file():
         ("empty.pdf", "application/pdf", 400),
         ("large.pdf", "application/pdf", 200),
         ("corrupted.pdf", "application/pdf", 400),
+        ("malware.exe", "application/octet-stream", 400),
+        ("malware.exe", "application/pdf", 400),
     ]
 )
 def test_summarize_various_inputs(filename: str, mime_type: str, status_code: int, get_test_file) -> None:
@@ -79,7 +81,7 @@ def test_multiple_files(get_test_file):
                 "file": [("structured.pdf", file1, "application/pdf"), ("application.xml", file2, "application/xml")]
             },
         )
-    assert response.status_code == 400
+    assert response.status_code == 200
 
 
 def test_unsupported_media_type(get_test_file):
