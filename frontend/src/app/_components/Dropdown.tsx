@@ -43,7 +43,7 @@ const OpenDropdown = ({
                       <a
                         key={linkIndex}
                         href={link.url}
-                        className="block text-sm text-black hover:text-gray-600 py-1 transition-all duration-300 transform hover:scale-105"
+                        className="block text-sm text-black hover:text-gray-600 py-1"
                       >
                         {link.label}
                       </a>
