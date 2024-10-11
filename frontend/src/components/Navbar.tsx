@@ -1,6 +1,6 @@
 'use client';
 
-import shortcuts from '../data/shortcuts';
+import shortcuts from '../app/data/shortcuts';
 import { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import Dropdown from './Dropdown';

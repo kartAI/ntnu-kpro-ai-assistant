@@ -24,7 +24,7 @@ const EmbeddedFrame: React.FC<IframeProps> = ({
       width={width}
       height={height}
       allowFullScreen={allowFullScreen}
-    
+      className='h-screen'
       {...props}
     ></iframe>
   );

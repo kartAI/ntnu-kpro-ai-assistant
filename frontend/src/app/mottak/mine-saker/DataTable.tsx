@@ -22,7 +22,7 @@ import {
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { type Application } from "~/types/application";
-import FilterDropdown from "../../_components/FilterDropdown";
+import FilterDropdown from "../../../components/FilterDropdown";
 import { useRouter } from "next/navigation";
 
 interface DataTableProps<TData, TValue> {
@@ -158,11 +158,12 @@ const DataTable = <TData extends Application, TValue>({
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
+                  className="cursor-pointer"
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                   onClick={() =>
                     router.push(
-                      `/mottakskontroll/dine-saker/dashbord/${row.original.id}`,
+                      `/mottak/mine-saker/dashbord/${row.original.id}`,
                     )
                   }
                 >

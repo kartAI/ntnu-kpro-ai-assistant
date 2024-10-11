@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import Icons from './Icons';
-import shortcuts from '../data/shortcuts';
+import shortcuts from '../app/data/shortcuts';
 
 // Updated OpenDropdown to accept props correctly
 const OpenDropdown = ({
