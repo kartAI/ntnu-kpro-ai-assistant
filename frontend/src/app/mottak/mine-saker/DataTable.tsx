@@ -129,7 +129,7 @@ const DataTable = <TData extends Application, TValue>({
   };
 
   return (
-    <div className="mx-auto w-full max-w-4xl">
+    <div className="mx-auto w-full max-w-7xl">
       <div className="relative overflow-hidden rounded-md border">
         <FilterDropdown
           selectedItems={selectedMunicipalities}
