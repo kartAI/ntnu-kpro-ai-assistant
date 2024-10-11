@@ -37,7 +37,7 @@ def test_summarize_various_inputs(filename: str, mime_type: str, status_code: in
     with get_test_file(filename) as file:
         response = client.post(
             "/summarize",
-            files={"files": [(filename, file, mime_type)]},
+            files=[("files", (filename, file, mime_type))],
         )
     assert response.status_code == status_code
     data = response.json()
@@ -54,7 +54,9 @@ def test_integration_with_additional_modules(get_test_file):
     with get_test_file("structured.pdf") as file:
         response = client.post(
             "/summarize?include_modules=true",
-            files={"files": ("structured.pdf", file, "application/pdf")},
+            files=[
+                ("files", ("structured.pdf", file, "application/pdf")),
+            ]
         )
     assert response.status_code == 200
     data = response.json()
@@ -68,19 +70,21 @@ def test_missing_file():
     Test handling when no file is provided in the request.
     """
     response = client.post("/summarize")
-    assert response.status_code == 400
+    assert response.status_code == 422
 
 
 def test_multiple_files_success(get_test_file):
     """
     Test handling when multiple valid files are provided in the request.
     """
-    with get_test_file("structured.pdf") as file1, get_test_file("application.xml") as file2:
+    with get_test_file("structured.pdf") as file1, get_test_file("byggesak_1.xml") as file2:
         response = client.post(
             "/summarize",
-            files={
-                "files": [("structured.pdf", file1, "application/pdf"), ("application.xml", file2, "application/xml")]
-            },
+
+            files=[
+                ("files", ("structured.pdf", file1, "application/pdf")),
+                ("files", ("byggesak_1.xml", file2, "application/xml")),
+            ],
         )
     assert response.status_code == 200
 
@@ -92,9 +96,10 @@ def test_multiple_files_with_invalid(get_test_file):
     with get_test_file("structured.pdf") as file1, get_test_file("invalid.txt") as file2:
         response = client.post(
             "/summarize",
-            files={
-                "files": [("structured.pdf", file1, "application/pdf"), ("invalid.txt", file2, "application/txt")]
-            },
+            files=[
+                ("files", ("structured.pdf", file1, "image/jpeg")),
+                ("files", ("invalid.txt", file2, "application/txt")),
+            ],
         )
     assert response.status_code == 400
 
@@ -106,7 +111,7 @@ def test_unsupported_media_type(get_test_file):
     with get_test_file("structured.pdf") as file:
         response = client.post(
             "/summarize",
-            headers={"Content-Type": "image/jpeg"},
-            data=file.read(),
+            files=[("files", ("structured.pdf", file, "image/jpeg"))],
         )
     assert response.status_code == 415  # Unsupported Media Type
+    data = response.json()
