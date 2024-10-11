@@ -17,7 +17,10 @@ def get_test_file():
     [
         ("unstructured.pdf", "application/pdf", 200),
         ("structured.pdf", "application/pdf", 200),
-        ("application.xml", "application/xml", 200),
+        ("byggesak_1.xml", "application/xml", 200),
+        ("byggesak_2.xml", "application/xml", 200),
+        ("byggesak_3.xml", "application/xml", 200),
+        ("byggesak_4.xml", "application/xml", 200),
         ("invalid.txt", "application/txt", 400),
         ("error_trigger.pdf", "application/pdf", 200),
         ("empty.pdf", "application/pdf", 400),
