@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import Icons from "../_components/Icons";
+import Icons from "../../components/Icons";
 
 export interface ShortcutLink {
     header: string;
@@ -59,7 +59,7 @@ const shortcuts: ShortcutLink[] = [
                     { label: 'Søknadsinformasjon', url: '/under-soknad/soknadsinfo' },
                     { label: 'DOK-analyse', url: '/under-soknad/dok-analyse' },
                     { label: 'Tiltakskart', url: '/under-soknad/tiltakskart' },
-                    { label: '3D-situasjonsmodell', url: '/for-soknad/3d-situasjon' },
+                    { label: '3D-situasjonsmodell', url: '/under-soknad/3d-situasjon' },
                     { label: 'Saken oppsummert', url: '/under-soknad/oppsummering' },
                 ],
             },
@@ -79,10 +79,10 @@ const shortcuts: ShortcutLink[] = [
         header: 'KS-eByggesak',
         subgroups: [
             {
-                title: "Dine saker",
+                title: "Mine saker",
                 arrow: true,
                 links: [
-                    { label: 'Se dine saker', url: '/mottak/saker' },
+                    { label: 'Se mine saker', url: '/mottak/mine-saker' },
                     { label: 'Saksarkiv', url: '/mottak/arkiv' },
                 ],
             }
