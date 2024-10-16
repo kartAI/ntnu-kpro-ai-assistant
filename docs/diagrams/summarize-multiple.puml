@@ -1,0 +1,42 @@
+@startuml summarize-single
+actor Client
+participant API as "Summarization API"
+participant Model as "AI Model"
+participant CAD_AiD as "CAD-AiD Module"
+participant ArkivGPT as "ArkivGPT Module"
+
+Client -> API: POST /summarize (multiple files)
+API -> API: Validate file types and sizes
+
+alt All files valid
+    loop For each file
+        API -> Model: Summarize document
+        Model --> API: Return summary for file
+        alt include_modules=true
+            Model -> CAD_AiD: Summarize with CAD-AiD
+            CAD_AiD --> Model: Return CAD-AiD summary for file
+            Model -> ArkivGPT: Summarize with ArkivGPT
+            ArkivGPT --> Model: Return ArkivGPT summary for file
+            Model --> API: Return summary
+        end
+    end
+    API --> Client: Return 200 OK (summaries for all files)
+else One or more invalid files
+    API --> Client: Return 400 Bad Request (unsupported file type)
+end
+
+alt One or more corrupted files
+    API --> Client: Return 400 Bad Request (corrupted file)
+end
+
+alt No files provided
+    Client -> API: POST /summarize (no files)
+    API --> Client: Return 400 Bad Request (no files provided)
+end
+
+alt Unsupported media type
+    Client -> API: POST /summarize (unsupported media type)
+    API --> Client: Return 415 Unsupported Media Type
+end
+
+@enduml
