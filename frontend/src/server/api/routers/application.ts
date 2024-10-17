@@ -6,12 +6,12 @@ import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 const VALUES = ["NEW", "APPROVED", "UNDER_REVIEW", "REJECTED"] as const;
 
-export const applicationsRouter = createTRPCRouter({
+export const applicationRouter = createTRPCRouter({
   createApplication: publicProcedure
     .input(
       z.object({
         applicationID: z.number(),
-        submissionDate: z.string().date(),
+        submissionDate: z.date(),
         status: z.enum(VALUES),
         address: z.string(),
         municipality: z.string(),
@@ -37,7 +37,7 @@ export const applicationsRouter = createTRPCRouter({
     .input(
       z.object({
         applicationID: z.number(),
-        submissionDate: z.string().date().optional(),
+        submissionDate: z.date().optional(),
         status: z.enum(VALUES).optional(),
         address: z.string().optional(),
         municipality: z.string().optional(),

@@ -3,7 +3,7 @@ import { db } from "~/server/db";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { type Response } from "@prisma/client";
 
-export const responsesRouter = createTRPCRouter({
+export const responseRouter = createTRPCRouter({
   createResponse: publicProcedure
     .input(
       z.object({

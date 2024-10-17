@@ -3,7 +3,7 @@ import { db } from "~/server/db";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { type ModelError } from "@prisma/client";
 
-export const responsesRouter = createTRPCRouter({
+export const modelErrorRouter = createTRPCRouter({
   createModelError: publicProcedure
     .input(
       z.object({

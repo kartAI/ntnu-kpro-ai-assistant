@@ -4,7 +4,7 @@ import { db } from "~/server/db";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
-export const modelsRouter = createTRPCRouter({
+export const modelRouter = createTRPCRouter({
   createModel: publicProcedure
     .input(
       z.object({

@@ -5,12 +5,12 @@ import { type Document } from "@prisma/client";
 
 const VALUES = ["OTHER"] as const;
 
-export const documentsRouter = createTRPCRouter({
+export const documentRouter = createTRPCRouter({
   createDocument: publicProcedure
     .input(
       z.object({
         type: z.enum(VALUES),
-        document: z.instanceof(Buffer),
+        document: z.string().base64(), // Get file content as base64 string, convert to Buffer in resolver
         applicationID: z.number(),
       }),
     )
@@ -18,7 +18,7 @@ export const documentsRouter = createTRPCRouter({
       const res: Document = await db.document.create({
         data: {
           type: input.type,
-          document: input.document,
+          document: Buffer.from(input.document),
           applicationID: input.applicationID,
         },
       });
@@ -33,7 +33,7 @@ export const documentsRouter = createTRPCRouter({
       z.object({
         documentID: z.number(),
         type: z.enum(VALUES).optional(),
-        document: z.instanceof(Buffer).optional(),
+        document: z.string().base64().optional(),
         applicationID: z.number().optional(),
       }),
     )
@@ -42,7 +42,7 @@ export const documentsRouter = createTRPCRouter({
         where: { documentID: input.documentID },
         data: {
           type: input.type,
-          document: input.document,
+          document: Buffer.from(input.document ?? ""),
           applicationID: input.applicationID,
         },
       });
