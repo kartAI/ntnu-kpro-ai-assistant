@@ -8,16 +8,16 @@ datasource db {
 }
 
 model Application {
-  applicationID  Int                @id @unique(map: "applicationID_UNIQUE") @default(autoincrement())
+  applicationID  Int                @id @unique(map: "applicationID_UNIQUE")
   submissionDate DateTime           @db.DateTime(0)
-  status         Application_status @default(NEW)
+  status         ApplicationStatus @default(NEW)
   address        String             @db.VarChar(256)
   municipality   String             @db.VarChar(128)
   documents      Document[]
   responses     Response[]
 }
 
-enum Application_status {
+enum ApplicationStatus {
   APPROVED
   NEW
   UNDER_REVIEW
@@ -26,13 +26,14 @@ enum Application_status {
 
 model Document {
   documentID Int @id @unique(map: "documentID_UNIQUE") @default(autoincrement())
-  type       Document_type @default(OTHER)
-  docuemnt   Bytes
+  type       DocumentType @default(OTHER)
+  document   Bytes
   applicationID Int
   application Application @relation(fields: [applicationID], references: [applicationID])
 }
 
-enum Document_type {
+enum DocumentType {
+  // TODO: Add more types
   OTHER
 }
 
@@ -45,7 +46,6 @@ model Response {
   application Application @relation(fields: [applicationID], references: [applicationID])
   errors ModelError[]
 }
-
 
 model ModelError {
   errorID Int @id @unique(map: "errorID_UNIQUE") @default(autoincrement())
