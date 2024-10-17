@@ -49,7 +49,7 @@ You are now in the MySQL CLI.
 The final step is to select the database. Run the following command
 
 ```bash
-use ntnu-kpro-ai-assitant;
+use ntnu-kpro-ai-assistant;
 ```
 
 Now you can run SQL queries to the database.
