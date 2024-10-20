@@ -120,4 +120,3 @@ def test_unsupported_media_type(get_test_file):
             files=[("files", ("structured.pdf", file, "image/jpeg"))],
         )
     assert response.status_code == 415  # Unsupported Media Type
-    data = response.json()
