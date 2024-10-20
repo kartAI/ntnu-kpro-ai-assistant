@@ -13,6 +13,7 @@ app = FastAPI()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
 class SummaryResponse(BaseModel):
     summary: str
     cad_aid_summary: Optional[str]
@@ -20,7 +21,9 @@ class SummaryResponse(BaseModel):
 
 
 @app.post("/summarize", response_model=SummaryResponse)
-def summarize(files: list[UploadFile], include_modules: bool = Query(False)) -> SummaryResponse:
+def summarize(
+    files: list[UploadFile], include_modules: bool = Query(False)
+) -> SummaryResponse:
     """
     Summarize a file.
 
@@ -35,7 +38,9 @@ def summarize(files: list[UploadFile], include_modules: bool = Query(False)) -> 
     logger.info(f"Files: {files}")
     logger.info(f"Include modules: {include_modules}")
     logger.info(f"Number of files: {len(files)}")
-    logger.info(f"First file: {files[0].filename}, content type: {files[0].content_type}")
+    logger.info(
+        f"First file: {files[0].filename}, content type: {files[0].content_type}"
+    )
     try:
         contents = [extract_text(file) for file in files]
         logger.info(f"Contents: {contents}")
@@ -52,10 +57,9 @@ def summarize(files: list[UploadFile], include_modules: bool = Query(False)) -> 
 
     except ValueError as e:
         raise HTTPException(
-                status_code=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE,
-                detail=str(e)
-            )
-    
+            status_code=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE, detail=str(e)
+        )
+
 
 def extract_text(file: UploadFile) -> str:
     reader: Reader = create_reader(file)

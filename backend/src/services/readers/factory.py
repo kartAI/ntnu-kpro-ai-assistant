@@ -1,4 +1,3 @@
-
 from src.services.reader import Reader
 from src.services.readers.pdf_reader import PdfReader
 from src.services.readers.xml_reader import XmlReader
@@ -13,5 +12,3 @@ def create_reader(file: UploadFile) -> Reader:
             return XmlReader()
         case _:
             raise ValueError(f"Unsupported media type: {file.content_type}")
-
-

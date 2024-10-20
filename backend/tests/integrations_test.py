@@ -9,6 +9,7 @@ client = TestClient(app)
 def get_test_file():
     def _get_test_file(filename):
         return open(f"tests/files/{filename}", "rb")
+
     return _get_test_file
 
 
@@ -28,9 +29,11 @@ def get_test_file():
         ("corrupted.pdf", "application/pdf", 400),
         ("malware.exe", "application/octet-stream", 400),
         ("malware.exe", "application/pdf", 400),
-    ]
+    ],
 )
-def test_summarize_various_inputs(filename: str, mime_type: str, status_code: int, get_test_file) -> None:
+def test_summarize_various_inputs(
+    filename: str, mime_type: str, status_code: int, get_test_file
+) -> None:
     """
     Test summarization with various valid input files.
     """
@@ -56,7 +59,7 @@ def test_integration_with_additional_modules(get_test_file):
             "/summarize?include_modules=true",
             files=[
                 ("files", ("structured.pdf", file, "application/pdf")),
-            ]
+            ],
         )
     assert response.status_code == 200
     data = response.json()
@@ -77,10 +80,11 @@ def test_multiple_files_success(get_test_file):
     """
     Test handling when multiple valid files are provided in the request.
     """
-    with get_test_file("structured.pdf") as file1, get_test_file("byggesak_1.xml") as file2:
+    with get_test_file("structured.pdf") as file1, get_test_file(
+        "byggesak_1.xml"
+    ) as file2:
         response = client.post(
             "/summarize",
-
             files=[
                 ("files", ("structured.pdf", file1, "application/pdf")),
                 ("files", ("byggesak_1.xml", file2, "application/xml")),
@@ -93,7 +97,9 @@ def test_multiple_files_with_invalid(get_test_file):
     """
     Test handling when multiple files are provided in the request and at least one file is invalid.
     """
-    with get_test_file("structured.pdf") as file1, get_test_file("invalid.txt") as file2:
+    with get_test_file("structured.pdf") as file1, get_test_file(
+        "invalid.txt"
+    ) as file2:
         response = client.post(
             "/summarize",
             files=[

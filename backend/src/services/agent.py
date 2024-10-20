@@ -4,11 +4,10 @@ from pydantic import BaseModel
 from langchain_openai import AzureOpenAI
 
 
-
 api_key = os.getenv("AZURE_OPENAI_API_KEY")
 api_base = os.getenv("AZURE_OPENAI_API_BASE")
 api_version = os.getenv("API_VERSION")
-deployment_name =  os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
+deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
 
 
 llm = AzureOpenAI(
@@ -16,8 +15,9 @@ llm = AzureOpenAI(
     azure_endpoint=api_base,
     api_version=api_version,
     deployment_name=deployment_name,
-    temperature=0.7
+    temperature=0.7,
 )
+
 
 def invoke(file_content: list[str]) -> SummaryResponse:
     """
@@ -32,10 +32,10 @@ def invoke(file_content: list[str]) -> SummaryResponse:
     pass
 
 
-
 class GraphState(TypedDict):
     essay: str
     feedback: Annotated[list, add_messages]
+
 
 def essay_writer(state: GraphState):
     """Node that generate a 3 paragraph essay"""
@@ -69,7 +69,9 @@ def essay_grader(state: GraphState):
         """
     )
     generate = prompt | llm
-    feedback = generate.invoke({"essay": state["essay"] if "essay" in state else "No essay yet"})
+    feedback = generate.invoke(
+        {"essay": state["essay"] if "essay" in state else "No essay yet"}
+    )
     print("\nFeedback: ", feedback)
     return {"feedback": [feedback]}
 
@@ -91,9 +93,6 @@ workflow.add_node("essay_grader", essay_grader)
 workflow.add_edge(START, "essay_writer")
 workflow.add_edge("essay_grader", "essay_writer")
 
-workflow.add_conditional_edges(
-    "essay_writer",
-    should_continue
-)
+workflow.add_conditional_edges("essay_writer", should_continue)
 
 graph = workflow.compile()
