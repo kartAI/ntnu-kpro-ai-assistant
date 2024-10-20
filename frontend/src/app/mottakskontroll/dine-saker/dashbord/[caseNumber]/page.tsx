@@ -2,6 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { getCase, CaseData } from "../../../../../types/cases";
+import Checklist from "../../../../_components/Checklist";
 // import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import React from "react";
 
@@ -21,16 +22,18 @@ export default function CaseDashboard() {
         return "No date provided";
     }
     return date.toLocaleDateString('no-NO');  // Format date to 'DD.MM.YYYY'
-};
+  };
 
   
+  /**  */
+
   return (
     <div>
       <h1 data-cy="title"><strong>Oversikt over søknadsanalyse</strong></h1>
   
 
       {caseNumber ? (
-        
+        <div>
         <div className="grid grid-cols-2 gap-2">
           <p><strong>Saksnummer:</strong> {ApplicationData?.caseNumber}</p>
           <p><strong>Adresse:</strong> {ApplicationData?.address}</p>
@@ -39,9 +42,11 @@ export default function CaseDashboard() {
           <p><strong>Frist:</strong> {ApplicationData?.deadline}</p>
         </div>
 
+        <div data-cy="sjekkliste">
 
-        
-
+        </div>
+            <Checklist /> 
+        </div>
       ) : (
         <p>No case number provided</p>
       )}
