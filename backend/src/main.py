@@ -7,6 +7,7 @@ from fastapi import status
 
 from src.services.reader import Reader
 from src.services.readers.factory import create_reader
+from src.services.agent import invoke_agent
 
 app = FastAPI()
 
@@ -48,11 +49,7 @@ def summarize(
             if not content:
                 raise HTTPException(status_code=400, detail="File is empty")
 
-        response = SummaryResponse(
-            summary="",
-            cad_aid_summary="",
-            arkivgpt_summary="",
-        )
+        response = invoke_agent(contents)
         return response
 
     except ValueError as e:
