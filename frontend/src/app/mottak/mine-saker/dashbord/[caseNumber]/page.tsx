@@ -7,7 +7,7 @@ export default function CaseDashboard() {
   const { caseNumber } = useParams();
 
   return (
-    <div>
+    <div className="h-screen">
       <h1>Dashbord for saksnummer: {caseNumber}</h1>
     </div>
   );

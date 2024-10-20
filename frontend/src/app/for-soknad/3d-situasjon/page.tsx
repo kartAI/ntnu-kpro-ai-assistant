@@ -1,7 +1,7 @@
-import EmbeddedFrame from "../_components/EmbeddedFrame";
+import EmbeddedFrame from "~/components/EmbeddedFrame";
 
 
-export default async function Home() {
+export default async function Tiltaksvisning() {
   return (
     <div>
         <h1 data-cy="title">3D tiltaksvisning</h1>

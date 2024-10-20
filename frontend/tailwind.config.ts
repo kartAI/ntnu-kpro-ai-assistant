@@ -11,7 +11,7 @@ export default {
   		},
   		colors: {
   			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
+          DEFAULT: "#24BD76",
   				dark: '#034E31',
   				light: '#C8EBDC',
   				foreground: 'hsl(var(--primary-foreground))'
@@ -23,8 +23,11 @@ export default {
   				DEFAULT: 'hsl(var(--secondary))',
   				foreground: 'hsl(var(--secondary-foreground))'
   			},
-  			background: 'hsl(var(--background))',
-  			foreground: 'hsl(var(--foreground))',
+        background: 'hsl(var(--background))',
+        kartAI: {
+          blue: "#002855", // Add your custom color here
+        },
+        foreground: 'hsl(var(--foreground))',
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
