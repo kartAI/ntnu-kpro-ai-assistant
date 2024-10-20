@@ -1,8 +1,17 @@
 import os
-from langchain_core.output_parsers import StrOutputParser
-from pydantic import BaseModel
-from langchain_openai import AzureOpenAI
+import logging
+from typing import Annotated
+from typing_extensions import TypedDict
 
+from langchain_core.prompts import PromptTemplate
+from langchain_openai import AzureOpenAI
+from langgraph.graph import StateGraph
+from langgraph.graph.message import add_messages
+from langchain_core.output_parsers import StrOutputParser
+
+from src.main import SummaryResponse
+
+logger = logging.getLogger(__name__)
 
 api_key = os.getenv("AZURE_OPENAI_API_KEY")
 api_base = os.getenv("AZURE_OPENAI_API_BASE")
@@ -19,7 +28,7 @@ llm = AzureOpenAI(
 )
 
 
-def invoke(file_content: list[str]) -> SummaryResponse:
+def invoke_agent(file_content: list[str]) -> SummaryResponse:
     """
     Invoke the summarization agent.
 
@@ -29,7 +38,12 @@ def invoke(file_content: list[str]) -> SummaryResponse:
         SummaryResponse: The summarization response.
 
     """
-    pass
+    # TODO: Implement the agent logic
+    return SummaryResponse(
+        summary="",
+        cad_aid_summary="",
+        arkivgpt_summary="",
+    )
 
 
 class GraphState(TypedDict):
@@ -60,7 +74,7 @@ def essay_writer(state: GraphState):
 
 def essay_grader(state: GraphState):
     """Node that grades an essay"""
-    print("\n---ESSAY GRADER---")
+    logger.info("Grading essay")
     prompt = PromptTemplate(
         template="""
         You are a teacher grading an essay. Provide clear and consise feedback on how to improve the essay:
@@ -72,27 +86,29 @@ def essay_grader(state: GraphState):
     feedback = generate.invoke(
         {"essay": state["essay"] if "essay" in state else "No essay yet"}
     )
-    print("\nFeedback: ", feedback)
+    logger.info(f"Feedback: {feedback}")
     return {"feedback": [feedback]}
 
 
 def should_continue(state: GraphState):
     """Node that checks if the user wants to continue"""
-    print("\n---SHOULD CONTINUE---")
+    logger.info("Checking if should continue")
     if len(state["feedback"]) > 3:
         return "__end__"
     else:
         return "essay_grader"
 
 
-workflow = StateGraph(GraphState)
+graph_builder = StateGraph(GraphState)
 
-workflow.add_node("essay_writer", essay_writer)
-workflow.add_node("essay_grader", essay_grader)
+graph_builder.add_node("essay_writer", essay_writer)
+graph_builder.add_node("essay_grader", essay_grader)
 
-workflow.add_edge(START, "essay_writer")
-workflow.add_edge("essay_grader", "essay_writer")
 
-workflow.add_conditional_edges("essay_writer", should_continue)
+graph_builder.add_edge("essay_grader", "essay_writer")
+graph_builder.add_conditional_edges("essay_writer", should_continue)
 
-graph = workflow.compile()
+
+graph_builder.set_entry_point("essay_writer")
+graph_builder.set_finish_point("chatbot")
+graph = graph_builder.compile()
