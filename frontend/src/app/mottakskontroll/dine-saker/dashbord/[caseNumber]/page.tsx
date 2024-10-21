@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import { getCase, CaseData } from "../../../../../types/cases";
 import Checklist from "../../../../_components/Checklist";
+import Summary from "../../../../_components/Summary";
 // import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import React from "react";
 
@@ -25,7 +26,14 @@ export default function CaseDashboard() {
   };
 
   
-  /**  */
+  /** Dummy data for AI summary */
+  const aiSummary = [
+    "Ola Nordmann søker om tillatelse til å utvide sin eksisterende terrasse med 20 kvadratmeter. Den nye terrassen vil gå fra 15 kvm til totalt 35 kvm.",
+    "Terrassen skal bygges i impregnert treverk med rekkverk av glass og aluminium.",
+    "Terrassen vil ha en høyde på 1,2 meter fra bakken.",
+    "Den skal plasseres på eiendommens sørside, som vender mot en privat hage.",
+    "Det planlegges også integrering av en trapp for bedre tilgang til hagen."
+  ];
 
   return (
     <div>
@@ -43,10 +51,13 @@ export default function CaseDashboard() {
         </div>
 
         <div data-cy="sjekkliste">
+          <Checklist /> 
+        </div>
+        <div data-cy="summary">
+          <Summary summaryData={aiSummary}/>
+        </div>
+        </div>
 
-        </div>
-            <Checklist /> 
-        </div>
       ) : (
         <p>No case number provided</p>
       )}

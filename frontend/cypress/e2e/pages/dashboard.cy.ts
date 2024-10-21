@@ -27,6 +27,9 @@ describe("Admin dashboard page displays correctly", () => {
         cy.contains("Frist")
     }); 
 
+
+
+    /** Tests for checklist */
     it("Has checklist header", () => {
       cy.get('[data-cy="checklist-header"]')
         .should("exist")
@@ -89,4 +92,42 @@ describe("Admin dashboard page displays correctly", () => {
     });
   
   
+
+    /* Tests for summary component*/
+    it("Has summary header", () => {
+      cy.get('[data-cy="summary-header"]')
+        .should("exist")
+        .and("contain.text", "Saken oppsummert:")
+        .and("be.visible")
+    }); 
+
+    it('should render all summary items', () => {
+      // Retrieve number of points dynamically
+      /* cy.window().its('yourAppState').then((state) => {
+      const totalPoints = state.totalPoints; // Adjust according to your app's structure
+     */
+      // Ensure the checklist has the correct number of items
+     /*  }); */
+      const totalPoints = 1;
+      // TODO: Change to 'have.length' when the summary assistant is ready
+      cy.get('.summary-item').should('have.length.at.least', totalPoints);
+    });
+
+
+    it("Has AI warning", () => {
+      cy.get('[data-cy="summary-warning"]')
+        .should("exist")
+        .and("contain.text", "Oppsummering er laget av en KI-tjeneste og kan inneholde feil.")
+        .and("be.visible")
+    }); 
+
+
+    /** Tests for Planprat component */
+    /* TODO: Copy tests from Artemis' Planprat page */
+
+
+    /* Tests for Case Feedback */
+    /* TODO: Add tests for feedback */
+
+    /* Tests for  */
 })
