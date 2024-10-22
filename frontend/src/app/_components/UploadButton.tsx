@@ -12,11 +12,12 @@ const UploadButton: React.FC<UploadButtonProps> = ({ onFileChange }) => {
 
   return (
     <div className="mt-4">
-      <label className="block mb-2">
+      <label className="block mb-2" htmlFor="file-upload-input">
         <button
           type="button"
           className="bg-kartAI-blue text-white px-4 py-2 rounded-lg"
           onClick={handleButtonClick}
+          aria-label="Upload Files"
         >
           + Last opp
         </button>
@@ -26,6 +27,7 @@ const UploadButton: React.FC<UploadButtonProps> = ({ onFileChange }) => {
           className="hidden"
           multiple
           onChange={onFileChange}
+          aria-hidden="true"
         />
       </label>
     </div>

@@ -82,6 +82,7 @@ const CadaidPage: React.FC = () => {
               className="block border border-black bg-inherit rounded-lg mb-4 ml-4 text-gray-700"
               onChange={(e) => handleSelectFile(e.target.value)}
               value={selectedFile?.name || ''}
+              aria-label="Select file to preview"
             >
               <option value="">Velg fil å vise</option>
               {files.map((file) => (

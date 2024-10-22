@@ -16,10 +16,13 @@ const FileList: React.FC<FileListProps> = ({ files, onRemove, onUpload }) => {
         {files.map((file) => (
           <li key={file.name} className="flex items-center justify-between p-3 border rounded-lg">
             <span className="font-medium">{file.name}</span>
-            <FaTrash
-              className="cursor-pointer hover:text-red-700"
-              onClick={() => onRemove(file.name)}
-            />
+              <button
+                className="cursor-pointer hover:text-red-700"
+                onClick={() => onRemove(file.name)}
+                aria-label={`Remove file ${file.name}`}
+              >
+                <FaTrash />
+              </button>
           </li>
         ))}
       </ul>

@@ -31,16 +31,25 @@ const Results: React.FC<ResultsProps> = ({ results }) => {
 
       <ul className="space-y-2">
         {results.map((result) => (
-          <li key={result.file_name} className="flex flex-col p-3 border rounded-lg">
+          <li
+            key={result.file_name}
+            className="flex flex-col p-3 border rounded-lg"
+            aria-labelledby={`result-${result.file_name}`}
+          >
             {/* Display Drawing Types */}
             {result.drawing_type && (
               <div className="mb-2">
                 <div className="flex items-center">
                   {hasErrors(result) ? (
                     <>
-                      <FaExclamationTriangle className="text-red-500 mr-1" />
-                      <p className="font-medium">
-                        {Array.isArray(result.drawing_type) ? capitalize(result.drawing_type.join(', ')) : result.drawing_type}
+                      <FaExclamationTriangle
+                        className="text-red-500 mr-1"
+                        aria-hidden="true"
+                      />
+                      <p id={`result-${result.file_name}`} className="font-medium">
+                        {Array.isArray(result.drawing_type)
+                          ? result.drawing_type.join(', ')
+                          : result.drawing_type}
                       </p>
                       <p className="text-red-500 ml-2">
                         {result.cardinal_direction}
@@ -50,9 +59,14 @@ const Results: React.FC<ResultsProps> = ({ results }) => {
                     </>
                   ) : (
                     <>
-                      <FaCheckCircle className="text-green-500 mr-1" />
-                      <p className="font-medium">
-                        {Array.isArray(result.drawing_type) ? capitalize(result.drawing_type.join(', ')) : result.drawing_type}
+                      <FaCheckCircle
+                        className="text-green-500 mr-1"
+                        aria-hidden="true"
+                      />
+                      <p id={`result-${result.file_name}`} className="font-medium">
+                        {Array.isArray(result.drawing_type)
+                          ? result.drawing_type.join(', ')
+                          : result.drawing_type}
                       </p>
                     </>
                   )}
