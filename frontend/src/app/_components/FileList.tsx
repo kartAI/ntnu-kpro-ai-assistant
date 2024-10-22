@@ -12,7 +12,7 @@ const FileList: React.FC<FileListProps> = ({ files, onRemove, onUpload }) => {
   return (
     <div className="mb-6 bg-white p-4 rounded-lg shadow-md">
       <h1 className="font-bold mb-4">CADAiD</h1>
-      <ul className="space-y-2">
+      <ul className="space-y-2" data-cy="file-list">
         {files.map((file) => (
           <li key={file.name} className="flex items-center justify-between p-3 border rounded-lg">
             <span className="font-medium">{file.name}</span>
