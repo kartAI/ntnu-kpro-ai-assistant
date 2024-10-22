@@ -6,11 +6,24 @@ import FileList from './FileList';
 import Results from './Results';
 import FilePreview from './FilePreview';
 
+async function fetchDetection(formData: FormData): Promise<Detection[]> {
+  const response = await fetch('http://localhost:5001/detect/', {
+    method: 'POST',
+    body: formData,
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to upload files');
+  }
+
+  return response.json();
+
+}
+
 const CadaidPage: React.FC = () => {
   const [files, setFiles] = useState<File[]>([]);
   const [results, setResults] = useState<Detection[]>([]);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   /**
    * Handles file upload by sending selected files to the backend.
@@ -23,25 +36,14 @@ const CadaidPage: React.FC = () => {
 
       const formData = new FormData();
       uploadedFiles.forEach((file) => {
-        formData.append('uploaded_files', file); // Ensure this matches your FastAPI parameter
+        formData.append('uploaded_files', file);
       });
 
-      try {
-        const response = await fetch('http://localhost:5001/detect/', {
-          method: 'POST',
-          body: formData,
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to upload files');
-        }
-
-        const data: Detection[] = await response.json();
-        setResults((prevResults) => [...prevResults, ...data]);
-      } catch (error) {
-        console.error('Error uploading files:', error);
-        setErrorMessage('An error occurred while uploading files.');
-      }
+      await fetchDetection(formData).then((detections) => {
+        setResults((prevResults) => [...prevResults, ...detections]);
+      }).catch((error) => { 
+        console.error(error);
+      });
     }
   };
 
@@ -59,7 +61,7 @@ const CadaidPage: React.FC = () => {
    * @param fileName - The name of the file to select.
    */
   const handleSelectFile = (fileName: string) => {
-    const file = files.find(file => file.name === fileName) || null;
+    const file = files.find(file => file.name === fileName) ?? null;
     setSelectedFile(file);
   };
 
@@ -80,7 +82,7 @@ const CadaidPage: React.FC = () => {
             <select
               className="block border border-black bg-inherit rounded-lg mb-4 sm:mb-0 sm:ml-4 text-gray-700 w-full sm:w-auto"
               onChange={(e) => handleSelectFile(e.target.value)}
-              value={selectedFile?.name || ''}
+              value={selectedFile?.name ?? ''}
               aria-label="Select file to preview"
             >
               <option value="">Velg fil å vise</option>
