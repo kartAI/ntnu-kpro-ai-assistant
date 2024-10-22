@@ -1,3 +1,4 @@
+// CadaidPage.tsx
 "use client";
 
 import React, { useState } from 'react';
@@ -17,13 +18,13 @@ async function fetchDetection(formData: FormData): Promise<Detection[]> {
   }
 
   return response.json();
-
 }
 
 const CadaidPage: React.FC = () => {
   const [files, setFiles] = useState<File[]>([]);
   const [results, setResults] = useState<Detection[]>([]);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   /**
    * Handles file upload by sending selected files to the backend.
@@ -32,6 +33,17 @@ const CadaidPage: React.FC = () => {
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const uploadedFiles = Array.from(event.target.files);
+      if (uploadedFiles.length === 0) {
+        setErrorMessage('No files selected');
+        return;
+      }
+
+      const ALLOWED_FILE_TYPES = ['application/pdf', 'image/jpeg', 'image/png'];
+      const invalidFiles = uploadedFiles.filter(file => !ALLOWED_FILE_TYPES.includes(file.type));
+      if (invalidFiles.length > 0) {
+        setErrorMessage('Invalid file type.');
+        return;
+      }
       setFiles((prevFiles) => [...prevFiles, ...uploadedFiles]);
 
       const formData = new FormData();
@@ -43,6 +55,7 @@ const CadaidPage: React.FC = () => {
         setResults((prevResults) => [...prevResults, ...detections]);
       }).catch((error) => { 
         console.error(error);
+        setErrorMessage('An error occurred while uploading files.');
       });
     }
   };
@@ -66,15 +79,25 @@ const CadaidPage: React.FC = () => {
   };
 
   return (
-    <div className="p-6 min-h-screen flex flex-col md:flex-row">
+    <div className="p-6 min-h-screen flex flex-col md:flex-row" data-cy="main-container">
       {/* Left Column */}
-      <div className="w-full md:w-1/3 md:pr-4">
+      <div className="w-full md:w-1/3 md:pr-4" data-cy="left-column">
         <FileList files={files} onRemove={handleFileRemove} onUpload={handleFileUpload}/>
+        {errorMessage && (
+          <div
+            className="mb-4 p-2 text-red-700 bg-red-100 rounded"
+            role="alert"
+            aria-live="assertive"
+            data-cy="submission-validation"
+          >
+            {errorMessage}
+          </div>
+        )}
         <Results results={results} />
       </div>
 
       {/* Right Column */}
-      <div className="w-full md:w-2/3">
+      <div className="w-full md:w-2/3" data-cy="right-column">
         {/* File Preview */}
         <div className="mb-6 bg-white p-4 rounded-lg shadow-md h-full">
           <div className="flex flex-col sm:flex-row items-start">
