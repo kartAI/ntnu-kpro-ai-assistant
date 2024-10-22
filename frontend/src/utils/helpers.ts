@@ -1,4 +1,4 @@
-import { Detection } from "../types/detection";
+import type { Detection } from "../types/detection";
 
 export const requiredDrawingTypes: string[] = [
   "plantegning",

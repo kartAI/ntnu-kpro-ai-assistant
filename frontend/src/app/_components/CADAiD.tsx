@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Detection } from '../../types/detection';
+import type { Detection } from '../../types/detection';
 import FileList from './FileList';
-import UploadButton from './UploadButton';
 import Results from './Results';
 import FilePreview from './FilePreview';
 

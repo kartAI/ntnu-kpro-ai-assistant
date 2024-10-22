@@ -1,6 +1,6 @@
 import React from 'react';
-import { FaCheckCircle, FaExclamationTriangle, FaTimesCircle } from 'react-icons/fa';
-import { Detection } from '../../types/detection';
+import { FaCheckCircle, FaExclamationTriangle } from 'react-icons/fa';
+import type { Detection } from '../../types/detection';
 import { hasErrors, capitalize, requiredDrawingTypes } from '../../utils/helpers';
 import SubmissionValidation from './SubmissionValidation';
 
