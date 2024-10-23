@@ -7,6 +7,9 @@ export const requiredDrawingTypes: string[] = [
   "snitt",
 ];
 
+const NON_VALID_DRAWING_TYPES_VALUES = [
+  "Er du sikker på at dette er en byggesakstegning?",
+];
 /**
  * Checks if a Detection object contains any error fields.
  * @param result - The Detection object to check.
@@ -16,7 +19,10 @@ export const hasErrors = (result: Detection): boolean => {
   return (
     result.scale !== undefined ||
     result.room_names !== undefined ||
-    result.cardinal_direction !== undefined
+    result.cardinal_direction !== undefined ||
+    NON_VALID_DRAWING_TYPES_VALUES.includes(
+      result.drawing_type?.toString() ?? "",
+    )
   );
 };
 
