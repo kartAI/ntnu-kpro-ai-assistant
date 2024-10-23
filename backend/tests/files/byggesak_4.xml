@@ -1,0 +1,164 @@
+MainForm:
+<?xml version="1.0" encoding="utf-8"?>
+<TiltakUtenAnsvarsrett xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" dataFormatProvider="SERES" dataFormatId="6742" dataFormatVersion="45753" xmlns="http://skjema.kxml.no/dibk/tiltakutenansvarsrett/3.0">
+  <eiendomByggested>
+    <eiendom>
+      <adresse>
+        <adresselinje1>Adresseveien 123</adresselinje1>
+        <adresselinje2 xsi:nil="true" />
+        <adresselinje3 xsi:nil="true" />
+        <postnr>9999</postnr>
+        <poststed>KommuneNavn</poststed>
+        <landkode xsi:nil="true" />
+        <gatenavn xsi:nil="true" />
+        <husnr xsi:nil="true" />
+        <bokstav xsi:nil="true" />
+      </adresse>
+      <eiendomsidentifikasjon>
+        <kommunenummer>9999</kommunenummer>
+        <gaardsnummer>99</gaardsnummer>
+        <bruksnummer>9</bruksnummer>
+        <festenummer>0</festenummer>
+        <seksjonsnummer>0</seksjonsnummer>
+      </eiendomsidentifikasjon>
+      <bygningsnummer xsi:nil="true" />
+      <bolignummer xsi:nil="true" />
+      <kommunenavn>KommuneNavn</kommunenavn>
+    </eiendom>
+  </eiendomByggested>
+  <beskrivelseAvTiltak>
+    <bruk>
+      <naeringsgruppe xsi:nil="true" />
+      <bygningstype xsi:nil="true" />
+      <tiltaksformaal>
+        <kodeverdi>Bolig</kodeverdi>
+        <kodebeskrivelse>Bolig</kodebeskrivelse>
+      </tiltaksformaal>
+      <beskrivPlanlagtFormaal xsi:nil="true" />
+    </bruk>
+    <foelgebrev>Utvidelse av eksisterende terasse. Størrelse 6 x 6 meter.
+Under terassen blir det carport.</foelgebrev>
+    <type>
+      <beskrivelse xsi:nil="true" />
+      <type>
+        <kodeverdi>tilbyggunder50m2</kodeverdi>
+        <kodebeskrivelse>Endring av bygg - utvendig - Tilbygg med samlet areal mindre enn 50 m2</kodebeskrivelse>
+      </type>
+    </type>
+  </beskrivelseAvTiltak>
+  <tiltakshaver>
+    <partstype>
+      <kodeverdi>Privatperson</kodeverdi>
+      <kodebeskrivelse>Privatperson</kodebeskrivelse>
+    </partstype>
+    <foedselsnummer>070727*****</foedselsnummer>
+    <organisasjonsnummer xsi:nil="true" />
+    <navn>PRIVATPERSON PERSONESEN</navn>
+    <adresse>
+      <adresselinje1>Adresseveien 1</adresselinje1>
+      <adresselinje2 xsi:nil="true" />
+      <adresselinje3 xsi:nil="true" />
+      <postnr>9999</postnr>
+      <poststed>KommuneNavn</poststed>
+      <landkode xsi:nil="true" />
+    </adresse>
+    <telefonnummer>99999999</telefonnummer>
+    <mobilnummer xsi:nil="true" />
+    <epost>TestEpost@norkartepost.no</epost>
+    <kontaktperson>
+      <navn>PRIVATPERSON PERSONESEN</navn>
+      <telefonnummer>99999999</telefonnummer>
+      <mobilnummer xsi:nil="true" />
+      <epost>TestEpost@norkartepost.no</epost>
+    </kontaktperson>
+  </tiltakshaver>
+  <dispensasjon />
+  <kommunensSaksnummer xsi:nil="true" />
+  <varsling>
+    <antallMerknader xsi:nil="true" />
+    <fritattFraNabovarsling>true</fritattFraNabovarsling>
+    <vurderingAvMerknader xsi:nil="true" />
+    <soeknadensHjemmeside xsi:nil="true" />
+    <soeknadSeesKontaktperson xsi:nil="true" />
+  </varsling>
+  <metadata>
+    <fraSluttbrukersystem>Norkart</fraSluttbrukersystem>
+    <ftbId xsi:nil="true" />
+    <prosjektnavn xsi:nil="true" />
+    <sluttbrukersystemUrl xsi:nil="true" />
+    <klartForSigneringFraSluttbrukersystem>true</klartForSigneringFraSluttbrukersystem>
+  </metadata>
+  <rammebetingelser>
+    <adkomst>
+      <nyeEndretAdkomst>false</nyeEndretAdkomst>
+      <vegrett>
+        <vegrett>
+          <vegtype>
+            <kodeverdi xsi:nil="true" />
+            <kodebeskrivelse xsi:nil="true" />
+          </vegtype>
+          <erTillatelseGitt>false</erTillatelseGitt>
+        </vegrett>
+      </vegrett>
+    </adkomst>
+    <arealdisponering>
+      <tomtearealByggeomraade>7300</tomtearealByggeomraade>
+      <tomtearealBeregnet>7300</tomtearealBeregnet>
+      <beregnetMaksByggeareal>5840</beregnetMaksByggeareal>
+      <arealBebyggelseEksisterende>700</arealBebyggelseEksisterende>
+      <arealBebyggelseSomSkalRives>0</arealBebyggelseSomSkalRives>
+      <arealBebyggelseNytt>37</arealBebyggelseNytt>
+      <parkeringsarealTerreng>0</parkeringsarealTerreng>
+      <arealSumByggesak>737</arealSumByggesak>
+      <beregnetGradAvUtnytting>10.095890410958903</beregnetGradAvUtnytting>
+    </arealdisponering>
+    <generelleVilkaar>
+      <norskSvenskDansk>true</norskSvenskDansk>
+    </generelleVilkaar>
+    <plan>
+      <gjeldendePlan>
+        <plantype>
+          <kodeverdi>KP</kodeverdi>
+          <kodebeskrivelse>Kommuneplanens arealdel</kodebeskrivelse>
+        </plantype>
+        <navn>Kommuneplanens arealdel 2008008 26.04.2011</navn>
+        <formaal xsi:nil="true" />
+        <beregningsregelGradAvUtnytting>
+          <kodeverdi>%BYA</kodeverdi>
+          <kodebeskrivelse>Prosent bebygd areal</kodebeskrivelse>
+        </beregningsregelGradAvUtnytting>
+      </gjeldendePlan>
+      <andrePlaner />
+      <andreRelevanteKrav xsi:nil="true" />
+    </plan>
+    <vannforsyning xsi:nil="true" />
+    <avloep>
+      <tilknytningstype>
+        <kodeverdi xsi:nil="true" />
+        <kodebeskrivelse xsi:nil="true" />
+      </tilknytningstype>
+      <overvannTerreng>true</overvannTerreng>
+      <overvannAvloepssystem>false</overvannAvloepssystem>
+    </avloep>
+    <kravTilByggegrunn>
+      <flomutsattOmraade>false</flomutsattOmraade>
+      <skredutsattOmraade>false</skredutsattOmraade>
+      <miljoeforhold>false</miljoeforhold>
+    </kravTilByggegrunn>
+    <plassering>
+      <konfliktHoeyspentkraftlinje>false</konfliktHoeyspentkraftlinje>
+      <minsteAvstandNabogrense>12.8</minsteAvstandNabogrense>
+      <konfliktVannOgAvloep>false</konfliktVannOgAvloep>
+      <minsteAvstandTilAnnenBygning>5.7</minsteAvstandTilAnnenBygning>
+      <minsteAvstandTilMidtenAvVei>-1</minsteAvstandTilMidtenAvVei>
+      <bekreftetInnenforByggegrense>false</bekreftetInnenforByggegrense>
+    </plassering>
+  </rammebetingelser>
+  <signatur xsi:nil="true" />
+</TiltakUtenAnsvarsrett>
+
+SubForm:
+<?xml version="1.0" encoding="utf-8"?>
+<Vedleggsopplysninger xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" dataFormatProvider="SERES" dataFormatId="5797" dataFormatVersion="42813" xmlns="http://skjema.kxml.no/dibk/vedlegg/1.0">
+  <vedlegg />
+</Vedleggsopplysninger>

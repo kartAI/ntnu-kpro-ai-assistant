@@ -1,0 +1,151 @@
+MainForm:
+<?xml version="1.0" encoding="utf-8"?>
+<TiltakUtenAnsvarsrett xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" dataFormatProvider="SERES" dataFormatId="6742" dataFormatVersion="45753" xmlns="http://skjema.kxml.no/dibk/tiltakutenansvarsrett/3.0">
+  <eiendomByggested>
+    <eiendom>
+      <adresse>
+        <adresselinje1>Adresseveien 123</adresselinje1>
+        <adresselinje2 xsi:nil="true" />
+        <adresselinje3 xsi:nil="true" />
+        <postnr>9999</postnr>
+        <poststed>KommuneNavn</poststed>
+        <landkode xsi:nil="true" />
+        <gatenavn xsi:nil="true" />
+        <husnr xsi:nil="true" />
+        <bokstav xsi:nil="true" />
+      </adresse>
+      <eiendomsidentifikasjon>
+        <kommunenummer>9999</kommunenummer>
+        <gaardsnummer>99</gaardsnummer>
+        <bruksnummer>9</bruksnummer>
+        <festenummer>0</festenummer>
+        <seksjonsnummer>0</seksjonsnummer>
+      </eiendomsidentifikasjon>
+      <bygningsnummer xsi:nil="true" />
+      <bolignummer xsi:nil="true" />
+      <kommunenavn>KommuneNavn</kommunenavn>
+    </eiendom>
+  </eiendomByggested>
+  <beskrivelseAvTiltak>
+    <bruk xsi:nil="true" />
+    <foelgebrev>Vi ønsker å endre bruk fra bod til soverom i u.etg.
+Inngang til rommet blir fra hallen i u.etg, samma som idag. 
+takhøgde ok, vindu ok, branncelle ok. 
+
+antall kvm 10
+
+Men ønskelig er også at korrekt antall rom kommer in i matrikkelen. 
+Tot antal rom i boligen u.etg 2 + 1 bad
+1 etg. 1
+2 etg. 3 + bad
+
+</foelgebrev>
+    <type>
+      <beskrivelse xsi:nil="true" />
+      <type>
+        <kodeverdi>bruksendringhoveddel</kodeverdi>
+        <kodebeskrivelse>Bruksendring fra tilleggsdel til hoveddel</kodebeskrivelse>
+      </type>
+    </type>
+  </beskrivelseAvTiltak>
+  <tiltakshaver>
+    <partstype>
+      <kodeverdi>Privatperson</kodeverdi>
+      <kodebeskrivelse>Privatperson</kodebeskrivelse>
+    </partstype>
+    <foedselsnummer>070727*****</foedselsnummer>
+    <organisasjonsnummer xsi:nil="true" />
+    <navn>PRIVATPERSON PERSONESEN</navn>
+    <adresse>
+      <adresselinje1>Adresseveien 1</adresselinje1>
+      <adresselinje2 xsi:nil="true" />
+      <adresselinje3 xsi:nil="true" />
+      <postnr>9999</postnr>
+      <poststed>KommuneNavn</poststed>
+      <landkode xsi:nil="true" />
+    </adresse>
+    <telefonnummer>99999999</telefonnummer>
+    <mobilnummer xsi:nil="true" />
+    <epost>TestEpost@norkartepost.no</epost>
+    <kontaktperson>
+      <navn>PRIVATPERSON PERSONESEN</navn>
+      <telefonnummer>99999999</telefonnummer>
+      <mobilnummer xsi:nil="true" />
+      <epost>TestEpost@norkartepost.no</epost>
+    </kontaktperson>
+  </tiltakshaver>
+  <dispensasjon />
+  <kommunensSaksnummer xsi:nil="true" />
+  <varsling>
+    <foreliggerMerknader>false</foreliggerMerknader>
+    <antallMerknader>0</antallMerknader>
+    <fritattFraNabovarsling>false</fritattFraNabovarsling>
+    <vurderingAvMerknader xsi:nil="true" />
+    <soeknadensHjemmeside xsi:nil="true" />
+    <soeknadSeesKontaktperson xsi:nil="true" />
+  </varsling>
+  <metadata>
+    <fraSluttbrukersystem>Norkart</fraSluttbrukersystem>
+    <ftbId xsi:nil="true" />
+    <prosjektnavn xsi:nil="true" />
+    <sluttbrukersystemUrl xsi:nil="true" />
+    <klartForSigneringFraSluttbrukersystem>true</klartForSigneringFraSluttbrukersystem>
+  </metadata>
+  <rammebetingelser>
+    <adkomst>
+      <nyeEndretAdkomst>false</nyeEndretAdkomst>
+      <vegrett>
+        <vegrett>
+          <vegtype>
+            <kodeverdi xsi:nil="true" />
+            <kodebeskrivelse xsi:nil="true" />
+          </vegtype>
+          <erTillatelseGitt>false</erTillatelseGitt>
+        </vegrett>
+      </vegrett>
+    </adkomst>
+    <arealdisponering />
+    <generelleVilkaar>
+      <norskSvenskDansk>true</norskSvenskDansk>
+    </generelleVilkaar>
+    <plan>
+      <gjeldendePlan>
+        <plantype>
+          <kodeverdi>34</kodeverdi>
+          <kodebeskrivelse>Områderegulering</kodebeskrivelse>
+        </plantype>
+        <navn>kommunedelplan for Ålesund 2016-2028</navn>
+        <formaal xsi:nil="true" />
+        <beregningsregelGradAvUtnytting xsi:nil="true" />
+      </gjeldendePlan>
+      <andrePlaner />
+      <andreRelevanteKrav xsi:nil="true" />
+    </plan>
+    <vannforsyning xsi:nil="true" />
+    <avloep>
+      <tilknytningstype>
+        <kodeverdi xsi:nil="true" />
+        <kodebeskrivelse xsi:nil="true" />
+      </tilknytningstype>
+      <overvannTerreng>false</overvannTerreng>
+    </avloep>
+    <kravTilByggegrunn>
+      <flomutsattOmraade>false</flomutsattOmraade>
+      <skredutsattOmraade>false</skredutsattOmraade>
+      <miljoeforhold>false</miljoeforhold>
+    </kravTilByggegrunn>
+    <plassering>
+      <konfliktHoeyspentkraftlinje>false</konfliktHoeyspentkraftlinje>
+      <minsteAvstandNabogrense>0.3</minsteAvstandNabogrense>
+      <minsteAvstandTilAnnenBygning>1</minsteAvstandTilAnnenBygning>
+      <bekreftetInnenforByggegrense>false</bekreftetInnenforByggegrense>
+    </plassering>
+  </rammebetingelser>
+  <signatur xsi:nil="true" />
+</TiltakUtenAnsvarsrett>
+
+SubForm:
+<?xml version="1.0" encoding="utf-8"?>
+<Vedleggsopplysninger xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" dataFormatProvider="SERES" dataFormatId="5797" dataFormatVersion="42813" xmlns="http://skjema.kxml.no/dibk/vedlegg/1.0">
+  <vedlegg />
+</Vedleggsopplysninger>
