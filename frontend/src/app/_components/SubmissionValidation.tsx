@@ -1,7 +1,6 @@
-// SubmissionValidation.tsx
 import React from 'react';
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
-import { Detection } from '../../types/detection';
+import type { Detection } from '../../types/detection';
 import { requiredDrawingTypes, capitalize } from '../../utils/helpers';
 
 interface SubmissionValidationProps {
