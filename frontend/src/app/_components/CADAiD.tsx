@@ -20,6 +20,7 @@ async function fetchDetection(formData: FormData): Promise<Detection[]> {
 }
 
 const CadaidPage: React.FC = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [files, setFiles] = useState<File[]>([]);
   const [results, setResults] = useState<Detection[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -42,6 +43,8 @@ const CadaidPage: React.FC = () => {
         setErrorMessage('Invalid file type.');
         return;
       }
+
+      setIsLoading(true);
       setFiles((prevFiles) => [...prevFiles, ...uploadedFiles]);
 
       const formData = new FormData();
@@ -49,12 +52,15 @@ const CadaidPage: React.FC = () => {
         formData.append('uploaded_files', file);
       });
 
-      await fetchDetection(formData).then((detections) => {
+      try {
+        const detections = await fetchDetection(formData);
         setResults((prevResults) => [...prevResults, ...detections]);
-      }).catch((error) => { 
+      } catch (error) {
         console.error(error);
         setErrorMessage('An error occurred while uploading files.');
-      });
+      } finally {
+        setIsLoading(false); // Ensure loading state is reset
+      }
     }
   };
 
@@ -72,6 +78,13 @@ const CadaidPage: React.FC = () => {
       {/* Left Column */}
       <div className="w-full md:w-1/3 md:pr-4" data-cy="left-column">
         <FileList files={files} onRemove={handleFileRemove} onUpload={handleFileUpload}/>
+        
+        {isLoading && (
+          <div className="mb-4 flex justify-center items-center">
+            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500"></div>
+          </div>
+        )}
+
         {errorMessage && (
           <div
             className="mb-4 p-2 text-red-700 bg-red-100 rounded"
@@ -82,6 +95,7 @@ const CadaidPage: React.FC = () => {
             {errorMessage}
           </div>
         )}
+
         <Results results={results} />
       </div>
 
