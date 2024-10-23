@@ -25,6 +25,7 @@ const Results: React.FC<ResultsProps> = ({ results }) => {
             {/* Display Drawing Types */}
             {result.drawing_type && (
               <div className="mb-2">
+                <b>{result.file_name}</b>
                 <div className="flex items-center">
                   {hasErrors(result) ? (
                     <>
