@@ -13,21 +13,7 @@ const Results: React.FC<ResultsProps> = ({ results }) => {
     <div className="mb-6 bg-white p-4 rounded-lg shadow-md">
       <h2 className="font-semibold text-lg mb-4">Resultater fra CADAiD</h2>
 
-      {/* Submission Validation */}
-      {results.length > 0 && (
-        <SubmissionValidation results={results} />
-      )}
-
-      {results.length === 0 && (
-        <div >
-          For en søknad trenger man følgende tegninger:
-            <ul className="list-disc list-inside ml-5">
-                {requiredDrawingTypes.map((type) => (
-                <li key={type}>{capitalize(type)}</li>
-                ))}
-            </ul>
-        </div>
-      )}
+      <SubmissionValidation results={results} />
 
       <ul className="space-y-2">
         {results.map((result) => (

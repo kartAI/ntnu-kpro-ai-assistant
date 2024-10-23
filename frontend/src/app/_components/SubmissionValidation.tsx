@@ -21,6 +21,18 @@ const SubmissionValidation: React.FC<SubmissionValidationProps> = ({ results }) 
     (type) => !allDrawingTypes.includes(type)
   );
 
+  if (results.length === 0) {
+    return (
+        <div >
+          For en søknad trenger man følgende tegninger:
+            <ul className="list-disc list-inside ml-5">
+                {requiredDrawingTypes.map((type) => (
+                <li key={type}>{capitalize(type)}</li>
+                ))}
+            </ul>
+        </div>
+    );
+  }
   if (missingDrawingTypes.length === 0) {
     return (
       <div
