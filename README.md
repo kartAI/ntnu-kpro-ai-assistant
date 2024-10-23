@@ -7,8 +7,7 @@ Before you start, make sure the following tools are installed on your system:
 - **Docker:** To containerize the application and ensure it runs consistently across different environments [Download Docker](https://www.docker.com/products/docker-desktop)
 
 ## Setup
-Start by going into the `/frontend` folder, making a copy of the `.env.example` file and renaming it to `.env`. This file contains the environment variables that the application needs to run. Open the `.env` file and update the environment variables according to your local or production setup.
-
+Start by going into the `/webapp` folder, making a copy of the `.env.example` file and renaming it to `.env`. This file contains the environment variables that the application needs to run. Open the `.env` file and update the environment variables according to your local or production setup.
 
 ## Usage
 To run the project, you can use the following commands:

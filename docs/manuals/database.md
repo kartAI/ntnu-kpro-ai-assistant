@@ -10,6 +10,8 @@ If you get a question of whether or not to create a password, choose `yes`.
 
 After the script is done running, the `DATABASE_URL` field in your `.env` file should look something like this.
 
+To populate the database with mock data, run the `populate-database.sh` script.
+
 ```yml
 DATABASE_URL="mysql://root:{password}@localhost:3306/ntnu-kpro-ai-assistant"
 ```

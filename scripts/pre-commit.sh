@@ -1,6 +1,6 @@
 #!/bin/sh
 # Run linter on staged JavaScript, TypeScript files
-cd frontend
+cd webapp
 npm run lint --fix
 
 if [ $? -ne 0 ]; then
