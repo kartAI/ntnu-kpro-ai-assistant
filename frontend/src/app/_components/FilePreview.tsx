@@ -38,7 +38,7 @@ const FilePreview: React.FC<FilePreviewProps> = ({ files}) => {
 
       {selectedFile && (
         <div
-          className="border p-4 rounded-lg bg-gray-50"
+          className="border p-4 rounded-lg mt-2 bg-gray-50"
           role="region"
           aria-labelledby="file-preview-heading"
         >
