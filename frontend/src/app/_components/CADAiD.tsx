@@ -16,7 +16,7 @@ async function fetchDetection(formData: FormData): Promise<Detection[]> {
     throw new Error('Failed to upload files');
   }
 
-  return response.json();
+  return response.json() as Promise<Detection[]>;
 }
 
 const CadaidPage: React.FC = () => {
