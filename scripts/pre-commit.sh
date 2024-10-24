@@ -22,6 +22,6 @@ fi
 
 cd ..
 
-cd frontend
+cd webapp
 
 exit 0
