@@ -122,12 +122,105 @@ describe("Admin dashboard page displays correctly", () => {
     }); 
 
 
-    /** Tests for Planprat component */
-    /* TODO: Copy tests from Artemis' Planprat page */
-
 
     /* Tests for Case Feedback */
-    /* TODO: Add tests for feedback */
+    /* it("Has feedback header", () => {
+      cy.get('[data-cy="feedback-header"]')
+        .should("exist")
+        .and("contain.text", "Tilbakemeldinger til innsender")
+        .and("be.visible")
+    });
+   */
 
-    /* Tests for  */
+      /* it("Has feedback header", () => {
+        cy.get('[data-cy="feedback-header"]')
+          .should("exist")
+          .and("contain.text", "Tilbakemeldinger til innsender")
+          .and("be.visible")
+      });
+  
+    
+      it('should allow typing feedback', () => {
+        // Target the textarea and type some feedback
+        cy.get('textarea').type('Dette er en testtilbakemelding');
+        
+        // Verify if the text was entered correctly
+        cy.get('textarea').should('have.value', 'Dette er en testtilbakemelding');
+      });
+    
+      it('should have buttons that work', () => {
+        // Check if all the buttons are rendered with correct labels
+        cy.contains('Delvis godkjenn').should('exist');
+        cy.contains('Delvis avslå søknad').should('exist');
+        cy.contains('Avvis søknad').should('exist');
+    
+        // Click on the "Delvis godkjenn" button
+        cy.contains('Delvis godkjenn').click();
+        // Perform any assertion based on expected behavior
+    
+        // Click on the "Delvis avslå søknad" button
+        cy.contains('Delvis avslå søknad').click();
+        // Perform any assertion based on expected behavior
+    
+        // Click on the "Avvis søknad" button
+        cy.contains('Avvis søknad').click();
+        // Perform any assertion based on expected behavior
+      });
+    
+      it('should allow sending feedback', () => {
+        // Type some feedback
+        cy.get('textarea').type('Sending feedback test.');
+    
+        // Click the "Send tilbakemelding" button
+        cy.contains('Send tilbakemelding').click();
+    
+        // Check if sending feedback triggers expected behavior
+        // This could be verifying network requests, page redirection, etc.
+        // Example: cy.intercept('/api/feedback', { statusCode: 200 }).as('sendFeedback');
+      }); */
+    
+    /* Tests for plan situation*/
+    const external_component_url = "https://www.arealplaner.no/vennesla4223/arealplaner/53?knr=4223&gnr=5&bnr=547&teigid=214401611";
+    const BASE_URL = "/mottakskontroll/dine-saker/dashbord/1/";
+    //const PAGE_URL = BASE_URL + "plansituasjon";
+
+
+    describe('Iframe Tests', () => {
+      beforeEach(() => {
+        // Intercept the GET request for the iframe's src URL and alias it as 'iframeLoad'
+        cy.intercept('GET', `${external_component_url}*`).as('iframeLoad');
+
+        // Visit the target page after setting up the intercept
+        cy.visit(BASE_URL);
+      });
+
+      it('should load the iframe without errors', () => {
+        let timeout = 10_000;
+        cy.get('[data-cy="plansituasjon"]', { timeout: timeout })
+          .should('exist')
+          .and('have.attr', 'src', external_component_url)
+          .and('be.visible')
+          .as('embedding');
+
+        // Wait for the iframe's network request to complete and assert the response status
+        cy.wait('@iframeLoad', { timeout: timeout })
+          .its('response.statusCode')
+          .should('eq', 200);
+
+        cy.get('@embedding').should('be.visible');
+      });
+      });
+
+
+      it("The page must ", () => {
+        it("should load the title", () => {
+          cy.visit(BASE_URL)
+          cy.get('[data-cy="title"]')
+          .should("exist")
+          .and("contain.text", "Plansituasjon:")
+          .and('be.visible')
+        }
+        )
+      })
+
 })

@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { getCase, CaseData } from "../../../../../types/cases";
 import Checklist from "../../../../_components/Checklist";
 import Summary from "../../../../_components/Summary";
+import EmbeddedPlan from "~/app/_components/EmbeddedPlan";
 // import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import React from "react";
 
@@ -56,7 +57,12 @@ export default function CaseDashboard() {
         <div data-cy="summary">
           <Summary summaryData={aiSummary}/>
         </div>
+        <div>
+          <h3 data-cy="title"><strong>Plansituasjon:</strong></h3>
+          <EmbeddedPlan data-cy="plansituasjon"  src="https://www.arealplaner.no/vennesla4223/arealplaner/53?knr=4223&gnr=5&bnr=547&teigid=214401611" title="plansituasjon" />
         </div>
+        </div>
+
 
       ) : (
         <p>No case number provided</p>
