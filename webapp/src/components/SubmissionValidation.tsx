@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
-import type { Detection } from '../../types/detection';
-import { requiredDrawingTypes, capitalize } from '../../../frontend/src/utils/helpers';
+import { requiredDrawingTypes, capitalize } from '../utils/helpers';
+import type { Detection } from '~/types/detection';
 
 interface SubmissionValidationProps {
   results: Detection[];

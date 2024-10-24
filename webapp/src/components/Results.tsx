@@ -1,8 +1,8 @@
 import React from 'react';
 import { FaCheckCircle, FaExclamationTriangle } from 'react-icons/fa';
-import type { Detection } from '../../types/detection';
-import { hasErrors, capitalize, requiredDrawingTypes } from '../../../frontend/src/utils/helpers';
 import SubmissionValidation from './SubmissionValidation';
+import { hasErrors } from '../utils/helpers';
+import type { Detection } from '~/types/detection';
 
 interface ResultsProps {
   results: Detection[];
