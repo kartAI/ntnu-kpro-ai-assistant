@@ -4,16 +4,20 @@ import base64
 import mysql.connector
 from datetime import datetime
 from dotenv import load_dotenv
+import logging
+
+logging.basicConfig(level="INFO")
+logger = logging.getLogger(__name__)
 
 def read_file_content(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         content = file.read()
-        # print("Raw file content:")  # Debugging line
-        # print(repr(content))  # Use repr to see whitespace and special characters
+        # logger.info("Raw file content:")  # Debugging line
+        # logger.info(repr(content))  # Use repr to see whitespace and special characters
         return content
 
 def extract_info_from_xml(main_form_path):
-    # Read and print file content for debugging
+    # Read and logger.info file content for debugging
     main_form_content = read_file_content(main_form_path)
 
     # Remove the "MainForm:" label and the "SubForm:" label, and strip leading/trailing whitespace
@@ -54,21 +58,21 @@ def extract_info_from_xml(main_form_path):
         application_id = save_application_to_prisma(address_text, municipality_text, submission_date)
         save_document_to_prisma(main_form_path, application_id)
         
-        print("For Application")
-        print(f"Submission date: {submission_date}")
-        print(f"Address for the application: {address_text}")
-        print(f"Municipality (kommune): {municipality_text}")
+        logger.info("For Application")
+        logger.info(f"Submission date: {submission_date}")
+        logger.info(f"Address for the application: {address_text}")
+        logger.info(f"Municipality (kommune): {municipality_text}")
 
     except ET.ParseError as e:
-        print(f"Error parsing MainForm in {main_form_path}: {e}")
+        logger.info(f"Error parsing MainForm in {main_form_path}: {e}")
 
 def process_all_xml_files(folder_path):
     # Iterate through all XML files in the specified folder
     for file_name in os.listdir(folder_path):
         if file_name.endswith('.xml'):
             file_path = os.path.join(folder_path, file_name)
-            print()
-            print(f"Processing file: {file_path}")
+            logger.info("")
+            logger.info(f"Processing file: {file_path}")
             extract_info_from_xml(file_path)
             
 def get_database_connection():
@@ -111,18 +115,16 @@ def save_application_to_prisma(address, municipality, submission_date):
             # Get the generated application ID
             application_id = cursor.lastrowid
             
-            print("Data saved successfully.")
-            print("Generated application ID:", application_id)
+            logger.info("Data saved successfully.")
 
             return application_id  # Return the application ID
             
         except mysql.connector.Error as err:
-            print(f"Error: {err}")
+            logger.info(f"Error: {err}")
         finally:
             cursor.close()
             connection.close()
-    else:
-        print("Failed to connect to the database.")
+        logger.info("Failed to connect to the database.")
     
     return None
 
@@ -137,10 +139,10 @@ def save_document_to_prisma(path, applicationID):
                 encoded_document = base64.b64encode(document_content).decode('utf-8')  # Convert to string
 
         except FileNotFoundError:
-            print(f"File not found: {path}")
+            logger.info(f"File not found: {path}")
             return
         except Exception as e:
-            print(f"An error occurred while reading the file: {e}")
+            logger.info(f"An error occurred while reading the file: {e}")
             return
 
         # Prepare the data for the SQL insert
@@ -156,14 +158,14 @@ def save_document_to_prisma(path, applicationID):
             # Commit the transaction
             connection.commit()
 
-            print("Document data saved successfully.")
+            logger.info("Document data saved successfully.")
         except mysql.connector.Error as err:
-            print(f"Error: {err}")
+            logger.info(f"Error: {err}")
         finally:
             cursor.close()
             connection.close()
     else:
-        print("Failed to connect to the database.")
+        logger.info("Failed to connect to the database.")
 
 def __main__():
     # File paths (adjust the paths as necessary)
