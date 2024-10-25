@@ -10,7 +10,8 @@ from src.services.agent import invoke_agent
 
 app = FastAPI()
 
-logging.basicConfig(level=logging.INFO)
+
+logging.basicConfig(filename="summary-assistant.log", level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
