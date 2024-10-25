@@ -17,6 +17,7 @@ def get_test_file():
     "filename,mime_type,status_code",
     [
         ("unstructured.pdf", "application/pdf", 200),
+        ("ocr_test_image.jpg", "image/jpeg", 200),
         ("structured.pdf", "application/pdf", 200),
         ("byggesak_1.xml", "application/xml", 200),
         ("byggesak_2.xml", "application/xml", 200),
