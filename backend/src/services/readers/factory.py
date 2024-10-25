@@ -1,5 +1,5 @@
 from src.services.reader import Reader
-from src.services.readers.pdf_reader import PdfReader
+from backend.src.services.readers.structured_pdf_reader import PdfReader
 from src.services.readers.xml_reader import XmlReader
 from fastapi import UploadFile
 
