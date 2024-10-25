@@ -1,17 +1,16 @@
-from fastapi import UploadFile
-
-from PIL import Image
-
 from io import BytesIO
-
-import pytesseract
+from PIL import Image
+from fastapi import UploadFile
+from pytesseract import image_to_string
 
 from src.services.reader import Reader
 
 
 class OCRReader(Reader):
+    def __init__(self, languages: list[str]=["eng", "nor"]) -> None:
+        self.languages: str = "+".join(languages)
+    
     def read(self, file: UploadFile) -> str:
-        # TODO: Use fitz for reading digital PDFs; Tesseract for scanned PDFs
         text = self._read_scanned_pdf(file)
         return text
     
@@ -19,5 +18,5 @@ class OCRReader(Reader):
         file.seek(0)
         image = Image.open(BytesIO(file.file.read()))
         image.load()
-        text = pytesseract.image_to_string(image)
+        text = image_to_string(image, lang=self.languages)
         return text
