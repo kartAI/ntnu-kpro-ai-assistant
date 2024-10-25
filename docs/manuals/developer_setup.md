@@ -85,3 +85,11 @@ Run the following command in root folder to run the tests in headless mode:
 ```bash
 npm test:e2e
 ```
+
+#### To test the summary assistant
+
+Run the following command in `root` folder
+
+```bash
+docker compose run api pytest
+```
