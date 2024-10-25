@@ -4,11 +4,13 @@ This document goes through the process of accessing the database either through 
 
 ## Prerequisites
 
-If you haven't already, run the `start-database.sh` script. Ensure that the docker service is running on your machine.
+If you haven't already, run the `webapp/start-database.sh` script. Ensure that the docker service is running on your machine.
 
 If you get a question of whether or not to create a password, choose `yes`.
 
 After the script is done running, the `DATABASE_URL` field in your `.env` file should look something like this.
+
+To populate the database with mock data, run the `webapp/populate-database.sh` script.
 
 ```yml
 DATABASE_URL="mysql://root:{password}@localhost:3306/ntnu-kpro-ai-assistant"
