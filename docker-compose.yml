@@ -1,8 +1,8 @@
 services:
-  app:
+  webapp:
     platform: "linux/amd64"
     build:
-      context: ./frontend
+      context: ./webapp
       dockerfile: Dockerfile
       args:
         NEXT_PUBLIC_CLIENTVAR: "clientvar"
