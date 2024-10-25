@@ -5,6 +5,7 @@ import { getCase, CaseData } from "../../../../../types/cases";
 import Checklist from "../../../../_components/Checklist";
 import Summary from "../../../../_components/Summary";
 import EmbeddedPlan from "~/app/_components/EmbeddedPlan";
+import CaseDocumentsComponent from "~/app/_components/CaseDocuments";
 // import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import React from "react";
 
@@ -36,6 +37,18 @@ export default function CaseDashboard() {
     "Det planlegges også integrering av en trapp for bedre tilgang til hagen."
   ];
 
+  /* Dummy data for case documents component */
+
+  const BASE_URL = "http://localhost:3000/mottakskontroll/dine-saker/dashbord/1";
+  const documents = [
+    { name: 'Plantegning.pdf', url: BASE_URL + '/' + 'Plantegning.pdf' },
+    { name: 'Snitt_øst.jpg', url: BASE_URL + '/' + 'Snitt_øst.jpg' },
+    { name: 'Snitt_vest.jpg', url: BASE_URL + '/' + 'Snitt_vest.jpg' },
+    { name: 'Snitt_nord.jpg', url: BASE_URL + '/' + 'Snitt_nord.jpg' },
+    { name: 'Bevis_på_nabovarseler.pdf', url: BASE_URL + '/' + 'Bevis_på_nabovarseler.pdf' },
+    { name: 'Søknadsdokument.pdf', url: BASE_URL + '/' + 'Søknadsdokument.pdf' },
+  ];
+
   return (
     <div>
       <h1 data-cy="title"><strong>Oversikt over søknadsanalyse</strong></h1>
@@ -61,6 +74,11 @@ export default function CaseDashboard() {
           <h3 data-cy="title"><strong>Plansituasjon:</strong></h3>
           <EmbeddedPlan data-cy="plansituasjon"  src="https://www.arealplaner.no/vennesla4223/arealplaner/53?knr=4223&gnr=5&bnr=547&teigid=214401611" title="plansituasjon" />
         </div>
+
+        <div>
+          <CaseDocumentsComponent documents={documents} />
+        </div>
+
         </div>
 
 

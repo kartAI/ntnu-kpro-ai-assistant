@@ -130,59 +130,57 @@ describe("Admin dashboard page displays correctly", () => {
         .and("contain.text", "Tilbakemeldinger til innsender")
         .and("be.visible")
     });
-   */
+ */
+   /*  it("Has feedback header", () => {
+      cy.get('[data-cy="feedback-header"]')
+        .should("exist")
+        .and("contain.text", "Tilbakemeldinger til innsender")
+        .and("be.visible")
+    });
 
-      /* it("Has feedback header", () => {
-        cy.get('[data-cy="feedback-header"]')
-          .should("exist")
-          .and("contain.text", "Tilbakemeldinger til innsender")
-          .and("be.visible")
-      });
   
-    
-      it('should allow typing feedback', () => {
-        // Target the textarea and type some feedback
-        cy.get('textarea').type('Dette er en testtilbakemelding');
-        
-        // Verify if the text was entered correctly
-        cy.get('textarea').should('have.value', 'Dette er en testtilbakemelding');
-      });
-    
-      it('should have buttons that work', () => {
-        // Check if all the buttons are rendered with correct labels
-        cy.contains('Delvis godkjenn').should('exist');
-        cy.contains('Delvis avslå søknad').should('exist');
-        cy.contains('Avvis søknad').should('exist');
-    
-        // Click on the "Delvis godkjenn" button
-        cy.contains('Delvis godkjenn').click();
-        // Perform any assertion based on expected behavior
-    
-        // Click on the "Delvis avslå søknad" button
-        cy.contains('Delvis avslå søknad').click();
-        // Perform any assertion based on expected behavior
-    
-        // Click on the "Avvis søknad" button
-        cy.contains('Avvis søknad').click();
-        // Perform any assertion based on expected behavior
-      });
-    
-      it('should allow sending feedback', () => {
-        // Type some feedback
-        cy.get('textarea').type('Sending feedback test.');
-    
-        // Click the "Send tilbakemelding" button
-        cy.contains('Send tilbakemelding').click();
-    
-        // Check if sending feedback triggers expected behavior
-        // This could be verifying network requests, page redirection, etc.
-        // Example: cy.intercept('/api/feedback', { statusCode: 200 }).as('sendFeedback');
-      }); */
+    it('should allow typing feedback', () => {
+      // Target the textarea and type some feedback
+      cy.get('textarea').type('Dette er en testtilbakemelding');
+      
+      // Verify if the text was entered correctly
+      cy.get('textarea').should('have.value', 'Dette er en testtilbakemelding');
+    });
+  
+    it('should have buttons that work', () => {
+      // Check if all the buttons are rendered with correct labels
+      cy.contains('Delvis godkjenn').should('exist');
+      cy.contains('Delvis avslå søknad').should('exist');
+      cy.contains('Avvis søknad').should('exist');
+  
+      // Click on the "Delvis godkjenn" button
+      cy.contains('Delvis godkjenn').click();
+      // Perform any assertion based on expected behavior
+  
+      // Click on the "Delvis avslå søknad" button
+      cy.contains('Delvis avslå søknad').click();
+      // Perform any assertion based on expected behavior
+  
+      // Click on the "Avvis søknad" button
+      cy.contains('Avvis søknad').click();
+      // Perform any assertion based on expected behavior
+    });
+  
+    it('should allow sending feedback', () => {
+      // Type some feedback
+      cy.get('textarea').type('Sending feedback test.');
+  
+      // Click the "Send tilbakemelding" button
+      cy.contains('Send tilbakemelding').click();
+  
+      // Check if sending feedback triggers expected behavior
+      // This could be verifying network requests, page redirection, etc.
+      // Example: cy.intercept('/api/feedback', { statusCode: 200 }).as('sendFeedback');
+    }); */
     
     /* Tests for plan situation*/
     const external_component_url = "https://www.arealplaner.no/vennesla4223/arealplaner/53?knr=4223&gnr=5&bnr=547&teigid=214401611";
     const BASE_URL = "/mottakskontroll/dine-saker/dashbord/1/";
-    //const PAGE_URL = BASE_URL + "plansituasjon";
 
 
     describe('Iframe Tests', () => {
@@ -222,5 +220,37 @@ describe("Admin dashboard page displays correctly", () => {
         }
         )
       })
+
+      /* Tests for case documents component */
+      it("Has case documents header", () => {
+      cy.get('[data-cy="case-documents-header"]')
+        .should("exist")
+        .and("contain.text", "Sakens dokumenter")
+        .and("be.visible")
+      });
+
+      it('should render the document list dynamically', () => {
+        // Fetch all document titles dynamically
+        cy.get('a').each(($el, index, $list) => {
+          // Get the filename from the href attribute
+          const documentName = $el.attr('href').split('/').pop();
+          
+          // Assert that the document name is displayed in the component
+          cy.contains(documentName).should('exist');
+        });
+      });
+    
+      it('should have clickable links for each document dynamically', () => {
+        // Fetch all document links dynamically and ensure they are clickable
+        cy.get('a').each(($el) => {
+          // Get the href attribute and make sure it's a valid link
+          cy.wrap($el)
+            .should('have.attr', 'href')
+            .and('match', /(\.pdf|\.jpg|\.xml)$/);  // Ensure it ends with .pdf, .jpg or .xml
+    
+          // Optionally, click the link (without actually navigating)
+          cy.wrap($el).click({ force: true });
+        });
+      });
 
 })
