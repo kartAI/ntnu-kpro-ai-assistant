@@ -6,6 +6,7 @@ import Checklist from "../../../../_components/Checklist";
 import Summary from "../../../../_components/Summary";
 import EmbeddedPlan from "~/app/_components/EmbeddedPlan";
 import CaseDocumentsComponent from "~/app/_components/CaseDocuments";
+import Feedback from "~/app/_components/Feedback";
 // import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import React from "react";
 
@@ -77,6 +78,10 @@ export default function CaseDashboard() {
 
         <div>
           <CaseDocumentsComponent documents={documents} />
+        </div>
+
+        <div>
+          <Feedback />
         </div>
 
         </div>

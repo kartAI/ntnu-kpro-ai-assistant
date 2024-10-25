@@ -124,14 +124,7 @@ describe("Admin dashboard page displays correctly", () => {
 
 
     /* Tests for Case Feedback */
-    /* it("Has feedback header", () => {
-      cy.get('[data-cy="feedback-header"]')
-        .should("exist")
-        .and("contain.text", "Tilbakemeldinger til innsender")
-        .and("be.visible")
-    });
- */
-   /*  it("Has feedback header", () => {
+    it("Has feedback header", () => {
       cy.get('[data-cy="feedback-header"]')
         .should("exist")
         .and("contain.text", "Tilbakemeldinger til innsender")
@@ -151,7 +144,7 @@ describe("Admin dashboard page displays correctly", () => {
       // Check if all the buttons are rendered with correct labels
       cy.contains('Delvis godkjenn').should('exist');
       cy.contains('Delvis avslå søknad').should('exist');
-      cy.contains('Avvis søknad').should('exist');
+      cy.contains('Avslå søknad').should('exist');
   
       // Click on the "Delvis godkjenn" button
       cy.contains('Delvis godkjenn').click();
@@ -161,8 +154,8 @@ describe("Admin dashboard page displays correctly", () => {
       cy.contains('Delvis avslå søknad').click();
       // Perform any assertion based on expected behavior
   
-      // Click on the "Avvis søknad" button
-      cy.contains('Avvis søknad').click();
+      // Click on the "Avslå søknad" button
+      cy.contains('Avslå søknad').click();
       // Perform any assertion based on expected behavior
     });
   
@@ -174,9 +167,8 @@ describe("Admin dashboard page displays correctly", () => {
       cy.contains('Send tilbakemelding').click();
   
       // Check if sending feedback triggers expected behavior
-      // This could be verifying network requests, page redirection, etc.
-      // Example: cy.intercept('/api/feedback', { statusCode: 200 }).as('sendFeedback');
-    }); */
+      // cy.intercept('/api/feedback', { statusCode: 200 }).as('sendFeedback');
+    });
     
     /* Tests for plan situation*/
     const external_component_url = "https://www.arealplaner.no/vennesla4223/arealplaner/53?knr=4223&gnr=5&bnr=547&teigid=214401611";
@@ -253,4 +245,35 @@ describe("Admin dashboard page displays correctly", () => {
         });
       });
 
+
+      /* Tests for AI results components */
+     /*  it('Has ArchiveGPT header', () => {
+        cy.get('[data-cy="archiveGPT-header"]')
+        .should("exist")
+        .and("contain.text", "ArkivGPT")
+        .and("be.visible")
+      })
+
+      it('Has "Send status" button for ArchiveGPT', () => {
+        cy.contains('Send status').should('exist');
+  
+        // Click on the "Delvis godkjenn" button
+        cy.contains('Send status').click();
+        // Perform any assertion based on expected behavior
+      })
+
+      it('Has status symbol and text', () => {
+        cy.contains('Noe')
+      })
+    
+      it('Has hyperlink to ArchiveGPT results page', () => {
+        cy.get('a').each(($el) => {
+          // Get the href attribute and make sure it's a valid link
+          cy.wrap($el)
+            .should('have.attr', 'href');
+
+          cy.wrap($el).click({ force: true });
+        })
+      })
+ */
 })
