@@ -18,14 +18,8 @@ api_base = os.getenv("AZURE_OPENAI_API_BASE")
 api_version = os.getenv("API_VERSION")
 deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
 
-
-llm = AzureOpenAI(
-    api_key=api_key,
-    azure_endpoint=api_base,
-    api_version=api_version,
-    deployment_name=deployment_name,
-    temperature=0.7,
-)
+#TODO: add correct elements to the AzureOpenAI class
+llm: AzureOpenAI = None 
 
 
 def invoke_agent(file_content: list[str]) -> SummaryResponse:
@@ -40,7 +34,7 @@ def invoke_agent(file_content: list[str]) -> SummaryResponse:
     """
     # TODO: Implement the agent logic
     return SummaryResponse(
-        summary="",
+        summary=file_content[0],
         cad_aid_summary="",
         arkivgpt_summary="",
     )
@@ -98,17 +92,19 @@ def should_continue(state: GraphState):
     else:
         return "essay_grader"
 
+def create_agent(): 
 
-graph_builder = StateGraph(GraphState)
+    graph_builder = StateGraph(GraphState)
 
-graph_builder.add_node("essay_writer", essay_writer)
-graph_builder.add_node("essay_grader", essay_grader)
-
-
-graph_builder.add_edge("essay_grader", "essay_writer")
-graph_builder.add_conditional_edges("essay_writer", should_continue)
+    graph_builder.add_node("essay_writer", essay_writer)
+    graph_builder.add_node("essay_grader", essay_grader)
 
 
-graph_builder.set_entry_point("essay_writer")
-graph_builder.set_finish_point("chatbot")
-graph = graph_builder.compile()
+    graph_builder.add_edge("essay_grader", "essay_writer")
+    graph_builder.add_conditional_edges("essay_writer", should_continue)
+
+
+    graph_builder.set_entry_point("essay_writer")
+    graph_builder.set_finish_point("chatbot")
+    graph = graph_builder.compile()
+    return graph
