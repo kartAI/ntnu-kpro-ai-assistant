@@ -1,4 +1,4 @@
-frontend/.env
+webapp/.env
 Dockerfile
 .dockerignore
 node_modules

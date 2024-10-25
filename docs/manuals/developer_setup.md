@@ -14,7 +14,7 @@ Before you start, make sure the following tools are installed on your system:
 
 Start by making a copy of the `.env.example` file and renaming it to `.env`. This file contains the environment variables that the application needs to run. You can change the values of the variables to match your environment.
 
-Run the following command in the `frontend/`
+Run the following command in the `webapp/`
 folder to copy the `.env.example` file:
 
 ```bash
@@ -84,4 +84,12 @@ Run the following command in root folder to run the tests in headless mode:
 
 ```bash
 npm test:e2e
+```
+
+#### To test the summary assistant
+
+Run the following command in `root` folder
+
+```bash
+docker compose run api pytest
 ```

@@ -1,6 +1,5 @@
 import logging
-from typing import Optional
-from pydantic import BaseModel
+from src.types import SummaryResponse
 from fastapi import FastAPI, HTTPException, Query, UploadFile
 from fastapi import status
 
@@ -11,14 +10,10 @@ from src.services.agent import invoke_agent
 
 app = FastAPI()
 
-logging.basicConfig(level=logging.INFO)
+
+logging.basicConfig(filename="summary-assistant.log", level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-
-class SummaryResponse(BaseModel):
-    summary: str
-    cad_aid_summary: Optional[str]
-    arkivgpt_summary: Optional[str]
 
 
 @app.post("/summarize", response_model=SummaryResponse)

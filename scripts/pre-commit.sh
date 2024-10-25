@@ -1,4 +1,8 @@
 #!/bin/sh
+# Run linter on staged JavaScript, TypeScript files
+cd webapp
+npm run lint --fix
+
 cd backend
 black .
 
@@ -18,6 +22,6 @@ fi
 
 cd ..
 
-cd frontend
+cd webapp
 
 exit 0

@@ -40,7 +40,7 @@ jobs:
           docker build -t ghcr.io/kartai/ntnu-kpro-ai-assistant-backend:${{ env.GIT_SHA }} ./backend
           docker push ghcr.io/kartai/ntnu-kpro-ai-assistant-backend:${{ env.GIT_SHA }}
 
-      - name: Build and Push Docker Frontend Image
+      - name: Build and Push Docker Webapp Image
         run: |
-          docker build -t ghcr.io/kartai/ntnu-kpro-ai-assistant-frontend:${{ env.GIT_SHA }} ./frontend
-          docker push ghcr.io/kartai/ntnu-kpro-ai-assistant-frontend:${{ env.GIT_SHA }}
+          docker build -t ghcr.io/kartai/ntnu-kpro-ai-assistant-webapp:${{ env.GIT_SHA }} ./webapp
+          docker push ghcr.io/kartai/ntnu-kpro-ai-assistant-webapp:${{ env.GIT_SHA }}
