@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Application {
+  applicationID  Int                @id @unique(map: "applicationID_UNIQUE") @default(autoincrement())
+  submissionDate DateTime           @db.DateTime(0)
+  status         ApplicationStatus @default(NEW)
+  address        String             @db.VarChar(256)
+  municipality   String             @db.VarChar(128)
+  documents      Document[]
+  responses     Response[]
+}
+
+enum ApplicationStatus {
+  APPROVED
+  NEW
+  UNDER_REVIEW
+  REJECTED
+}
+
+model Document {
+  documentID Int @id @unique(map: "documentID_UNIQUE") @default(autoincrement())
+  type       DocumentType @default(OTHER)
+  document   Bytes
+  applicationID Int
+  application Application @relation(fields: [applicationID], references: [applicationID])
+}
+
+enum DocumentType {
+  // TODO: Add more types
+  XML
+  OTHER
+}
+
+model Response {
+  responseID Int @id @unique(map: "responseID_UNIQUE") @default(autoincrement())
+  response   String
+  modelID Int
+  model Model @relation(fields: [modelID], references: [modelID])
+  applicationID Int
+  application Application @relation(fields: [applicationID], references: [applicationID])
+  errors ModelError[]
+}
+
+model ModelError {
+  errorID Int @id @unique(map: "errorID_UNIQUE") @default(autoincrement())
+  error   String
+  modelID Int
+  model Model @relation(fields: [modelID], references: [modelID])
+  responseID Int
+  response Response @relation(fields: [responseID], references: [responseID])
+}
+
+model Model {
+  modelID Int @id @unique(map: "modelID_UNIQUE") @default(autoincrement())
+  modelName String @unique
+  modelErrors ModelError[]
+  responses Response[]
+}

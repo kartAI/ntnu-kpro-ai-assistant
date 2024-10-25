@@ -1,0 +1,195 @@
+MainForm:
+<?xml version="1.0" encoding="utf-8"?>
+<TiltakUtenAnsvarsrett xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" dataFormatProvider="SERES" dataFormatId="6742" dataFormatVersion="45753" xmlns="http://skjema.kxml.no/dibk/tiltakutenansvarsrett/3.0">
+  <eiendomByggested>
+    <eiendom>
+      <adresse>
+        <adresselinje1>Adresseveien 123</adresselinje1>
+        <adresselinje2 xsi:nil="true" />
+        <adresselinje3 xsi:nil="true" />
+        <postnr>9999</postnr>
+        <poststed>KommuneNavn</poststed>
+        <landkode xsi:nil="true" />
+        <gatenavn xsi:nil="true" />
+        <husnr xsi:nil="true" />
+        <bokstav xsi:nil="true" />
+      </adresse>
+      <eiendomsidentifikasjon>
+        <kommunenummer>9999</kommunenummer>
+        <gaardsnummer>99</gaardsnummer>
+        <bruksnummer>9</bruksnummer>
+        <festenummer>0</festenummer>
+        <seksjonsnummer>0</seksjonsnummer>
+      </eiendomsidentifikasjon>
+      <bygningsnummer xsi:nil="true" />
+      <bolignummer xsi:nil="true" />
+      <kommunenavn>KommuneNavn</kommunenavn>
+    </eiendom>
+  </eiendomByggested>
+  <beskrivelseAvTiltak>
+    <bruk>
+      <naeringsgruppe xsi:nil="true" />
+      <bygningstype xsi:nil="true" />
+      <tiltaksformaal>
+        <kodeverdi>Bolig</kodeverdi>
+        <kodebeskrivelse>Bolig</kodebeskrivelse>
+      </tiltaksformaal>
+      <beskrivPlanlagtFormaal xsi:nil="true" />
+    </bruk>
+    <foelgebrev>Fornye bod: 
+På eiendommen har det stått en utvendig bod vegg i vegg med boligen. Boden er en del av eiendommens reguleringsplan og har en grunnflate på ca 15m2 og takhøyde på ca 190cm. Boden slik den har stått har kun hatt inngangsparti fra hage. Se vedlagt kartutsnitt for markering av bod på eiendom.  
+
+Boden har vært i en svært dårlig forfatning, med blant annet taklekkasje og ødelagt bæring og gulv. Bodens funksjon som lagringsenhet har i praksis vært ikke-eksisterende i denne tilstanden, og det har vært nødvendig med strakstiltak for å etablere ny lagringsenhet.
+
+Boden har derfor blitt revet, og ny bod har blitt bygget opp på samme plassering på eiendom, på samme grunnflate. Den nye bodens størrelse benytter samme grunnflate og måler 15m2. En vesentlig endring fra tidligere bod er endret takhøyde. Ny bod er bygget til å ha lik gesimshøyde som eiendommens bolig, med en innendørs takhøyde på ca 230 cm. Byggekvaliteten på ny bod er økt betraktelig, arbeidet er utført av fagarbeidere med støpt fundament, isolerte vegger og reisverk i henhold til et moderne hus. Ytterpanel og tak  har lik utforming som eiendommens bolig og husene ellers i Borgenbråten. 
+
+Boden er p.t. omtrentlig ferdigstilt. Vi ønsker ettergodkjenning av fornyet  bod, med endret takhøyde, og godkjent inngangsdør fra bolig i tillegg til utvendig inngangsdør fra hage. Boden skal kun ha funksjon som bod. 
+
+
+
+Flytte gjerde
+Borgenbråten 51 er et atriumshus med et gjerde rundt husets hage tilknyttet eiendommens bolig i begge ender. Det har nylig blitt gjort en grensejustering for boligen, saksnummer 21/4273-4. 
+
+Etter grensejusteringen ønskes gjerdet flyttet i henhold til ny oppmåling hvor gjerdet følger den nye grensen. </foelgebrev>
+    <type>
+      <beskrivelse xsi:nil="true" />
+      <type>
+        <kodeverdi>tilbyggunder50m2</kodeverdi>
+        <kodebeskrivelse>Endring av bygg - utvendig - Tilbygg med samlet areal mindre enn 50 m2</kodebeskrivelse>
+      </type>
+    </type>
+  </beskrivelseAvTiltak>
+<tiltakshaver>
+    <partstype>
+      <kodeverdi>Privatperson</kodeverdi>
+      <kodebeskrivelse>Privatperson</kodebeskrivelse>
+    </partstype>
+    <foedselsnummer>070727*****</foedselsnummer>
+    <organisasjonsnummer xsi:nil="true" />
+    <navn>PRIVATPERSON PERSONESEN</navn>
+    <adresse>
+      <adresselinje1>Adresseveien 1</adresselinje1>
+      <adresselinje2 xsi:nil="true" />
+      <adresselinje3 xsi:nil="true" />
+      <postnr>9999</postnr>
+      <poststed>KommuneNavn</poststed>
+      <landkode xsi:nil="true" />
+    </adresse>
+    <telefonnummer>99999999</telefonnummer>
+    <mobilnummer xsi:nil="true" />
+    <epost>TestEpost@norkartepost.no</epost>
+    <kontaktperson>
+      <navn>PRIVATPERSON PERSONESEN</navn>
+      <telefonnummer>99999999</telefonnummer>
+      <mobilnummer xsi:nil="true" />
+      <epost>TestEpost@norkartepost.no</epost>
+    </kontaktperson>
+  </tiltakshaver>
+  <dispensasjon>
+    <dispensasjon>
+      <dispensasjonstype>
+        <kodeverdi>PLAN</kodeverdi>
+        <kodebeskrivelse>Arealplaner</kodebeskrivelse>
+      </dispensasjonstype>
+      <begrunnelse>Tidligere bod har vært i svært dårlig stand, med lekkasje og gamle materialer, derfor uegnet bod. Ny bod er en utbedring av eksisterende bebyggelse på eiendom som gir tiltenkt funksjon. </begrunnelse>
+      <beskrivelse>Dispensasjon for høyde på bod. Boden som ønskes godkjent er en utbedring av en allerede eksisterende bod på eiendommen. Boden er bygget etter samme grunnflate mål, med samme plassering, men med en økt takhøyde lik husets.   
+
+Det søkes også om å lage inngang til bod fra huset i tillegg til hageinngang. </beskrivelse>
+    </dispensasjon>
+  </dispensasjon>
+  <kommunensSaksnummer xsi:nil="true" />
+  <varsling>
+    <antallMerknader xsi:nil="true" />
+    <fritattFraNabovarsling>true</fritattFraNabovarsling>
+    <vurderingAvMerknader xsi:nil="true" />
+    <soeknadensHjemmeside xsi:nil="true" />
+    <soeknadSeesKontaktperson xsi:nil="true" />
+  </varsling>
+  <metadata>
+    <fraSluttbrukersystem>Norkart</fraSluttbrukersystem>
+    <ftbId xsi:nil="true" />
+    <prosjektnavn xsi:nil="true" />
+    <sluttbrukersystemUrl xsi:nil="true" />
+    <klartForSigneringFraSluttbrukersystem>true</klartForSigneringFraSluttbrukersystem>
+  </metadata>
+  <rammebetingelser>
+    <adkomst>
+      <nyeEndretAdkomst>false</nyeEndretAdkomst>
+      <vegrett>
+        <vegrett>
+          <vegtype>
+            <kodeverdi xsi:nil="true" />
+            <kodebeskrivelse xsi:nil="true" />
+          </vegtype>
+          <erTillatelseGitt>false</erTillatelseGitt>
+        </vegrett>
+      </vegrett>
+    </adkomst>
+    <arealdisponering>
+      <tomtearealByggeomraade>502</tomtearealByggeomraade>
+      <tomtearealBeregnet>502</tomtearealBeregnet>
+      <beregnetMaksByggeareal>149.9976</beregnetMaksByggeareal>
+      <arealBebyggelseEksisterende>150</arealBebyggelseEksisterende>
+      <arealBebyggelseSomSkalRives>0</arealBebyggelseSomSkalRives>
+      <arealBebyggelseNytt>15</arealBebyggelseNytt>
+      <parkeringsarealTerreng>0</parkeringsarealTerreng>
+      <arealSumByggesak>165</arealSumByggesak>
+      <beregnetGradAvUtnytting>32.86852589641434</beregnetGradAvUtnytting>
+    </arealdisponering>
+    <generelleVilkaar>
+      <norskSvenskDansk>true</norskSvenskDansk>
+    </generelleVilkaar>
+    <plan>
+      <gjeldendePlan>
+        <plantype>
+          <kodeverdi>RP</kodeverdi>
+          <kodebeskrivelse>Reguleringsplan</kodebeskrivelse>
+        </plantype>
+        <navn>Borgen og Drengsrud 022024 08.07.1965</navn>
+        <formaal xsi:nil="true" />
+        <beregningsregelGradAvUtnytting>
+          <kodeverdi>%BYA</kodeverdi>
+          <kodebeskrivelse>Prosent bebygd areal</kodebeskrivelse>
+        </beregningsregelGradAvUtnytting>
+      </gjeldendePlan>
+      <andrePlaner>
+        <andreplaner>
+          <plantype>
+            <kodeverdi>KP</kodeverdi>
+            <kodebeskrivelse>Kommuneplanens arealdel</kodebeskrivelse>
+          </plantype>
+          <navn>Kommuneplan for Asker 2023 - 2034 2020100 13.06.2023</navn>
+        </andreplaner>
+      </andrePlaner>
+      <andreRelevanteKrav xsi:nil="true" />
+    </plan>
+    <vannforsyning xsi:nil="true" />
+    <avloep>
+      <tilknytningstype>
+        <kodeverdi xsi:nil="true" />
+        <kodebeskrivelse xsi:nil="true" />
+      </tilknytningstype>
+      <overvannTerreng>true</overvannTerreng>
+      <overvannAvloepssystem>true</overvannAvloepssystem>
+    </avloep>
+    <kravTilByggegrunn>
+      <flomutsattOmraade>false</flomutsattOmraade>
+      <skredutsattOmraade>false</skredutsattOmraade>
+      <miljoeforhold>false</miljoeforhold>
+    </kravTilByggegrunn>
+    <plassering>
+      <konfliktHoeyspentkraftlinje>false</konfliktHoeyspentkraftlinje>
+      <minsteAvstandNabogrense>0.4</minsteAvstandNabogrense>
+      <konfliktVannOgAvloep>false</konfliktVannOgAvloep>
+      <minsteAvstandTilAnnenBygning>2.5</minsteAvstandTilAnnenBygning>
+      <bekreftetInnenforByggegrense>true</bekreftetInnenforByggegrense>
+    </plassering>
+  </rammebetingelser>
+  <signatur xsi:nil="true" />
+</TiltakUtenAnsvarsrett>
+
+SubForm:
+<?xml version="1.0" encoding="utf-8"?>
+<Vedleggsopplysninger xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" dataFormatProvider="SERES" dataFormatId="5797" dataFormatVersion="42813" xmlns="http://skjema.kxml.no/dibk/vedlegg/1.0">
+  <vedlegg />
+</Vedleggsopplysninger>
