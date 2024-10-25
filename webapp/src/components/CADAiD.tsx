@@ -4,22 +4,18 @@ import React, { useState } from 'react';
 import FileList from './FileList';
 import Results from './Results';
 import FilePreview from './FilePreview';
+import { api } from '~/trpc/react';
 import type { Detection } from '~/types/detection';
 
-async function fetchDetection(formData: FormData): Promise<Detection[]> {
-  const response = await fetch('http://localhost:5001/detect/', {
-    method: 'POST',
-    body: formData,
-  })
-
-  if (!response.ok) {
-    throw new Error('Failed to upload files');
-  }
-
-  return response.json() as Promise<Detection[]>;
-}
-
 const CadaidPage: React.FC = () => {
+  const utils = api.useUtils(); 
+  async function fetchDetection(formData: FormData): Promise<Detection[]> {
+    const result = await utils.cadaid.fetchDetections.fetch({
+      files: formData,
+    });
+  
+    return result.data ?? [];
+  }
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [files, setFiles] = useState<File[]>([]);
   const [results, setResults] = useState<Detection[]>([]);
@@ -49,10 +45,11 @@ const CadaidPage: React.FC = () => {
 
       const formData = new FormData();
       uploadedFiles.forEach((file) => {
-        formData.append('uploaded_files', file);
+        formData.append('file', file);
       });
 
       try {
+        console.log(formData);
         const detections = await fetchDetection(formData);
         setResults((prevResults) => [...prevResults, ...detections]);
       } catch (error) {
