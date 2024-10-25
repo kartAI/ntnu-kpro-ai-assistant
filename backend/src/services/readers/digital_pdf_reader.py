@@ -1,32 +1,25 @@
+from io import BytesIO
 from fastapi import UploadFile
-import fitz
-import pytesseract
+import pymupdf
 from tempfile import NamedTemporaryFile
 from src.services.reader import Reader
 
+from io import BytesIO
+from fastapi import UploadFile
+import fitz  # pymupdf is imported as fitz
+from src.services.reader import Reader
+
 class PdfReader(Reader):
-    async def read(self, file: UploadFile) -> str:
-        text = ""
-
-        # Save the uploaded file to a temporary file
-        with NamedTemporaryFile(delete=False) as tmp_file:
-            tmp_file.write(await file.read())
-            tmp_file_path = tmp_file.name
-
-        # Open the PDF document with PyMuPDF (fitz)
-        doc = fitz.open(tmp_file_path)  # Open the document
-        for page in doc:  # Iterate over pages
-            page_text = page.get_text()  # Get plain text from the page
-            
-            if page_text.strip():  # If there is embedded text
-                text += page_text
-            else:
-                # Render the page as an image and use OCR
-                pix = page.get_pixmap()  # Render page to image (pixmap)
-                ocr_text = pytesseract.image_to_string(pix.tobytes("png"))  # Use OCR on the rendered image
-                text += ocr_text
-
-            text += "\n\n"  # Separate pages
-
-        doc.close()  # Close the document
+    def read(self, file: UploadFile) -> str:
+        # Read the file content
+        contents = file.read()  # Ensure it's an async read
+        if not contents:
+            raise ValueError("Empty file provided")
+        
+        # Use BytesIO to open the PDF document
+        bytes_io = BytesIO(contents).getvalue()
+        with fitz.open(stream=bytes_io, filetype="pdf") as doc:
+            text = ""
+            for page in doc:  # Iterate through the document pages
+                text += page.get_text()
         return text
