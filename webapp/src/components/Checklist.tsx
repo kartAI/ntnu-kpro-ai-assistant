@@ -1,14 +1,13 @@
 'use client'
 import React, { useState } from 'react';
 
-
-interface SubItem {
-  id: number;
+export interface SubItem {
+  id: string;
   description: string;
   isComplete: boolean;
 }
 
-interface ChecklistItemProps {
+export interface ChecklistItemProps {
   fileName: string;
   points: number;
   subItems: SubItem[];
@@ -22,7 +21,7 @@ const ChecklistItem: React.FC<ChecklistItemProps> = ({ fileName, points, subItem
     setIsExpanded(!isExpanded);
   };
 
-  const toggleSubItemCompletion = (id: number) => {
+  const toggleSubItemCompletion = (id: string) => {
     const updatedItems = items.map(item =>
       item.id === id ? { ...item, isComplete: !item.isComplete } : item
     );
@@ -71,20 +70,14 @@ const ChecklistItem: React.FC<ChecklistItemProps> = ({ fileName, points, subItem
 };
 
 
-/* interface SubItem {
-  id: number;
-  description: string;
-  isComplete: boolean;
-}
-*/
-interface ChecklistItemData {
-  id: number;
+export interface ChecklistItemData {
+  id: string;
   fileName: string;
   points: number;
   subItems: SubItem[];
 }
 
-const checklistData: ChecklistItemData[] = [
+/* const checklistData: ChecklistItemData[] = [
   {
     id: 1,
     fileName: 'Plantegning.pdf',
@@ -107,10 +100,10 @@ const checklistData: ChecklistItemData[] = [
     points: 1,
     subItems: []
   }
-];
+]; */
 
-const Checklist: React.FC = () => {
-  const totalPoints = checklistData.reduce((sum, item) => sum + item.points, 0);
+const Checklist: React.FC<{checklist : ChecklistItemData[]}> = ({ checklist }) => {
+  const totalPoints = checklist.reduce((sum, item) => sum + item.points, 0);
 
   return (
     <div className="checklist max-w-md mx-auto p-4 border border-gray-300 rounded-lg">
@@ -130,7 +123,7 @@ const Checklist: React.FC = () => {
       </div>
 
       <div className="checklist-items">
-        {checklistData.map(item => (
+        {checklist.map(item => (
           <ChecklistItem
             key={item.id}
             fileName={item.fileName}

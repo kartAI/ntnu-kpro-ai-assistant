@@ -2,14 +2,29 @@
 
 import { useParams } from "next/navigation";
 import { getCase, CaseData } from "../../../../../types/cases";
-import Checklist from "../../../../_components/Checklist";
-import Summary from "../../../../_components/Summary";
-import EmbeddedPlan from "~/app/_components/EmbeddedPlan";
-import CaseDocumentsComponent from "~/app/_components/CaseDocuments";
-import Feedback from "~/app/_components/Feedback";
-import ResultAI from "~/app/_components/ResultAI";
-// import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import Checklist from "~/components/Checklist";
+import Summary from "~/components/Summary";
+import EmbeddedFrame from "~/components/EmbeddedFrame";
+import CaseDocumentsComponent from "~/components/CaseDocuments";
+import Feedback from "~/components/Feedback";
+import ResultAI from "~/components/ResultAI";
 import React from "react";
+import { Detection } from "~/types/detection";
+
+const fetchDetections = ():  Detection[] => {
+  
+  const detections: Detection[] = [
+    {
+      file_name: 'Plantegning.pdf',
+      drawing_type: ['plantegning'],
+      room_names: 'Mangler rombenevnelse',
+    }
+  ];
+  
+  return detections;
+}
+
+
 
 export default function CaseDashboard() {
   const { caseNumber } = useParams();  // Get caseNumber from the dynamic route
@@ -41,7 +56,7 @@ export default function CaseDashboard() {
 
   /* Dummy data for case documents component */
 
-  const BASE_URL = "http://localhost:3000/mottakskontroll/dine-saker/dashbord/1";
+  const BASE_URL = "http://localhost:3000/mottakskontroll/mine-saker/dashbord/1";
   const documents = [
     { name: 'Plantegning.pdf', url: BASE_URL + '/' + 'Plantegning.pdf' },
     { name: 'Snitt_øst.jpg', url: BASE_URL + '/' + 'Snitt_øst.jpg' },
@@ -86,7 +101,6 @@ export default function CaseDashboard() {
   ]
 
   return (
-<<<<<<< HEAD:frontend/src/app/mottakskontroll/dine-saker/dashbord/[caseNumber]/page.tsx
     <div>
       <h1 data-cy="title"><strong>Oversikt over søknadsanalyse</strong></h1>
   
@@ -109,7 +123,11 @@ export default function CaseDashboard() {
         </div>
         <div>
           <h3 data-cy="title"><strong>Plansituasjon:</strong></h3>
-          <EmbeddedPlan data-cy="plansituasjon"  src="https://www.arealplaner.no/vennesla4223/arealplaner/53?knr=4223&gnr=5&bnr=547&teigid=214401611" title="plansituasjon" />
+          <EmbeddedFrame data-cy="plansituasjon"  
+            src="https://www.arealplaner.no/vennesla4223/arealplaner/53?knr=4223&gnr=5&bnr=547&teigid=214401611" 
+            title="plansituasjon" 
+            width = '60%'
+            height = '500vh'/>
         </div>
 
         <div>
@@ -130,10 +148,6 @@ export default function CaseDashboard() {
       ) : (
         <p>No case number provided</p>
       )}
-=======
-    <div className="h-screen">
-      <h1>Dashbord for saksnummer: {caseNumber}</h1>
->>>>>>> main:webapp/src/app/mottak/mine-saker/dashbord/[caseNumber]/page.tsx
     </div>
   );
 }

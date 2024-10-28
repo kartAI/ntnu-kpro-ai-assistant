@@ -9,7 +9,7 @@ const VALID_CASE_ID = 1;
 
 describe("Admin dashboard page displays correctly", () => { 
     beforeEach(() => {
-      cy.visit("/mottakskontroll/dine-saker/dashbord/" + VALID_CASE_ID);
+      cy.visit("/mottak/mine-saker/dashbord/" + VALID_CASE_ID);
     });
 
     it("Has header", () => {
