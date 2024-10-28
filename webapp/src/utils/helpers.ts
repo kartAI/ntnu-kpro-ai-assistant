@@ -72,9 +72,6 @@ const transformDetectionToSubItem = (detection: Detection): SubItem[] => {
     isComplete: !detection.room_names,
   };
 
-  console.log(subItemScale, subItemCardinalDirection, subItemRoomNames);
-  console.log(detection);
-
   return [subItemCardinalDirection, subItemScale, subItemRoomNames].filter(
     (item) => !item.isComplete,
   );
