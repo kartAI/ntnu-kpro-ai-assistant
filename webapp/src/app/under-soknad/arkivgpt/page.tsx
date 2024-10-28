@@ -1,4 +1,5 @@
-import ArkivGPTPage from "~/app/_components/ArkivGPT";
+import ArkivGPTPage from "~/components/ArkivGPT";
+
 
 export default async function ArkivGPT() {
   return (

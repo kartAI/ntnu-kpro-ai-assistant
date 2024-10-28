@@ -68,27 +68,28 @@ export const arkivGptRouter = createTRPCRouter({
     }),
 
   fetchDocument: publicProcedure
-    .input(
-      z.object({
-        documentURL: z.string(),
-      }),
-    )
+    .input(z.object({ documentPath: z.string() }))
     .query(async ({ input }) => {
-      const { documentURL } = input;
+      const { documentPath } = input;
 
       try {
-        const response = await axios.get(documentURL);
+        const response: AxiosResponse<ArrayBuffer> = await axios.get(
+          `http://localhost/api/document?document=${documentPath}`,
+          {
+            responseType: "arraybuffer",
+          },
+        );
+        const arrayBuffer = response.data;
+        const buffer = Buffer.from(arrayBuffer);
+        const base64 = buffer.toString("base64");
 
-        return response.data as ArkivGPTDocumentResponse;
+        return {
+          document: base64,
+          contentType: "application/pdf",
+        } as unknown as ArkivGPTDocumentResponse;
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.error(
-            "Error fetching response for document:",
-            error.response?.data,
-          );
-          throw new Error("Failed to fetch ArkivGPT response");
-        }
-        throw new Error("An unknown error when fetching response for document");
+        console.error("Error fetching PDF:", error);
+        throw new Error("Failed to fetch document");
       }
     }),
 });

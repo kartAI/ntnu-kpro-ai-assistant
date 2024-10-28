@@ -6,4 +6,5 @@ export interface ArkivGPTSummaryResponse {
 
 export interface ArkivGPTDocumentResponse {
   document: string; // base64 encoded
+  contentType: string;
 }

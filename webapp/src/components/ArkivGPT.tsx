@@ -23,6 +23,7 @@ export default function ArkivGPTPage() {
   const [responses, setResponses] = useState<ArkivGPTSummaryResponse[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [response, setResponse] = useState<ArkivGPTSummaryResponse[]>([]);
+  const [pdfUrl, setPdfUrl] = useState<string>("");
 
   const utils = api.useUtils();
 
@@ -38,6 +39,26 @@ export default function ArkivGPTPage() {
     console.log(data);
     setResponse(data);
     setIsLoading(false);
+  };
+
+  const handleGetDocument = async (documentPath: string) => {
+    const data = await utils.arkivgpt.fetchDocument.fetch({
+      documentPath: documentPath,
+    });
+
+    const { document, contentType } = data;
+
+    // Convert base64 string to a Blob
+    const byteCharacters = atob(document);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: contentType });
+
+    const url = URL.createObjectURL(blob);
+    setPdfUrl(url);
   };
   // const responses = [] as ArkivGPTSummaryResponse[];
   //   const response: AxiosResponse = await axios.get<string>(
@@ -88,9 +109,16 @@ export default function ArkivGPTPage() {
       {response.map((res) => (
         <div key={res.id}>
           <h2>{res.resolution}</h2>
-          <p>{res.documentPath}</p>
+          <button onClick={() => handleGetDocument(res.documentPath)}>
+            Get Document
+          </button>
         </div>
       ))}
+      {pdfUrl ? (
+        <iframe src={pdfUrl} width="100%" height="800px" title="PDF Viewer" />
+      ) : (
+        <p>No file selected</p>
+      )}
     </div>
   );
 }
