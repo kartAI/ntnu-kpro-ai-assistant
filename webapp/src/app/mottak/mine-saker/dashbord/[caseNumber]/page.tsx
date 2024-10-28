@@ -11,6 +11,7 @@ import ResultAI from "~/components/ResultAI";
 import React from "react";
 import { Detection } from "~/types/detection";
 import { transformDetectionToChecklist } from "~/utils/helpers";
+import FeedbackSender from "~/components/FeedbackSender";
 
 const fetchDetections = ():  Detection[] => {
   
@@ -152,7 +153,7 @@ export default function CaseDashboard() {
         </div>
 
         <div>
-          <Feedback />
+          <FeedbackSender checklist={checklist} />
         </div>
 {/* 
         <div>
