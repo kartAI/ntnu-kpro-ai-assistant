@@ -11,7 +11,7 @@ interface SubItem {
 interface ChecklistItemProps {
   fileName: string;
   points: number;
-  subItems: SubItem[];  // New prop for sub-items
+  subItems: SubItem[];
 }
 
 const ChecklistItem: React.FC<ChecklistItemProps> = ({ fileName, points, subItems }) => {
@@ -71,12 +71,12 @@ const ChecklistItem: React.FC<ChecklistItemProps> = ({ fileName, points, subItem
 };
 
 
-interface SubItem {
+/* interface SubItem {
   id: number;
   description: string;
   isComplete: boolean;
 }
-
+*/
 interface ChecklistItemData {
   id: number;
   fileName: string;

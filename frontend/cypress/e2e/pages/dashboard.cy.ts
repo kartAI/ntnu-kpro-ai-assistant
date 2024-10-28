@@ -247,33 +247,89 @@ describe("Admin dashboard page displays correctly", () => {
 
 
       /* Tests for AI results components */
-     /*  it('Has ArchiveGPT header', () => {
-        cy.get('[data-cy="archiveGPT-header"]')
-        .should("exist")
-        .and("contain.text", "ArkivGPT")
-        .and("be.visible")
-      })
-
-      it('Has "Send status" button for ArchiveGPT', () => {
-        cy.contains('Send status').should('exist');
-  
-        // Click on the "Delvis godkjenn" button
-        cy.contains('Send status').click();
-        // Perform any assertion based on expected behavior
-      })
-
-      it('Has status symbol and text', () => {
-        cy.contains('Noe')
-      })
+      describe('ArchiveGPT Component Tests', () => {
     
-      it('Has hyperlink to ArchiveGPT results page', () => {
-        cy.get('a').each(($el) => {
-          // Get the href attribute and make sure it's a valid link
-          cy.wrap($el)
-            .should('have.attr', 'href');
-
-          cy.wrap($el).click({ force: true });
+        it('Has ArchiveGPT header', () => {
+          cy.get('[data-cy="title"]')
+          .should("exist")
+          .and("contain.text", "Arkiv-GPT")
+          .and("be.visible")
         })
-      })
- */
+    
+        it('should display the correct status icon and dynamic feedback text', () => {
+            // Check if the status is a success or failure
+            cy.get('[data-test=status-indicator]').then(($statusIndicator) => {
+                if ($statusIndicator.hasClass('success')) {
+                    // Success case: Check for a check mark and non-empty feedback text
+                    cy.get('[data-test=icon]').should('have.class', 'icon-checkmark');
+                    cy.get('[data-test=feedback-text]')
+                        .invoke('text')
+                        .then((feedback) => {
+                            expect(feedback.trim()).not.to.be.empty;
+                            cy.log(`Success feedback: ${feedback}`); // Log feedback for reference
+                        });
+                } else if ($statusIndicator.hasClass('failure')) {
+                    // Failure case: Check for a warning icon and non-empty feedback text
+                    cy.get('[data-test=icon]').should('have.class', 'icon-warning');
+                    cy.get('[data-test=feedback-text]')
+                        .invoke('text')
+                        .then((feedback) => {
+                            expect(feedback.trim()).not.to.be.empty;
+                            cy.log(`Failure feedback: ${feedback}`); // Log feedback for reference
+                        });
+                }
+            });
+        });
+    
+        it('should navigate to the detailed report page when clicked', () => {
+            // Simulate clicking the component and ensure it navigates to the detailed page
+            cy.get('[data-test=archiveGPT-component]')
+                .click()
+                .location('pathname')  // TODO: Add route to report page
+                .should('include', '/report-page');  // Adjust this to the actual report page route
+        });
+    });
+
+  /* DOK-analyse */
+  describe('DOK-analysis Component Tests', () => {
+    
+    it('Has DOK-analysis header', () => {
+      cy.get('[data-cy="title"]')
+      .should("exist")
+      .and("contain.text", "DOK-Analyse")
+      .and("be.visible")
+    })
+
+    it('should display the correct status icon and dynamic feedback text', () => {
+        cy.get('[data-test=status-indicator]').then(($statusIndicator) => {
+            if ($statusIndicator.hasClass('success')) {
+                // Success case: Check for a check mark and non-empty feedback text
+                cy.get('[data-test=icon]').should('have.class', 'icon-checkmark');
+                cy.get('[data-test=feedback-text]')
+                    .invoke('text')
+                    .then((feedback) => {
+                        expect(feedback.trim()).not.to.be.empty;
+                        cy.log(`Success feedback: ${feedback}`); // Log feedback for reference
+                    });
+            } else if ($statusIndicator.hasClass('failure')) {
+                // Failure case: Check for a warning icon and non-empty feedback text
+                cy.get('[data-test=icon]').should('have.class', 'icon-warning');
+                cy.get('[data-test=feedback-text]')
+                    .invoke('text')
+                    .then((feedback) => {
+                        expect(feedback.trim()).not.to.be.empty;
+                        cy.log(`Failure feedback: ${feedback}`); // Log feedback for reference
+                    });
+            }
+        });
+    });
+
+    it('should navigate to the detailed report page when clicked', () => {
+        cy.get('[data-test=dok-component]')
+            .click()
+            .location('pathname')  // TODO: Add path to report page
+            .should('include', '/report-page');  // Adjust this to the actual report page route
+    });
+});
+
 })

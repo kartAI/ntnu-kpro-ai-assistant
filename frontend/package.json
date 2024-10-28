@@ -38,6 +38,7 @@
     "ntnu-kpro-ai-assistant": "file:",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0",
     "server-only": "^0.0.1",
     "shadcn-ui": "^0.9.2",
     "superjson": "^2.2.1",

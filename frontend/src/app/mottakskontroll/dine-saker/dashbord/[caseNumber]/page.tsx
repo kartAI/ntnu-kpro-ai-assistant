@@ -7,6 +7,7 @@ import Summary from "../../../../_components/Summary";
 import EmbeddedPlan from "~/app/_components/EmbeddedPlan";
 import CaseDocumentsComponent from "~/app/_components/CaseDocuments";
 import Feedback from "~/app/_components/Feedback";
+import ResultAI from "~/app/_components/ResultAI";
 // import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import React from "react";
 
@@ -50,6 +51,40 @@ export default function CaseDashboard() {
     { name: 'Søknadsdokument.pdf', url: BASE_URL + '/' + 'Søknadsdokument.pdf' },
   ];
 
+
+  const agents = [
+      {
+          title: 'CAD-Aid',
+          status: 'failure',
+          feedback: 'KRITISKE MANGLER',
+          reportUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+      },
+      {
+          title: 'ArkivGPT',
+          status: 'success',
+          feedback: 'Arkivdata funnet',
+          reportUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+      },
+      {
+          title: 'DOK-analyse',
+          status: 'success',
+          feedback: 'Dokumenter validert',
+          reportUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+      },
+      {
+          title: '3D-tiltaksvisning',
+          status: 'success',
+          feedback: 'Se visualisering',
+          reportUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+      },
+      {
+          title: 'Tiltakskart',
+          status: 'failure',
+          feedback: 'TILTAK MÅ SJEKKES',
+          reportUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+      },
+  ]
+
   return (
     <div>
       <h1 data-cy="title"><strong>Oversikt over søknadsanalyse</strong></h1>
@@ -83,7 +118,11 @@ export default function CaseDashboard() {
         <div>
           <Feedback />
         </div>
-
+{/* 
+        <div>
+          <ResultAI title={"ArkivGPT"} status={'success'} feedback={"Arkivdata funnet"} reportUrl={'https://www.youtube.com/watch?v=dQw4w9WgXcQ'} />
+        </div>
+ */}
         </div>
 
 
