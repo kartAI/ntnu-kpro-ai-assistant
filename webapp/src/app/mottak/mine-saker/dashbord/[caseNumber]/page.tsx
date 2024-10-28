@@ -10,6 +10,7 @@ import Feedback from "~/components/Feedback";
 import ResultAI from "~/components/ResultAI";
 import React from "react";
 import { Detection } from "~/types/detection";
+import { transformDetectionToChecklist } from "~/utils/helpers";
 
 const fetchDetections = ():  Detection[] => {
   
@@ -18,6 +19,21 @@ const fetchDetections = ():  Detection[] => {
       file_name: 'Plantegning.pdf',
       drawing_type: ['plantegning'],
       room_names: 'Mangler rombenevnelse',
+    },
+    {
+      file_name: 'Snitt.pdf',
+      drawing_type: ['snitt'],
+      scale: 'Mangler målestokk',
+    },
+    {
+      file_name: 'Fasade.pdf',
+      drawing_type: ['fasade'],
+      cardinal_direction: 'Mangler himmelretning',
+      scale: 'Mangler målestokk',
+    }, 
+    {
+      file_name: 'Situasjonskart.pdf',
+      drawing_type: ['situasjonskart'],
     }
   ];
   
@@ -28,7 +44,8 @@ const fetchDetections = ():  Detection[] => {
 
 export default function CaseDashboard() {
   const { caseNumber } = useParams();  // Get caseNumber from the dynamic route
-  
+  const detections = fetchDetections();
+  const checklist = transformDetectionToChecklist(detections);
 
   /** Convert from string to number for getCase function */
   const caseNumberAsNumber = Number(caseNumber);
@@ -116,7 +133,7 @@ export default function CaseDashboard() {
         </div>
 
         <div data-cy="sjekkliste">
-          <Checklist /> 
+          <Checklist checklist={checklist} /> 
         </div>
         <div data-cy="summary">
           <Summary summaryData={aiSummary}/>
