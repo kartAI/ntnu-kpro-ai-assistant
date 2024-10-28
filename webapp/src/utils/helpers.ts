@@ -57,25 +57,25 @@ const transformDetectionToSubItem = (detection: Detection): SubItem[] => {
   const subItemScale = {
     id: uuidv4(),
     description: detection.scale ? detection.scale : "",
-    isComplete: !!detection.scale,
+    isComplete: !detection.scale,
   };
   const subItemCardinalDirection = {
     id: uuidv4(),
     description: detection.cardinal_direction
       ? detection.cardinal_direction
       : "",
-    isComplete: !!detection.cardinal_direction,
+    isComplete: !detection.cardinal_direction,
   };
   const subItemRoomNames = {
     id: uuidv4(),
     description: detection.room_names ? detection.room_names : "",
-    isComplete: !!detection.room_names,
+    isComplete: !detection.room_names,
   };
 
   console.log(subItemScale, subItemCardinalDirection, subItemRoomNames);
   console.log(detection);
 
   return [subItemCardinalDirection, subItemScale, subItemRoomNames].filter(
-    (item) => item.isComplete,
+    (item) => !item.isComplete,
   );
 };
