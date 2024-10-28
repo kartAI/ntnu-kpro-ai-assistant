@@ -1,5 +1,4 @@
 'use client'
-// Removed the unnecessary import from 'chai'
 import React, { useEffect, useState } from 'react';
 
 export interface SubItem {
@@ -12,7 +11,7 @@ export interface ChecklistItemProps {
   fileName: string;
   points: number;
   subItems: SubItem[];
-  onToggleSubItem: (fileName: string, subItemId: string) => void; // Added handler prop
+  onToggleSubItem: (fileName: string, subItemId: string) => void;
 }
 
 const ChecklistItem: React.FC<ChecklistItemProps> = ({ fileName, points, subItems, onToggleSubItem }) => {
@@ -42,7 +41,7 @@ const ChecklistItem: React.FC<ChecklistItemProps> = ({ fileName, points, subItem
                   className={`cursor-pointer ${
                     subItem.isComplete ? 'line-through text-gray-400' : 'text-black'
                   }`}
-                  onClick={() => onToggleSubItem(fileName, subItem.id)} // Use parent handler
+                  onClick={() => onToggleSubItem(fileName, subItem.id)}
                 >
                   {subItem.description}
                 </span>
@@ -50,7 +49,7 @@ const ChecklistItem: React.FC<ChecklistItemProps> = ({ fileName, points, subItem
                   className={`cursor-pointer text-2xl ${
                     subItem.isComplete ? 'text-green-500' : 'text-gray-500'
                   }`}
-                  onClick={() => onToggleSubItem(fileName, subItem.id)} // Use parent handler
+                  onClick={() => onToggleSubItem(fileName, subItem.id)}
                 >
                   {subItem.isComplete ? '✔️' : '⭕'}
                 </span>
@@ -73,7 +72,6 @@ export interface ChecklistItemData {
 const Checklist: React.FC<{ checklist: ChecklistItemData[] }> = ({ checklist }) => {
   // Initialize checklist as state to allow updates
   const [checklistState, setChecklistState] = useState<ChecklistItemData[]>(checklist);
-
   const [completedPoints, setCompletedPoints] = useState(0);
 
   useEffect(() => {
@@ -116,7 +114,7 @@ const Checklist: React.FC<{ checklist: ChecklistItemData[] }> = ({ checklist }) 
       <div className="progress w-full bg-gray-200 rounded-full h-4 mb-6">
         <div
           className="progress-bar bg-green-500 h-4 rounded-full transition-all duration-300"
-          style={{ width: `${(completedPoints / totalPoints) * 100}%` }} // Updated calculation
+          style={{ width: `${(completedPoints / totalPoints) * 100}%` }}
           role="progressbar"
           aria-valuenow={completedPoints}
           aria-valuemin={0}
@@ -131,7 +129,7 @@ const Checklist: React.FC<{ checklist: ChecklistItemData[] }> = ({ checklist }) 
             fileName={item.fileName}
             points={item.points}
             subItems={item.subItems}
-            onToggleSubItem={handleToggleSubItem} // Pass handler to child
+            onToggleSubItem={handleToggleSubItem}
           />
         ))}
       </div>

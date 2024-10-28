@@ -3,7 +3,7 @@
 import React from 'react';
 
 interface SummaryProps {
-    summaryData: string[]; // Accepts an array of strings as props
+    summaryData: string[];
 }
 
 

@@ -1,16 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// Define types for props
 interface StatusCardProps {
     title: string;
-    status: 'success' | 'failure'; // This defines the possible statuses
-    feedback: string; // Dynamic feedback text
-    reportUrl: string; // URL to the detailed report page
+    status: 'success' | 'failure';
+    feedback: string;
+    reportUrl: string;
 }
 
 const ResultAI: React.FC<StatusCardProps> = ({ title, status, feedback, reportUrl }) => {
-    const navigate = useNavigate(); // ERROR from this
+    const navigate = useNavigate();
 
     // Handle the click event for navigating to the report page
     const handleClick = () => {
@@ -31,7 +30,8 @@ const ResultAI: React.FC<StatusCardProps> = ({ title, status, feedback, reportUr
                 <button 
                     className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition-all"
                     onClick={(e) => {
-                        e.stopPropagation(); // Prevent the click from bubbling up to the parent div
+                        // Prevent the click from bubbling up to the parent div
+                        e.stopPropagation();
                         alert('Status sent!');
                     }}
                 >

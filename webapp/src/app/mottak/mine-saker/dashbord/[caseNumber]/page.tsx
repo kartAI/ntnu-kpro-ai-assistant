@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { getCase, CaseData } from "../../../../../types/cases";
+import { getCase, CaseData } from "~/types/cases";
 import Checklist from "~/components/Checklist";
 import Summary from "~/components/Summary";
 import EmbeddedFrame from "~/components/EmbeddedFrame";
@@ -43,7 +43,7 @@ const fetchDetections = ():  Detection[] => {
 
 
 export default function CaseDashboard() {
-  const { caseNumber } = useParams();  // Get caseNumber from the dynamic route
+  const { caseNumber } = useParams();
   const detections = fetchDetections();
   const checklist = transformDetectionToChecklist(detections);
 
