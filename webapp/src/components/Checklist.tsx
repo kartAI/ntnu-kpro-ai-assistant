@@ -77,30 +77,6 @@ export interface ChecklistItemData {
   subItems: SubItem[];
 }
 
-/* const checklistData: ChecklistItemData[] = [
-  {
-    id: 1,
-    fileName: 'Plantegning.pdf',
-    points: 3,
-    subItems: [
-      { id: 1, description: 'Mangler himmelretning', isComplete: false },
-      { id: 2, description: 'Mangler målestokk', isComplete: true },
-      { id: 3, description: 'Mangler rombenevnelse', isComplete: false }
-    ]
-  },
-  {
-    id: 2,
-    fileName: 'byggesak.xml',
-    points: 4,
-    subItems: []
-  },
-  {
-    id: 3,
-    fileName: 'sau.jpg',
-    points: 1,
-    subItems: []
-  }
-]; */
 
 const Checklist: React.FC<{checklist : ChecklistItemData[]}> = ({ checklist }) => {
   const totalPoints = checklist.reduce((sum, item) => sum + item.points, 0);
