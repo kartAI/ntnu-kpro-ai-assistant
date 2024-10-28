@@ -172,7 +172,7 @@ describe("Admin dashboard page displays correctly", () => {
     
     /* Tests for plan situation*/
     const external_component_url = "https://www.arealplaner.no/vennesla4223/arealplaner/53?knr=4223&gnr=5&bnr=547&teigid=214401611";
-    const BASE_URL = "/mottakskontroll/dine-saker/dashbord/1/";
+    const BASE_URL = "/mottak/dine-saker/dashbord/1/";
 
 
     describe('Iframe Tests', () => {
@@ -250,7 +250,7 @@ describe("Admin dashboard page displays correctly", () => {
       describe('ArchiveGPT Component Tests', () => {
     
         it('Has ArchiveGPT header', () => {
-          cy.get('[data-cy="title"]')
+          cy.get('[data-cy="component-title"]')
           .should("exist")
           .and("contain.text", "Arkiv-GPT")
           .and("be.visible")
@@ -258,11 +258,11 @@ describe("Admin dashboard page displays correctly", () => {
     
         it('should display the correct status icon and dynamic feedback text', () => {
             // Check if the status is a success or failure
-            cy.get('[data-test=status-indicator]').then(($statusIndicator) => {
+            cy.get('[data-cy=status-indicator]').then(($statusIndicator) => {
                 if ($statusIndicator.hasClass('success')) {
                     // Success case: Check for a check mark and non-empty feedback text
-                    cy.get('[data-test=icon]').should('have.class', 'icon-checkmark');
-                    cy.get('[data-test=feedback-text]')
+                    cy.get('[data-cy=icon]').should('have.class', 'icon-checkmark');
+                    cy.get('[data-cy=feedback-text]')
                         .invoke('text')
                         .then((feedback) => {
                             expect(feedback.trim()).not.to.be.empty;
@@ -270,8 +270,8 @@ describe("Admin dashboard page displays correctly", () => {
                         });
                 } else if ($statusIndicator.hasClass('failure')) {
                     // Failure case: Check for a warning icon and non-empty feedback text
-                    cy.get('[data-test=icon]').should('have.class', 'icon-warning');
-                    cy.get('[data-test=feedback-text]')
+                    cy.get('[data-cy=icon]').should('have.class', 'icon-warning');
+                    cy.get('[data-cy=feedback-text]')
                         .invoke('text')
                         .then((feedback) => {
                             expect(feedback.trim()).not.to.be.empty;
@@ -283,29 +283,29 @@ describe("Admin dashboard page displays correctly", () => {
     
         it('should navigate to the detailed report page when clicked', () => {
             // Simulate clicking the component and ensure it navigates to the detailed page
-            cy.get('[data-test=archiveGPT-component]')
+            cy.get('[data-cy=archiveGPT-component]')
                 .click()
                 .location('pathname')  // TODO: Add route to report page
                 .should('include', '/report-page');  // Adjust this to the actual report page route
         });
     });
 
-  /* DOK-analyse */
-  describe('DOK-analysis Component Tests', () => {
+  /* CAD-AiD */
+  describe('CAD-AiD Component Tests', () => {
     
-    it('Has DOK-analysis header', () => {
-      cy.get('[data-cy="title"]')
+    it('Has CAD-AiD header', () => {
+      cy.get('[data-cy="component-title"]')
       .should("exist")
-      .and("contain.text", "DOK-Analyse")
+      .and("contain.text", "CAD-AiD")
       .and("be.visible")
     })
 
     it('should display the correct status icon and dynamic feedback text', () => {
-        cy.get('[data-test=status-indicator]').then(($statusIndicator) => {
+        cy.get('[data-cy=status-indicator]').then(($statusIndicator) => {
             if ($statusIndicator.hasClass('success')) {
                 // Success case: Check for a check mark and non-empty feedback text
-                cy.get('[data-test=icon]').should('have.class', 'icon-checkmark');
-                cy.get('[data-test=feedback-text]')
+                cy.get('[data-cy=icon]').should('have.class', 'icon-checkmark');
+                cy.get('[data-cy=feedback-text]')
                     .invoke('text')
                     .then((feedback) => {
                         expect(feedback.trim()).not.to.be.empty;
@@ -313,8 +313,8 @@ describe("Admin dashboard page displays correctly", () => {
                     });
             } else if ($statusIndicator.hasClass('failure')) {
                 // Failure case: Check for a warning icon and non-empty feedback text
-                cy.get('[data-test=icon]').should('have.class', 'icon-warning');
-                cy.get('[data-test=feedback-text]')
+                cy.get('[data-cy=icon]').should('have.class', 'icon-warning');
+                cy.get('[data-cy=feedback-text]')
                     .invoke('text')
                     .then((feedback) => {
                         expect(feedback.trim()).not.to.be.empty;
@@ -325,9 +325,10 @@ describe("Admin dashboard page displays correctly", () => {
     });
 
     it('should navigate to the detailed report page when clicked', () => {
-        cy.get('[data-test=dok-component]')
+      const url = 'mottak/mine-saker/dashbord/' + VALID_CASE_ID + '/cadaid';
+        cy.get('[data-cy=cadaid-component]')
             .click()
-            .location('pathname')  // TODO: Add path to report page
+            .location(url)  
             .should('include', '/report-page');  // Adjust this to the actual report page route
     });
 });

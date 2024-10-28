@@ -1,31 +1,31 @@
+'use client'
+
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 // Define types for props
 interface StatusCardProps {
     title: string;
-    status: 'success' | 'failure'; // This defines the possible statuses
-    feedback: string; // Dynamic feedback text
-    reportUrl: string; // URL to the detailed report page
+    status: 'success' | 'failure'; 
+    feedback: string; 
+    reportUrl: string; 
 }
 
 const ResultAI: React.FC<StatusCardProps> = ({ title, status, feedback, reportUrl }) => {
-    const navigate = useNavigate(); // ERROR from this
+    const router = useRouter();
 
-    // Handle the click event for navigating to the report page
-    const handleClick = () => {
-        navigate(reportUrl);
+    const handleNavigation = () => {
+        router.push(reportUrl);
     };
 
     return (
         <div 
             className="border rounded-md p-4 shadow-md hover:shadow-lg transition-all cursor-pointer" 
-            onClick={handleClick}
+            onClick={handleNavigation}
             data-test="component"
         >
-            {/* Title Section */}
             <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold" data-test="component-title">
+                <h2 className="text-xl font-bold" data-cy="title">
                     {title}
                 </h2>
                 <button 
@@ -39,7 +39,6 @@ const ResultAI: React.FC<StatusCardProps> = ({ title, status, feedback, reportUr
                 </button>
             </div>
 
-            {/* Status Section */}
             <div className="flex items-center mt-4">
                 {status === 'success' ? (
                     <div className="flex items-center text-green-600" data-test="status-indicator">

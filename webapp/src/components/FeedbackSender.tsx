@@ -30,7 +30,7 @@ const FeedbackSender: React.FC<FeedbackProps> = ({ checklist }) => {
   return (
     <div className="border p-4 rounded-md">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold">Tilbakemeldinger til innsender</h2>
+        <h2 className="text-xl font-semibold" data-cy="feedback-header">Tilbakemeldinger til innsender</h2>
         <button className="bg-blue-900 text-white px-4 py-2 rounded-md">Send tilbakemelding</button>
       </div>
       <div className="mb-4">

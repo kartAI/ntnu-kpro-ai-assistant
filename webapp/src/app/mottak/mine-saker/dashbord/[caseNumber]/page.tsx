@@ -74,7 +74,7 @@ export default function CaseDashboard() {
 
   /* Dummy data for case documents component */
 
-  const BASE_URL = "http://localhost:3000/mottakskontroll/mine-saker/dashbord/1";
+  const BASE_URL = "http://localhost:3000/mottak/mine-saker/dashbord/1";
   const documents = [
     { name: 'Plantegning.pdf', url: BASE_URL + '/' + 'Plantegning.pdf' },
     { name: 'Snitt_øst.jpg', url: BASE_URL + '/' + 'Snitt_øst.jpg' },
@@ -155,11 +155,14 @@ export default function CaseDashboard() {
         <div>
           <FeedbackSender checklist={checklist} />
         </div>
-{/* 
+
         <div>
           <ResultAI title={"ArkivGPT"} status={'success'} feedback={"Arkivdata funnet"} reportUrl={'https://www.youtube.com/watch?v=dQw4w9WgXcQ'} />
+          <ResultAI title={"CAD-AiD"} status={'failure'} feedback={"KRITISKE MANGLER"} reportUrl={BASE_URL + '/cadaid'} />
+          <ResultAI title={"3D-tiltaksvisning"} status={'success'} feedback={"Se visualisering"} reportUrl={'http://localhost:3000/for-soknad/3d-situasjon'} />
+
         </div>
- */}
+
         </div>
 
 
