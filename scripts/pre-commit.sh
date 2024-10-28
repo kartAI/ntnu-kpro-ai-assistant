@@ -1,11 +1,27 @@
 #!/bin/sh
 # Run linter on staged JavaScript, TypeScript files
-cd frontend
+cd webapp
 npm run lint --fix
 
+cd backend
+black .
+
+# mypy
+mypy .
 if [ $? -ne 0 ]; then
-  echo "Linting failed. Please fix the issues before committing."
+  echo "Mypy failed. Please fix the issues before committing."
   exit 1
 fi
+
+# flake8
+flake8 .
+if [ $? -ne 0 ]; then
+  echo "Flake8 failed. Please fix the issues before committing."
+  exit 1
+fi
+
+cd ..
+
+cd webapp
 
 exit 0

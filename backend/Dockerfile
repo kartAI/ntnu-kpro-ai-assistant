@@ -15,6 +15,15 @@ COPY ../requirements.txt /code/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 
+# Install Tesseract OCR and other necessary dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    tesseract-ocr \
+    tesseract-ocr-nor \
+    libgl1-mesa-glx \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 # Copy the rest of the application code
 COPY . /code/
 
@@ -22,4 +31,4 @@ COPY . /code/
 EXPOSE 8000
 
 # Run the application (use Uvicorn instead of FastAPI directly)
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--proxy-headers"]
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload", "--proxy-headers"]
