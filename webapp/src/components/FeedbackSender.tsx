@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ChecklistItemData } from './Checklist';
 
 export interface FeedbackProps {
@@ -6,6 +6,27 @@ export interface FeedbackProps {
 }
 
 const FeedbackSender: React.FC<FeedbackProps> = ({ checklist }) => {
+  const [feedbackText, setFeedbackText] = useState("");
+
+  const handleSendFeedback = (status: string) => {
+    const checklistSummary = checklist.map((checklist) => ({
+      fileName: checklist.fileName,
+      subItems: checklist.subItems.map((subItem) => ({
+        id: subItem.id,
+        description: subItem.description,
+        isComplete: subItem.isComplete,
+      })),
+    }));
+
+    alert(
+      `Status: ${status}\nFeedback: ${feedbackText}\nChecklist: ${JSON.stringify(
+        checklistSummary,
+        null,
+        2
+      )}`
+    );
+  };
+
   return (
     <div className="border p-4 rounded-md">
       <div className="flex justify-between items-center mb-4">
@@ -30,11 +51,28 @@ const FeedbackSender: React.FC<FeedbackProps> = ({ checklist }) => {
         placeholder="Skriv her ..."
         className="w-full p-2 mb-4 border rounded-md"
         rows={4}
+        value={feedbackText}
+        onChange={(e) => setFeedbackText(e.target.value)}
       ></textarea>
       <div className="flex justify-around">
-        <button className="bg-green-500 text-white px-4 py-2 rounded-md">Delvis godkjenn</button>
-        <button className="bg-yellow-500 text-white px-4 py-2 rounded-md">Delvis avslå søknad</button>
-        <button className="bg-red-500 text-white px-4 py-2 rounded-md">Avslå søknad</button>
+        <button
+          className="bg-green-500 text-white px-4 py-2 rounded-md"
+          onClick={() => handleSendFeedback("Delvis godkjenn")}
+        >
+          Delvis godkjenn
+        </button>
+        <button
+          className="bg-yellow-500 text-white px-4 py-2 rounded-md"
+          onClick={() => handleSendFeedback("Delvis avslå søknad")}
+        >
+          Delvis avslå søknad
+        </button>
+        <button
+          className="bg-red-500 text-white px-4 py-2 rounded-md"
+          onClick={() => handleSendFeedback("Avslå søknad")}
+        >
+          Avslå søknad
+        </button>
       </div>
     </div>
   );
