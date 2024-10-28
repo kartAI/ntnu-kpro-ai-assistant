@@ -2,6 +2,7 @@ export interface ArkivGPTSummaryResponse {
   id: number;
   resolution: string;
   documentPath: string;
+  year: string;
 }
 
 export interface ArkivGPTDocumentResponse {

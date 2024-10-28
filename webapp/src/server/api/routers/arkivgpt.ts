@@ -12,13 +12,23 @@ interface ParsedData {
   Document: string;
 }
 
-const mapToArkivGPTSummaryResponse = (parsedEntry: ParsedData) => {
+const mapToArkivGPTSummaryResponse = (parsedEntry: ParsedData): ArkivGPTSummaryResponse => {
+  // Define the regular expression to extract the year and document type, supporting Unicode word characters
+  const yearTypeRegex = /^(\d{4}):\s*(\p{L}+)/u;
+  const yearMatch = yearTypeRegex.exec(parsedEntry.Resolution);
+
+  // Extract year and document type, providing default values if the match is null
+  const year = yearMatch?.[1] ?? "Unknown";
+
   return {
-    id: parsedEntry.Id,
+    id: Number(parsedEntry.Id), // Convert id to number
     resolution: parsedEntry.Resolution,
-    documentPath: parsedEntry.Document.split("?document=")[1],
-  } as unknown as ArkivGPTSummaryResponse;
+    documentPath: parsedEntry.Document.split("?document=")[1] ?? "", // Default to an empty string if undefined
+    year: year,
+  };
 };
+
+const ARKIVGPT_URL = "http://localhost/api"
 
 export const arkivGptRouter = createTRPCRouter({
   fetchResponse: publicProcedure
@@ -32,39 +42,25 @@ export const arkivGptRouter = createTRPCRouter({
     .query(async ({ input }) => {
       const { gnr, bnr, snr } = input;
 
+      let responses: ArkivGPTSummaryResponse[] = [];
+
       try {
-        const responses = await fetchResponse(gnr, bnr, snr);
+        responses = await fetchResponse(gnr, bnr, snr);
 
-        // // Parse the SSE formatted response
-        // const entries = response.data.split("\n\n");
-        // const parsedData: ArkivGPTSummaryResponse[] = entries
-        //   .filter((entry) => entry.startsWith("data: "))
-        //   .map((entry) => {
-        //     // Remove the `data: ` prefix and parse the JSON content
-        //     const dataString = entry.replace("data: ", "").trim();
-        //     const parsedEntry = JSON.parse(dataString) as ParsedData;
-
-        //     // Map to the interface structure
-        //     return {
-        //       id: parsedEntry.Id,
-        //       resolution: parsedEntry.Resolution,
-        //       documentPath: parsedEntry.Document.split("?document=")[1],
-        //     } as unknown as ArkivGPTSummaryResponse;
-        //   });
-
-        return responses;
       } catch (error) {
         if (axios.isAxiosError(error)) {
           console.error(
             "Error fetching response for document:",
             error.response?.data,
           );
-          throw new Error("Failed to fetch ArkivGPT response");
+          console.error("Failed to fetch ArkivGPT response",
+          error.response?.data,
+          );
         }
-        throw new Error(
-          "An unknown error occurred while fetching response for document",
-        );
+        console.error("An unknown error occurred while fetching response for document");
       }
+
+      return responses;
     }),
 
   fetchDocument: publicProcedure
@@ -74,7 +70,7 @@ export const arkivGptRouter = createTRPCRouter({
 
       try {
         const response: AxiosResponse<ArrayBuffer> = await axios.get(
-          `http://localhost/api/document?document=${documentPath}`,
+          `${ARKIVGPT_URL}/document?document=${documentPath}`,
           {
             responseType: "arraybuffer",
           },
@@ -97,7 +93,7 @@ export const arkivGptRouter = createTRPCRouter({
 const fetchResponse = async (gnr: number, bnr: number, snr: number) => {
   try {
     const response: AxiosResponse<string> = await axios.get(
-      `http://localhost/api/Summary?GNR=${gnr}&BNR=${bnr}&SNR=${snr}`,
+      `${ARKIVGPT_URL}/Summary?GNR=${gnr}&BNR=${bnr}&SNR=${snr}`,
     );
 
     // Split the response data by entries if needed and parse each entry
