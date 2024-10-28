@@ -6,7 +6,6 @@ import Checklist from "~/components/Checklist";
 import Summary from "~/components/Summary";
 import EmbeddedFrame from "~/components/EmbeddedFrame";
 import CaseDocumentsComponent from "~/components/CaseDocuments";
-import Feedback from "~/components/Feedback";
 import ResultAI from "~/components/ResultAI";
 import React from "react";
 import { Detection } from "~/types/detection";
