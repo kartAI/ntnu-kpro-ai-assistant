@@ -1,12 +1,11 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { getCase, CaseData } from "../../../../../types/cases";
+import { getCase, CaseData } from "~/types/cases";
 import Checklist from "~/components/Checklist";
 import Summary from "~/components/Summary";
 import EmbeddedFrame from "~/components/EmbeddedFrame";
 import CaseDocumentsComponent from "~/components/CaseDocuments";
-import Feedback from "~/components/Feedback";
 import ResultAI from "~/components/ResultAI";
 import React from "react";
 import { Detection } from "~/types/detection";
@@ -44,7 +43,7 @@ const fetchDetections = ():  Detection[] => {
 
 
 export default function CaseDashboard() {
-  const { caseNumber } = useParams();  // Get caseNumber from the dynamic route
+  const { caseNumber } = useParams();
   const detections = fetchDetections();
   const checklist = transformDetectionToChecklist(detections);
 
@@ -157,10 +156,15 @@ export default function CaseDashboard() {
         </div>
 
         <div>
-          <ResultAI title={"ArkivGPT"} status={'success'} feedback={"Arkivdata funnet"} reportUrl={'https://www.youtube.com/watch?v=dQw4w9WgXcQ'} />
-          <ResultAI title={"CAD-AiD"} status={'failure'} feedback={"KRITISKE MANGLER"} reportUrl={BASE_URL + '/cadaid'} />
+          <div data-cy="archiveGPT-component">
+            <ResultAI title={"ArkivGPT"} status={'success'} feedback={"Arkivdata funnet"} reportUrl={'https://www.youtube.com/watch?v=dQw4w9WgXcQ'} />
+          </div>
+          <div>
+            <ResultAI title={"CAD-AiD"} status={'failure'} feedback={"KRITISKE MANGLER"} reportUrl={BASE_URL + '/cadaid'} />
+          </div>
+          <div>
           <ResultAI title={"3D-tiltaksvisning"} status={'success'} feedback={"Se visualisering"} reportUrl={'http://localhost:3000/for-soknad/3d-situasjon'} />
-
+          </div>
         </div>
 
         </div>
