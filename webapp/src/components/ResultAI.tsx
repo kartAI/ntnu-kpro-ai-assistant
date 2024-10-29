@@ -25,7 +25,7 @@ const ResultAI: React.FC<StatusCardProps> = ({ title, status, feedback, reportUr
             data-test="component"
         >
             <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold" data-cy="title">
+                <h2 className="text-xl font-bold" data-cy="component-title">
                     {title}
                 </h2>
                 <button 
@@ -42,7 +42,7 @@ const ResultAI: React.FC<StatusCardProps> = ({ title, status, feedback, reportUr
 
             <div className="flex items-center mt-4">
                 {status === 'success' ? (
-                    <div className="flex items-center text-green-600" data-test="status-indicator">
+                    <div className="flex items-center text-green-600" data-cy="status-indicator">
                         <svg 
                             xmlns="http://www.w3.org/2000/svg" 
                             fill="none" 
@@ -54,12 +54,12 @@ const ResultAI: React.FC<StatusCardProps> = ({ title, status, feedback, reportUr
                         >
                             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                         </svg>
-                        <span className="ml-2 text-base" data-test="feedback-text">
+                        <span className="ml-2 text-base" data-cy="feedback-text">
                             {feedback}
                         </span>
                     </div>
                 ) : (
-                    <div className="flex items-center text-red-600" data-test="status-indicator">
+                    <div className="flex items-center text-red-600" data-cy="status-indicator">
                         <svg 
                             xmlns="http://www.w3.org/2000/svg" 
                             fill="none" 
@@ -71,7 +71,7 @@ const ResultAI: React.FC<StatusCardProps> = ({ title, status, feedback, reportUr
                         >
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v4m0 4h.01M12 3.75a8.25 8.25 0 100 16.5 8.25 8.25 0 000-16.5z" />
                         </svg>
-                        <span className="ml-2 text-base" data-test="feedback-text">
+                        <span className="ml-2 text-base" data-cy="feedback-text">
                             {feedback}
                         </span>
                     </div>
