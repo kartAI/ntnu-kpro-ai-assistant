@@ -1,5 +1,4 @@
-import { ReactElement } from "react";
-import Icons from "../../components/Icons";
+import type { ReactElement } from "react";
 
 export interface ShortcutLink {
     header: string;

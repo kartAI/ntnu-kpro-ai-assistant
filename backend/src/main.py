@@ -1,19 +1,19 @@
 import logging
-from src.types import SummaryResponse
 from fastapi import FastAPI, HTTPException, Query, UploadFile
 from fastapi import status
+from pydantic import BaseModel
 
 
+from src.types import SummaryResponse, PlanPratRequest, PlanPratResponse
 from src.services.reader import Reader
 from src.services.readers.factory import create_reader
-from src.services.agent import invoke_agent
+from src.services.agent import invoke_agent, invoke_plan_agent
 
 app = FastAPI()
 
 
 logging.basicConfig(filename="summary-assistant.log", level=logging.INFO)
 logger = logging.getLogger(__name__)
-
 
 
 @app.post("/summarize", response_model=SummaryResponse)
@@ -56,3 +56,26 @@ def summarize(
 def extract_text(file: UploadFile) -> str:
     reader: Reader = create_reader(file)
     return reader.read(file)
+
+
+@app.post("/plan-prat", response_model=PlanPratResponse)
+def plan_prat(question: PlanPratRequest) -> PlanPratResponse:
+    """
+    PlanPrat a query.
+
+    Args:
+        question (PlanPratRequest): The query to PlanPrat.
+    Returns:
+        PlanPratResponse: The PlanPrat response.
+
+    """
+
+    logger.info(f"Query: {question}")
+    if not question.query:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Query is empty"
+        )
+    print(f"Query: {question.query}", flush=True)
+
+    response = invoke_plan_agent(question.query)
+    return PlanPratResponse(answer=response)

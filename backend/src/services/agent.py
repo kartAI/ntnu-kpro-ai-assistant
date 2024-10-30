@@ -2,24 +2,69 @@ import os
 import logging
 from typing import Annotated
 from typing_extensions import TypedDict
+from dotenv import load_dotenv
 
 from langchain_core.prompts import PromptTemplate
 from langchain_openai import AzureOpenAI
 from langgraph.graph import StateGraph
 from langgraph.graph.message import add_messages
 from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import PromptTemplate
+from langchain_openai import ChatOpenAI
 
 from src.main import SummaryResponse
 
 logger = logging.getLogger(__name__)
+
+load_dotenv()
 
 api_key = os.getenv("AZURE_OPENAI_API_KEY")
 api_base = os.getenv("AZURE_OPENAI_API_BASE")
 api_version = os.getenv("API_VERSION")
 deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
 
-#TODO: add correct elements to the AzureOpenAI class
-llm: AzureOpenAI = None 
+# TODO: add correct elements to the AzureOpenAI class
+API_KEY = os.getenv("OPENAI_API_KEY")
+
+llm = ChatOpenAI(temperature=0, api_key=API_KEY)
+
+
+def invoke_plan_agent(query: str) -> str:
+    """
+    Invoke the plan agent.
+
+    Args:
+        query (str): The query to the plan agent.
+    Returns:
+        str: The response from the plan agent.
+
+    """
+
+    prompt = PromptTemplate(
+        template="""
+        You are a senior municipality worker specializing in the regulation of building permits. A citizen has come to you with a question. Write a response to the citizen's question:
+        Query: {query}
+
+        Use the following context of the laws and regulations in your response:
+        {context}
+        Remember that the user does not have the same level of expertise as you do, so make sure to explain the laws and regulations in a way that is easy to understand.
+        Also know that the context is not seen by the user, only you.
+        You shall answer the user's query in the same language as the user.
+
+        """
+    )
+    print(f"context: {_retrieve_law_context()}", flush=True)
+    generate = prompt | llm
+    response = generate.invoke({"query": query, "context": _retrieve_law_context()})
+    print(f"Response: {response}", flush=True)
+    return response.content
+
+
+def _retrieve_law_context():
+    context = ""
+    with open("law_context.txt", "r") as file:
+        context = file.read()
+    return context
 
 
 def invoke_agent(file_content: list[str]) -> SummaryResponse:
@@ -92,17 +137,16 @@ def should_continue(state: GraphState):
     else:
         return "essay_grader"
 
-def create_agent(): 
+
+def create_agent():
 
     graph_builder = StateGraph(GraphState)
 
     graph_builder.add_node("essay_writer", essay_writer)
     graph_builder.add_node("essay_grader", essay_grader)
 
-
     graph_builder.add_edge("essay_grader", "essay_writer")
     graph_builder.add_conditional_edges("essay_writer", should_continue)
-
 
     graph_builder.set_entry_point("essay_writer")
     graph_builder.set_finish_point("chatbot")

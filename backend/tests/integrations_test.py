@@ -122,3 +122,36 @@ def test_unsupported_media_type(get_test_file):
             files=[("files", ("structured.pdf", file, "image/jpeg"))],
         )
     assert response.status_code == 415  # Unsupported Media Type
+
+
+@pytest.mark.apitest
+def test_plan_prat_successful_query():
+    """
+    Test a successful /plan-prat query.
+    """
+
+    request_data = {"query": "Hva er reglene run areal og volumberegning av bygninger?"}
+    response = client.post("/plan-prat", json=request_data)
+    assert response.status_code == 200
+    data = response.json()
+    assert "answer" in data
+
+
+def test_plan_prat_invalid_query():
+    """
+    Test an invalid /plan-prat query to check for proper error handling.
+    """
+    response = client.post("/plan-prat", json={"query": ""})
+    assert response.status_code == 400
+    data = response.json()
+    assert "detail" in data
+
+
+def test_plan_prat_missing_query():
+    """
+    Test the /plan-prat endpoint with missing query field to check validation errors.
+    """
+    response = client.post("/plan-prat", json={})
+    assert response.status_code == 422
+    data = response.json()
+    assert "detail" in data
