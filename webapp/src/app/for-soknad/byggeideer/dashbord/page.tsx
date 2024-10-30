@@ -1,37 +1,97 @@
 "use client";
-import React, { useState } from "react";
-import { PickAddress } from "../../../../components/PickAddress";
-import { TodoList } from "../../../../components/TodoList";
-import { CadaidWidget } from "../../../../components/CadaidWidget";
-import { DigitalTiltaksdataWidget } from "../../../../components/DigitalTilraksdataWidget";
-import { ThreeDVisningWidget } from "../../../../components/ThreeDVisningWidgit";
-
+import React, { useEffect, useState } from "react";
+import { PickAddress } from "~/components/PickAddress";
+import { TodoList } from "~/components/TodoList";
+import { CadaidWidget } from "~/components/CadaidWidget";
+import { DigitalTiltaksdataWidget } from "~/components/DigitalTilraksdataWidget";
+import { ThreeDVisningWidget } from "~/components/ThreeDVisningWidgit";
+import { Button } from "~/components/ui/button";
+import CaseDocumentsComponent from "~/components/CaseDocuments";
+import ResultAI from "~/components/ResultAI";
 
 export default function Dashboard() {
-    const [hasInputPickAddress, setHasInputPickAddress] = useState<boolean>(false)
-    const [hasInputCadaidWidget, setHasInputCadaidWidget] = useState<boolean>(false)
-    const [hasInputDigitalTiltaksdataWidget, setHasInputDigitalTiltaksdataWidget] = useState<boolean>(false)
-    const [hasInputThreeDVisningWidget, sethasInputThreeDVisningWidget] = useState<boolean>(false)
+    const BASE_URL = "/for-soknad/byggeideer/dashbord"
+    const [hasInputPickAddress, setHasInputPickAddress] = useState<boolean>(() => {
+        const savedHasInputPickAddress = sessionStorage.getItem('hasInputPickAddress');
+        return savedHasInputPickAddress ? JSON.parse(savedHasInputPickAddress) as boolean : false; 
+    });
+    const [hasInputCadaidWidget, setHasInputCadaidWidget] = useState<boolean>(() => {
+        const saveHasInputCadaidWidget = sessionStorage.getItem('hasInputCadaidWidget');
+        return saveHasInputCadaidWidget ? JSON.parse(saveHasInputCadaidWidget) as boolean : false;
+    });   
+    const [hasInputDigitalTiltaksdataWidget, setHasInputDigitalTiltaksdataWidget] = useState<boolean>(() => {
+        const saveHasInputDigitalTiltaksdataWidget = sessionStorage.getItem('hasInputDigitalTiltaksdataWidget');
+        return saveHasInputDigitalTiltaksdataWidget ? JSON.parse(saveHasInputDigitalTiltaksdataWidget) as boolean : false;
+    });   
+    const [hasInputThreeDVisningWidget, setHasInputThreeDVisningWidget] = useState<boolean>(() => {
+        const saveHasInputThreeDVisningWidget = sessionStorage.getItem('hasInputThreeDVisningWidget');
+        return saveHasInputThreeDVisningWidget ? JSON.parse(saveHasInputThreeDVisningWidget) as boolean : false;
+    });   
+
+    useEffect(() => {
+        sessionStorage.setItem('hasInputPickAddress', JSON.stringify(hasInputPickAddress));
+    }, [hasInputPickAddress]);
+
+    useEffect(() => {
+        sessionStorage.setItem('hasInputCadaidWidget', JSON.stringify(hasInputCadaidWidget));
+    }, [hasInputCadaidWidget]);
+
+    useEffect(() => {
+        sessionStorage.setItem('hasInputDigitalTiltaksdataWidget', JSON.stringify(hasInputDigitalTiltaksdataWidget));
+    }, [hasInputDigitalTiltaksdataWidget]);
+
+    useEffect(() => {
+        sessionStorage.setItem('hasInputThreeDVisningWidget', JSON.stringify(hasInputThreeDVisningWidget));
+    }, [hasInputThreeDVisningWidget]);
+
+    
+
+    
+    const documents = [
+        { name: 'Plantegning.pdf', url: BASE_URL + '/' + 'Plantegning.pdf' },
+        { name: 'Snitt_øst.jpg', url: BASE_URL + '/' + 'Snitt_øst.jpg' },
+        { name: 'Snitt_vest.jpg', url: BASE_URL + '/' + 'Snitt_vest.jpg' },
+        { name: 'Snitt_nord.jpg', url: BASE_URL + '/' + 'Snitt_nord.jpg' },
+        { name: 'Bevis_på_nabovarseler.pdf', url: BASE_URL + '/' + 'Bevis_på_nabovarseler.pdf' },
+        { name: 'Søknadsdokument.pdf', url: BASE_URL + '/' + 'Søknadsdokument.pdf' },
+      ];
+
     return(
-        <div>
-            <h1 id="heading"></h1>
+        <div className="ml-14 mr-14">
+            <h1 data-cy="title"
+                className="text-3xl"><strong>Byggeidee Dashbord</strong></h1>
             <PickAddress setHasInputPickAddress={setHasInputPickAddress}/>
-            <section>
+            <section className="mt-4 grid  md:grid-cols-6 grid-rows-1 md:grid-rows-2 gap-10 ">
                 <TodoList hasInputPickAddress={hasInputPickAddress}
                     hasInputCadaidWidget={hasInputCadaidWidget}
                     hasInputDigitalTiltaksdataWidget={hasInputDigitalTiltaksdataWidget}
                     hasInputThreeDVisningWidget={hasInputThreeDVisningWidget}
                     />
-                <CadaidWidget/>
-                <DigitalTiltaksdataWidget/>
-                <div id="planprat"/>
-                <ThreeDVisningWidget/>
-                <div id="document-overview"/>
-                <div id="arkiv-gpt"/>
-                <button id="start-aplication-button">
-                    <h2>gå til søknad</h2>
-                </button>
-
+                <CadaidWidget setHasInputCadaidWidget={setHasInputCadaidWidget} 
+                    hasInputCadaidWidget={hasInputCadaidWidget}
+                    reportUrl={BASE_URL + "/cadaid"}/>
+                <div data-cy="planprat"
+                    className="Border rounded-md p-4 shadow-md hover:shadow-lg transition-all cursor-pointer row-span-2 col-span-2">
+                    <h1>planprat</h1>
+                </div>
+                <DigitalTiltaksdataWidget hasInputDigitalTiltaksdataWidget={hasInputDigitalTiltaksdataWidget}
+                    setHasInputDigitalTiltaksdataWidget={setHasInputDigitalTiltaksdataWidget}/>
+                <ThreeDVisningWidget setHasInputThreeDVisningWidget={setHasInputThreeDVisningWidget} 
+                    hasInputThreeDVisningWidget={hasInputThreeDVisningWidget}/>
+                <div className="md:flex md justify-between w-auto">
+                    <CaseDocumentsComponent data-cy="document-overview" 
+                        documents={documents}/>
+                
+                    <ResultAI data-cy="arkiv-gpt" 
+                        title={"ArkivGPT"} 
+                        status={hasInputPickAddress? 'success' : 'failure'} 
+                        feedback={hasInputPickAddress? "Arkivdata funnet" : "Ingen tomt valgt"} 
+                        reportUrl={'https://www.youtube.com/watch?v=dQw4w9WgXcQ'} />
+                    <Button data-cy="start-aplication-button" 
+                        className="bg-kartAI-blue">
+                        Gå til søknad
+                    </Button>
+                </div>
             </section>
         </div>
     )

@@ -13,25 +13,22 @@ export function TodoList({hasInputPickAddress,
         hasInputDigitalTiltaksdataWidget, 
         hasInputThreeDVisningWidget}:todoListProps) {
     const addressText = "- Et godt sted å starte er å fylle ut hvilken tomt du tenker å bygge på."
-    const cacaidText = "- Om du allerede har plantegninger så kan du skjekke hva de inneholder."
-    const DigitalTilraksdataText = "- Om du vet hvor du vil bygge kan du merkere dette området og se om det er noen hinder for å bygge der."    
+    const arkivGPTText = "- Du kan bruke arkiv gpt til å se på hva som har skjed på tomta før"
+    const cadaidText = "- Om du allerede har plantegninger så kan du skjekke hva de inneholder."
+    const digitalTilraksdataText = "- Om du vet hvor du vil bygge kan du tegne dette området og se om det er noen hinder for å bygge der."    
     const threeDVisningtext = "- Om du har en 3d tegning av hva du ønsker å bygge kan du legge in denne og se den."
     const planpradText = "- Om du ikke er helt sikker på hva du vil bygge men trenger å vite noe om byggelover så slå av en prat med PlanPrat"
-    const [todoText, setTodoText] = useState<string>(addressText + "\n" 
-        + cacaidText + "\n" + DigitalTilraksdataText + "\n" + threeDVisningtext 
-        + "\n" + planpradText)
     
-    useEffect(() => {
-        setTodoText(`${hasInputPickAddress? addressText + "\n"  : ""} 
-           + ${hasInputCadaidWidget? cacaidText + "\n" : ""}
-           + ${hasInputDigitalTiltaksdataWidget? DigitalTilraksdataText + "\n" : "" }
-           + ${hasInputThreeDVisningWidget? threeDVisningtext + "\n" : ""} 
-           + ${planpradText}`)
-    }, [hasInputPickAddress, hasInputCadaidWidget,hasInputDigitalTiltaksdataWidget, hasInputThreeDVisningWidget])
+
     return(
-        <section id="todo-list">
-            <h1>Gjøremål</h1>
-            <p>{todoText}</p>
+        <section data-cy="todo-list"
+            className="border border-gray-300 rounded-lg p-6 shadow-sm bg-blue-50 max-w-lg mx-auto row-span-1 col-span-2">
+            <h1 className="font-bold text-xl">Gjøremål</h1>
+            {hasInputPickAddress? <p>{arkivGPTText}</p> : <p>{addressText}</p>}
+            {hasInputCadaidWidget? null : <p>{cadaidText}</p>}
+            {hasInputDigitalTiltaksdataWidget? null : <p>{digitalTilraksdataText}</p>}
+            {hasInputThreeDVisningWidget? null : <p>{threeDVisningtext}</p>}
+            <p>{planpradText}</p>
         </section>
     )
 }

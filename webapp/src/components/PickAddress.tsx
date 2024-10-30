@@ -1,8 +1,9 @@
 "use client";
 import React, { useState } from "react";
+import { Button } from "./ui/button";
 
 interface pickAddressProps {
-    setHasInputPickAddress:webapp/src/components/DigitalTilraksdataWidget.tsx,
+    setHasInputPickAddress: React.Dispatch<React.SetStateAction<boolean>>
 
 }
 export function PickAddress({setHasInputPickAddress}: pickAddressProps) {
@@ -24,12 +25,12 @@ export function PickAddress({setHasInputPickAddress}: pickAddressProps) {
     }
 
     const handleToggleOverlay = () => {
-      setShowOverlay(!showOverlay);
+      setShowOverlay(!showOverlay); 
     };
 
     return(
         <section id="pick-address"
-            className="flex">
+            className="flex gap-6">
             <section>
                 <h1>Adresse:</h1>
                 <h1>{address}</h1>
@@ -38,9 +39,10 @@ export function PickAddress({setHasInputPickAddress}: pickAddressProps) {
                 <h1>Eiendom:</h1>
                 <h1>{property}</h1>
             </section>
-            <button onClick={handleToggleOverlay}>
+            <Button onClick={handleToggleOverlay}
+                className="px-4 py-2 bg-kartAI-blue">
                 Velg adresse og eiendom
-            </button>
+            </Button>
             {showOverlay && (
             <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
                 <div className="bg-white p-6 rounded shadow-lg max-w-sm w-full">
@@ -49,36 +51,36 @@ export function PickAddress({setHasInputPickAddress}: pickAddressProps) {
                     {/* Input fields */}
                     <input 
                         type="text" 
-                        placeholder="First Input" 
+                        placeholder="Adresse" 
                         className="border p-2 w-full mb-4" 
                         onChange={(e) => setInputAddress(e.target.value)}
                     
                     />
                     <input 
                         type="text" 
-                        placeholder="Second Input" 
+                        placeholder="Bnr." 
                         className="border p-2 w-full mb-4" 
                         onChange={(e) => setInputGnr(e.target.value)}
                     />
                     <input 
                         type="text" 
-                        placeholder="Third Input" 
+                        placeholder="Gnr." 
                         className="border p-2 w-full mb-4" 
                         onChange={(e) => setInputBnr(e.target.value)}
                     />
 
-                    {/* Close button */}
-                    <button 
-                    className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-
-                    onClick={handleToggleOverlay}
-                    >
-                        Lukk
-                    </button>
-                    <button className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                        onClick={setAdressAndProperty}>
-                        Aksepter
-                    </button>
+                    <div className="flex justify-end gap-4">
+                        <Button 
+                            className=" bg-kartAI-blue hover:bg-red-600"
+                            onClick={handleToggleOverlay}>
+                            Lukk
+                        </Button>
+                        <Button className=" bg-kartAI-blue"
+                            onClick={setAdressAndProperty}>
+                            Aksepter
+                        </Button> 
+                    </div>
+                   
                 </div>
             </div>
         )}
