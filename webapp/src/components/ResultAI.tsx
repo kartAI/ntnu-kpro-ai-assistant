@@ -7,15 +7,15 @@ interface StatusCardProps {
     title: string;
     status: 'success' | 'failure'; 
     feedback: string; 
-    reportUrl: string; 
+    redirect: string; 
 }
 
 
-const ResultAI: React.FC<StatusCardProps> = ({ title, status, feedback, reportUrl }) => {
+const ResultAI: React.FC<StatusCardProps> = ({ title, status, feedback, redirect }) => {
     const router = useRouter();
 
     const handleNavigation = () => {
-        router.push(reportUrl);
+        router.push(redirect);
     };
 
     return (
@@ -29,7 +29,7 @@ const ResultAI: React.FC<StatusCardProps> = ({ title, status, feedback, reportUr
                     {title}
                 </h2>
                 <button 
-                    className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition-all"
+                    className="bg-kartAI-blue text-white px-3 py-1 rounded hover:bg-blue-700 transition-all"
                     onClick={(e) => {
                         // Prevent the click from bubbling up to the parent div
                         e.stopPropagation();

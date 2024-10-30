@@ -6,10 +6,9 @@ interface SummaryProps {
     summaryData: string[];
 }
 
-
 const Summary: React.FC<SummaryProps> = ({ summaryData }) => {
     return (
-        <div className="border border-gray-300 rounded-lg p-6 shadow-sm bg-blue-50 max-w-lg mx-auto">
+        <div className="border border-gray-300 rounded-lg p-6 shadow-sm bg-blue-50 w-full mx-auto">
             <h3 className="text-2xl font-bold mb-4 text-black" data-cy="summary-header">
                 Saken oppsummert:
             </h3>

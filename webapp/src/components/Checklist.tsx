@@ -100,7 +100,7 @@ const Checklist: React.FC<{ checklist: ChecklistItemData[] }> = ({ checklist }) 
   const totalPoints = checklistState.reduce((sum, item) => sum + item.points, 0);
 
   return (
-    <div className="checklist max-w-md mx-auto p-4 border border-gray-300 rounded-lg">
+    <div className="w-full checklist mx-auto p-4 border border-gray-300 rounded-lg">
       <h3
         className="checklist-header text-xl font-bold mb-4 flex justify-center"
         data-cy="checklist-header"

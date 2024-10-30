@@ -31,11 +31,12 @@ const FeedbackSender: React.FC<FeedbackProps> = ({ checklist }) => {
     <div className="border p-4 rounded-md">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold" data-cy="feedback-header">Tilbakemeldinger til innsender</h2>
-        <button className="bg-blue-900 text-white px-4 py-2 rounded-md">Send tilbakemelding</button>
+        <button className="bg-kartAI-blue text-white px-4 py-2 rounded-md">Send tilbakemelding</button>
       </div>
       <div className="mb-4">
+        <h3 className='text-lg mb-2 font-semibold'>Oversikt over innsendte dokumenter og potensielle mangler:</h3>
         {checklist.map((checklistData) => (
-          <div key={checklistData.id} className="mb-4">
+          <div key={checklistData.id} className="mb-4 ml-10">
             <h3 className="font-semibold mb-2">{checklistData.fileName}</h3>
             {checklistData.subItems.map((subItem) => (
               <div key={subItem.id} className="flex items-center mb-2">
@@ -46,6 +47,7 @@ const FeedbackSender: React.FC<FeedbackProps> = ({ checklist }) => {
             ))}
           </div>
         ))}
+        <h3 className='text-lg mt-10 font-semibold'>Skriv tilbakemelding:</h3>
       </div>
       <textarea
         placeholder="Skriv her ..."
