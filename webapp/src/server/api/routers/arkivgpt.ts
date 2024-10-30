@@ -30,7 +30,7 @@ const mapToArkivGPTSummaryResponse = (
   };
 };
 
-const ARKIVGPT_URL = "http://localhost/api";
+const ARKIVGPT_URL = process.env.ARKIVGPT_URL;
 
 export const arkivGptRouter = createTRPCRouter({
   fetchResponse: publicProcedure
