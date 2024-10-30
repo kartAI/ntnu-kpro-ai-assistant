@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { PlanPrat } from "~/components/PlanPrat";
 
 
 export default async function Home() {
@@ -20,7 +19,6 @@ export default async function Home() {
             className="rounded-md xl:ml-20"  
           />
         </figure>
-        <PlanPrat></PlanPrat>
 
       </main>
   );
