@@ -76,7 +76,7 @@ const CadaidPage: React.FC = () => {
   return (
     <div className="p-6 min-h-screen flex flex-col md:flex-row" data-cy="main-container">
       {/* Left Column */}
-      <div className="w-full md:w-1/3 md:pr-4" data-cy="left-column">
+      <div className="w-full md:w-1/3 md:pr-4 " data-cy="left-column">
         <FileList files={files} onRemove={handleFileRemove} onUpload={handleFileUpload}/>
         
         {isLoading && (

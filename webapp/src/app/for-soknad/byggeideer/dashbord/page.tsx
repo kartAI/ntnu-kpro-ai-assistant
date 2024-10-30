@@ -61,38 +61,46 @@ export default function Dashboard() {
             <h1 data-cy="title"
                 className="text-3xl"><strong>Byggeidee Dashbord</strong></h1>
             <PickAddress setHasInputPickAddress={setHasInputPickAddress}/>
-            <section className="mt-4 grid  md:grid-cols-6 grid-rows-1 md:grid-rows-2 gap-10 ">
+            <section className="mt-4 grid  md:grid-cols-6 grid-rows-1 md:grid-rows-3 gap-10 ">
                 <TodoList hasInputPickAddress={hasInputPickAddress}
                     hasInputCadaidWidget={hasInputCadaidWidget}
                     hasInputDigitalTiltaksdataWidget={hasInputDigitalTiltaksdataWidget}
                     hasInputThreeDVisningWidget={hasInputThreeDVisningWidget}
                     />
-                <CadaidWidget setHasInputCadaidWidget={setHasInputCadaidWidget} 
-                    hasInputCadaidWidget={hasInputCadaidWidget}
-                    reportUrl={BASE_URL + "/cadaid"}/>
+                <div className=" col-span-2 row-span-2">
+                    <CaseDocumentsComponent data-cy="document-overview" 
+                        documents={documents}/>
+
+                </div>
                 <div data-cy="planprat"
                     className="Border rounded-md p-4 shadow-md hover:shadow-lg transition-all cursor-pointer row-span-2 col-span-2">
                     <h1>planprat</h1>
                 </div>
+                <CadaidWidget setHasInputCadaidWidget={setHasInputCadaidWidget} 
+                    hasInputCadaidWidget={hasInputCadaidWidget}
+                    reportUrl={BASE_URL + "/cadaid"}/>
                 <DigitalTiltaksdataWidget hasInputDigitalTiltaksdataWidget={hasInputDigitalTiltaksdataWidget}
                     setHasInputDigitalTiltaksdataWidget={setHasInputDigitalTiltaksdataWidget}/>
-                <ThreeDVisningWidget setHasInputThreeDVisningWidget={setHasInputThreeDVisningWidget} 
-                    hasInputThreeDVisningWidget={hasInputThreeDVisningWidget}/>
-                <div className="md:flex md justify-between w-auto">
-                    <CaseDocumentsComponent data-cy="document-overview" 
-                        documents={documents}/>
                 
+                <div className=" col-span-2">
                     <ResultAI data-cy="arkiv-gpt" 
                         title={"ArkivGPT"} 
                         status={hasInputPickAddress? 'success' : 'failure'} 
                         feedback={hasInputPickAddress? "Arkivdata funnet" : "Ingen tomt valgt"} 
                         reportUrl={'https://www.youtube.com/watch?v=dQw4w9WgXcQ'} />
-                    <Button data-cy="start-aplication-button" 
-                        className="bg-kartAI-blue">
-                        Gå til søknad
-                    </Button>
+
                 </div>
+            
             </section>
+            <div className="md:flex justify-between">
+                <ThreeDVisningWidget setHasInputThreeDVisningWidget={setHasInputThreeDVisningWidget} 
+                    hasInputThreeDVisningWidget={hasInputThreeDVisningWidget}/>
+                <Button data-cy="start-aplication-button" 
+                    className="bg-kartAI-blue">
+                    
+                    Gå til søknad
+                </Button>
+            </div>
         </div>
     )
 }

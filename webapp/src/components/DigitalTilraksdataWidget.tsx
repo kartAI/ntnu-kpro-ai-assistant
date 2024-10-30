@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import EmbeddedFrame from "./EmbeddedFrame";
 import Image from "next/image";
 import { Button } from "./ui/button";
 

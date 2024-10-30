@@ -35,8 +35,8 @@ export function ThreeDVisningWidget({setHasInputThreeDVisningWidget, hasInputThr
                     <Image src={hasInputThreeDVisningWidget? "/Ikoner/Dark/SVG/Check, Success.svg" : "/Ikoner/Dark/SVG/Warning.svg"}
                         alt={hasInputThreeDVisningWidget? "hake" : "varselsymbol"}
                         className="bg-kartAI-blue rounded-sm p-1"
-                        width={30}
-                        height={30}/> 
+                        width={200}
+                        height={300}/> 
 
                 </div>
                 <p>Om du har en lenke til en 3d visning av hva du tenker å bygge kan du legge det til her</p>
