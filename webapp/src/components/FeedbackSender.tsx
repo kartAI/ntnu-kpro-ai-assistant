@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChecklistItemData } from './Checklist';
+import type { ChecklistItemData } from './Checklist';
 
 export interface FeedbackProps {
     checklist: ChecklistItemData[];

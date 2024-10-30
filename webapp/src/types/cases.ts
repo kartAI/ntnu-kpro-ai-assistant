@@ -7,7 +7,7 @@ export interface CaseData {
   deadline: string;
 }
 
-export function getCase(casenumber: Number): CaseData | undefined {
+export function getCase(casenumber: number): CaseData | undefined {
   return cases.find((item) => item.caseNumber === casenumber);
 }
 

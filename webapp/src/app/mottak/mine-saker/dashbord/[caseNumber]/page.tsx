@@ -1,14 +1,14 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { getCase, CaseData } from "~/types/cases";
+import type { getCase, CaseData } from "~/types/cases";
 import Checklist from "~/components/Checklist";
 import Summary from "~/components/Summary";
 import EmbeddedFrame from "~/components/EmbeddedFrame";
 import CaseDocumentsComponent from "~/components/CaseDocuments";
 import ResultAI from "~/components/ResultAI";
 import React from "react";
-import { Detection } from "~/types/detection";
+import type { Detection } from "~/types/detection";
 import { transformDetectionToChecklist } from "~/utils/helpers";
 import FeedbackSender from "~/components/FeedbackSender";
 
@@ -46,7 +46,7 @@ export default function CaseDashboard() {
   const checklist = transformDetectionToChecklist(detections);
 
   /** Convert from string to number for getCase function */
-  const caseNumberAsNumber = Number(caseNumber);
+  // const caseNumberAsNumber = Number(caseNumber);
 
   const ApplicationData: CaseData | undefined = getCase(100239);
 
@@ -81,39 +81,38 @@ export default function CaseDashboard() {
     { name: 'Søknadsdokument.pdf', url: BASE_URL + 'Søknadsdokument.pdf' },
   ];
 
-
-  const agents = [
-    {
-      title: 'CAD-Aid',
-      status: 'failure',
-      feedback: 'KRITISKE MANGLER',
-      reportUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-    },
-    {
-      title: 'ArkivGPT',
-      status: 'success',
-      feedback: 'Arkivdata funnet',
-      reportUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-    },
-    {
-      title: 'DOK-analyse',
-      status: 'success',
-      feedback: 'Dokumenter validert',
-      reportUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-    },
-    {
-      title: '3D-tiltaksvisning',
-      status: 'success',
-      feedback: 'Se visualisering',
-      reportUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-    },
-    {
-      title: 'Tiltakskart',
-      status: 'failure',
-      feedback: 'TILTAK MÅ SJEKKES',
-      reportUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-    },
-  ]
+  // const agents = [
+  //   {
+  //     title: 'CAD-Aid',
+  //     status: 'failure',
+  //     feedback: 'KRITISKE MANGLER',
+  //     reportUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+  //   },
+  //   {
+  //     title: 'ArkivGPT',
+  //     status: 'success',
+  //     feedback: 'Arkivdata funnet',
+  //     reportUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+  //   },
+  //   {
+  //     title: 'DOK-analyse',
+  //     status: 'success',
+  //     feedback: 'Dokumenter validert',
+  //     reportUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+  //   },
+  //   {
+  //     title: '3D-tiltaksvisning',
+  //     status: 'success',
+  //     feedback: 'Se visualisering',
+  //     reportUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+  //   },
+  //   {
+  //     title: 'Tiltakskart',
+  //     status: 'failure',
+  //     feedback: 'TILTAK MÅ SJEKKES',
+  //     reportUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+  //   },
+  // ]
 
   return (
     <div>

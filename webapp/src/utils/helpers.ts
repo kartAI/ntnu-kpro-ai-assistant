@@ -1,4 +1,4 @@
-import { ChecklistItemData, SubItem } from "~/components/Checklist";
+import type { ChecklistItemData, SubItem } from "~/components/Checklist";
 import type { Detection } from "../types/detection";
 import { v4 as uuidv4 } from "uuid";
 
