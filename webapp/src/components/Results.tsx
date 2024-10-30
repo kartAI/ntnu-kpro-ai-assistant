@@ -10,7 +10,7 @@ interface ResultsProps {
 
 const Results: React.FC<ResultsProps> = ({ results }) => {
   return (
-    <div className="mb-6 bg-white p-4 rounded-lg shadow-md">
+    <div className="mb-6 bg-white p-4 rounded-lg">
       <h2 className="font-semibold text-lg mb-4">Resultater fra CADAiD</h2>
 
       <SubmissionValidation results={results} />

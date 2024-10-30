@@ -119,7 +119,7 @@ const Navbar = () => {
         </div>
       </nav>
       <NextBreadcrumb
-        homeElement={'Home'}
+        homeElement={'Hjem'}
         separator={'>'}
         activeClasses=''
         listClasses='hover:underline mx-2 font-light'

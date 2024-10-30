@@ -18,7 +18,7 @@ const FilePreview: React.FC<FilePreviewProps> = ({ files}) => {
 
 
   return (
-    <div className="mb-6 bg-white p-4 rounded-lg shadow-md h-full">
+    <div className="mb-6 bg-white p-4 rounded-lg h-full">
       <div className="flex flex-col sm:flex-row items-start">
         <h2 className="font-semibold text-lg mb-4 sm:mb-0 sm:text-xl">Forhåndsvisning av</h2>
         <select
