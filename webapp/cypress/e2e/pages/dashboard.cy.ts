@@ -34,22 +34,24 @@ describe("Admin dashboard page displays correctly", () => {
   });
 
   it("should display correct file types and dynamically calculate points for each item", () => {
-    cy.get(".checklist-item").each(($item, index, $list) => {
+    cy.get(".checklist-item").each(($item) => {
       cy.wrap($item).within(() => {
         cy.get(".file-name")
           .should("exist")
           .invoke("text")
           .should("match", /\w+\.(pdf|xml|jpg)/);
+  
         cy.get(".points")
           .invoke("text")
           .then((pointsText) => {
-            const points = parseInt(pointsText.match(/\d+/)[0], 10);
+            const match = /\d+/.exec(pointsText);
+            const points = match ? Number(match[0]) : null;
             expect(points).to.be.a("number").and.to.be.at.least(0);
           });
       });
     });
   });
-
+  
   it("should correctly sum the total points and update the progress dynamically", () => {
     let totalPoints = 0;
 
