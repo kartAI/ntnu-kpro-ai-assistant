@@ -1,4 +1,3 @@
-MainForm:
 <?xml version="1.0" encoding="utf-8"?>
 <TiltakUtenAnsvarsrett xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" dataFormatProvider="SERES" dataFormatId="6742" dataFormatVersion="45753" xmlns="http://skjema.kxml.no/dibk/tiltakutenansvarsrett/3.0">
   <eiendomByggested>
@@ -143,9 +142,3 @@ Tot antal rom i boligen u.etg 2 + 1 bad
   </rammebetingelser>
   <signatur xsi:nil="true" />
 </TiltakUtenAnsvarsrett>
-
-SubForm:
-<?xml version="1.0" encoding="utf-8"?>
-<Vedleggsopplysninger xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" dataFormatProvider="SERES" dataFormatId="5797" dataFormatVersion="42813" xmlns="http://skjema.kxml.no/dibk/vedlegg/1.0">
-  <vedlegg />
-</Vedleggsopplysninger>
