@@ -1,10 +1,16 @@
-from io import BytesIO
-from PIL import Image
+import logging
+import PIL
 from fastapi import UploadFile
-from pytesseract import image_to_string
+
+from PIL import Image, UnidentifiedImageError
+
+from io import BytesIO
+
+import pytesseract
 
 from src.services.reader import Reader
 
+logger = logging.getLogger(__name__)
 
 class OCRReader(Reader):
     def __init__(self, languages: list[str]=["eng", "nor"]) -> None:
@@ -16,7 +22,12 @@ class OCRReader(Reader):
     
     def _read_scanned_pdf(self, file: UploadFile) -> str:
         file.seek(0)
-        image = Image.open(BytesIO(file.file.read()))
-        image.load()
-        text = image_to_string(image, lang=self.languages)
+        try:
+            image = Image.open(BytesIO(file.file.read()))
+            image.load()
+            text = pytesseract.image_to_string(image)
+    
+        except UnidentifiedImageError as e:
+            logger.error(f"OCR failed to load image with error: {e}")
+            raise ValueError("Document corrupt")
         return text
