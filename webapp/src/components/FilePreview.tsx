@@ -1,21 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface FilePreviewProps {
   files: File[];
 }
 
-const FilePreview: React.FC<FilePreviewProps> = ({ files}) => {
-  const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
+const FilePreview: React.FC<FilePreviewProps> = ({ files }) => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-  /**
-   * Sets the selected file for preview.
-   * @param fileName - The name of the file to select.
-   */
   const handleSelectFile = (fileName: string) => {
     const file = files.find(file => file.name === fileName) ?? null;
     setSelectedFile(file);
   };
-
 
   return (
     <div className="mb-6 bg-white p-4 rounded-lg shadow-md h-full">
@@ -37,16 +32,24 @@ const FilePreview: React.FC<FilePreviewProps> = ({ files}) => {
       </div>
 
       {selectedFile && (
-        <div
-          className="border p-4 rounded-lg mt-2 bg-gray-50"
-          role="region"
-          aria-labelledby="file-preview-heading"
-        >
-          <h3 id="file-preview-heading" className="font-semibold mb-2">
-            Preview of: {selectedFile.name}
-          </h3>
-          {/* Placeholder for file preview */}
-          <p>File content would be shown here (mock).</p>
+        <div className="border p-4 rounded-lg mt-2 bg-gray-50">
+          <h3 className="font-semibold mb-2">Preview of: {selectedFile.name}</h3>
+          {selectedFile.type === 'application/pdf' ? (
+            <iframe
+              src={URL.createObjectURL(selectedFile)}
+              title="PDF Preview"
+              className="w-full h-96"
+              frameBorder="0"
+            ></iframe>
+          ) : selectedFile.type.startsWith('image/') ? (
+            <img
+              src={URL.createObjectURL(selectedFile)}
+              alt={selectedFile.name}
+              className="max-w-full h-auto rounded-lg"
+            />
+          ) : (
+            <p>File type not supported for preview. Please select a PDF or image file.</p>
+          )}
         </div>
       )}
     </div>
