@@ -12,23 +12,25 @@ interface ParsedData {
   Document: string;
 }
 
-const mapToArkivGPTSummaryResponse = (parsedEntry: ParsedData): ArkivGPTSummaryResponse => {
+const mapToArkivGPTSummaryResponse = (
+  parsedEntry: ParsedData,
+): ArkivGPTSummaryResponse => {
   // Define the regular expression to extract the year and document type, supporting Unicode word characters
-  const yearTypeRegex = /^(\d{4}):\s*(\p{L}+)/u;
-  const yearMatch = yearTypeRegex.exec(parsedEntry.Resolution);
+  const yearRegex = /^(\d{4}):/;
+  const yearMatch = yearRegex.exec(parsedEntry.Resolution);
 
-  // Extract year and document type, providing default values if the match is null
+  // Extract the year providing a default value if the match is null
   const year = yearMatch?.[1] ?? "Unknown";
 
   return {
     id: Number(parsedEntry.Id), // Convert id to number
-    resolution: parsedEntry.Resolution,
+    resolution: parsedEntry.Resolution.replace(yearRegex, "").trim(), // Remove the year and document type from the resolution
     documentPath: parsedEntry.Document.split("?document=")[1] ?? "", // Default to an empty string if undefined
     year: year,
   };
 };
 
-const ARKIVGPT_URL = "http://localhost/api"
+const ARKIVGPT_URL = "http://localhost/api";
 
 export const arkivGptRouter = createTRPCRouter({
   fetchResponse: publicProcedure
@@ -46,18 +48,20 @@ export const arkivGptRouter = createTRPCRouter({
 
       try {
         responses = await fetchResponse(gnr, bnr, snr);
-
       } catch (error) {
         if (axios.isAxiosError(error)) {
           console.error(
             "Error fetching response for document:",
             error.response?.data,
           );
-          console.error("Failed to fetch ArkivGPT response",
-          error.response?.data,
+          console.error(
+            "Failed to fetch ArkivGPT response",
+            error.response?.data,
           );
         }
-        console.error("An unknown error occurred while fetching response for document");
+        console.error(
+          "An unknown error occurred while fetching response for document",
+        );
       }
 
       return responses;
