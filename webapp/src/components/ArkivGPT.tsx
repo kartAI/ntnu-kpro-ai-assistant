@@ -37,7 +37,7 @@ export default function ArkivGPTPage() {
       (snr && !/^\d+$/.test(snr))
     ) {
       setError(
-        "Vennligst skriv inn tall for gårdsnummer, bruksnummer, and seksjonsnummer.",
+        "Vennligst skriv inn gyldige tall for gårdsnummer, bruksnummer og seksjonsnummer.",
       );
       return;
     }
