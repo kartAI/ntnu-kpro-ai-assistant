@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import type { getCase, CaseData } from "~/types/cases";
+import { getCase, type CaseData } from "~/types/cases";
 import Checklist from "~/components/Checklist";
 import Summary from "~/components/Summary";
 import EmbeddedFrame from "~/components/EmbeddedFrame";
