@@ -12,6 +12,8 @@ async function queryPlanprat(query: string): Promise<PlanpratRespons> {
     const response = await fetch('http://localhost:8000/plan-prat/', {
       method: 'POST',
       body: JSON.stringify(payload),
+      headers: { "Content-Type": "application/json", 
+        },
     })
   
     if (!response.ok) {
