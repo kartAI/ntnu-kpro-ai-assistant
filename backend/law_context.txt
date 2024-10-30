@@ -1,0 +1,361 @@
+Veiledning om tekniske krav til byggverk
+Forskrift om tekniske krav til byggverk trekker opp grensen for det minimum av egenskaper et byggverk må ha for å kunne oppføres lovlig i Norge.
+
+Denne veiledningen forklarer forskriftens krav og gir preaksepterte ytelser som vil oppfylle kravene.
+
+Forskriften gir funksjonskrav, men i mange tilfeller er funksjonskravene også fortolket og gitt som ytelseskrav i forskriften. Dette gjelder for eksempel krav knyttet til tilgjengelig boenhet. Andre funksjonskrav er fortolket og gitt som preaksepterte ytelser i denne veiledningen. Dette gjelder for eksempel i stor grad for sikkerhet ved brann.
+
+Informasjon utgitt av Direktoratet for byggkvalitet kan fritt brukes og gjengis. Ved gjengivelse av tekst eller figurer, skal Direktoratet for byggkvalitet oppgis som kilde.
+
+Norske standarder og anvisninger fra SINTEFs byggforskserie er nyttige verktøy for å lage gode byggverk. Vi har derfor lagt inn lenker til en del standarder og anvisninger under de enkelte paragrafer, til tross for at dette ikke er gratis hjelpemidler. Adgang til dem krever avtale med prisfastsetting som faller utenfor vårt virkeområde, på samme måte som annet verktøy for prosjektering og bygging.
+
+Det finnes også andre standarder og anvisninger enn de vi har gitt lenker til som kan være nyttige ved planlegging, prosjektering og utførelse av byggverk. Standard Norge og SINTEF har sortert disse etter kapitlene i forskriften, jf. lenkene nedenfor.
+
+Vil du laste ned eller skrive ut veiledningen?
+Du kan laste ned eller skrive ut enkeltbestemmelser, kapitler eller hele forskriften med veiledning. Bruk ikonet for "skriv ut" som er plassert øverst ved hvert kapittel, og velg hva du vil laste ned eller skrive ut.
+9:34
+Kapittel 1 Felles bestemmelser
+§ 1-1. Formål
+Forskriften skal sikre at tiltak planlegges, prosjekteres og utføres ut fra hensyn til god visuell kvalitet, universell utforming og slik at tiltaket oppfyller tekniske krav til sikkerhet, miljø, helse og energi.
+§ 1-2. Forskriftens anvendelse på særskilte tiltak
+Veiledning til bestemmelsen
+For tiltakene som er beskrevet i denne bestemmelsen gjelder en rekke unntak fra byggteknisk forskrift. Bestemmelsen angir hvilke deler av byggteknisk forskrift som kommer til anvendelse for driftsbygninger i landbruket, og tilsvarende bygninger for husdyr utenom landbruket, fritidsbolig med én boenhet, husvære for seterbruk, reindrift eller skogsdrift, konstruksjoner, anlegg og midlertidige bygninger, bygninger som oppføres som studentbolig, samt bruksendring fra tilleggsdel til hoveddel innenfor en boenhet.
+
+(1) Driftsbygninger i landbruket og tilsvarende bygninger for husdyr utenom landbruket skal oppfylle kravene i
+
+a) kapittel 1 til 7
+
+b) § 8-1 og § 8-4 første ledd
+
+c) kapittel 9 til 11
+
+d) § 12-1 første ledd, § 12-4 første ledd, § 12-5, § 12-6 første til fjerde ledd, § 12-7 første ledd, § 12-13 første ledd og annet ledd bokstav a og d, § 12-14 første ledd og femte ledd bokstav b, § 12-15, § 12-16 første ledd, § 12-17 og § 12-18 første og annet ledd
+
+e) § 13-1 første ledd, § 13-6 første ledd første punktum og tredje ledd, § 13-7 og § 13-9 til § 13-16
+
+f) kapittel 14 med unntak av § 14-4
+
+g) kapittel 15 til 17.
+
+Veiledning til første ledd
+Bestemmelsen gjør unntak fra en del krav i forskriften for driftsbygninger i landbruket og bygninger for husdyr utenom landbruket. Det er gitt unntak fra en del bestemmelser i kapittel 8 Opparbeidet uteareal, kapittel 12 Planløsning og bygningsdeler i byggverk, kapittel 13 Inneklima og helse, samt § 14-4 Krav til løsninger for energiforsyning.
+
+(2) Frittliggende boligbygning inntil 30 m2 BRA med én boenhet i én etasje uten kjeller som ikke på noe punkt overstiger en høyde på 4,5 m over bakken og fritidsbolig med én boenhet skal oppfylle kravene i 
+
+a) kapittel 1 til 7
+
+b) § 8-1, § 8-3, § 8-8 fjerde og femte ledd
+
+c) kapittel 9 til 11
+
+d) § 12-1 første ledd, § 12-5, § 12-7 første ledd og annet ledd bokstav c og d, § 12-11 første og annet ledd, § 12-13 første ledd og annet ledd bokstav d, § 12-14 første ledd bokstav a til d og femte ledd bokstav b, § 12-15 og § 12-17
+
+e) § 13-1 første ledd, § 13-4, § 13-5, § 13-7 og § 13-9 til § 13-16
+
+f) kapittel 14
+
+g) kapittel 15 til 17.
+
+Veiledning til annet ledd
+Bestemmelsen gjør unntak fra en del krav i forskriften for frittliggende boligbygning inntil 30 m2  bruksareal (BRA) med en boenhet i én etasje uten kjeller og for fritidsbolig med én boenhet. Det er gitt unntak fra en del bestemmelser i kapittel 8 Opparbeidet uteareal, kapittel 12 Planløsning og bygningsdeler i byggverk og kapittel 13 Inneklima og helse.  
+
+Det er bygningens totale oppvarmede BRA som er avgjørende for hvilke energikrav som gjelder i kapittel 14. Boligbygning og fritidsbolig etter denne bestemmelsen har ulike energikrav i kapittel 14. For frittliggende boligbygning inntil 30 m2  BRA gjelder energikravene i § 14-5 første ledd. For fritidsbolig med én boenhet gjelder kravene i § 14-5 annet eller tredje ledd. 
+
+For fritidsbolig med flere boenheter og boligbygninger som ikke omfattes av denne bestemmelsen, gjelder forskriften i sin helhet. 
+
+(3) For husvære for seterbruk, reindrift eller skogsdrift gjelder bestemmelser i annet ledd tilsvarende.
+
+Veiledning til tredje ledd
+Bestemmelsen gjør unntak fra en del krav i forskriften for husvære for seterbruk, reindrift eller skogsdrift.
+
+Det er gitt unntak fra en del bestemmelser i kapittel 8 Opparbeidet uteareal, kapittel 12 Planløsning og bygningsdeler i byggverk og kapittel 13 Inneklima og helse.
+
+(4) Forskriften gjelder for permanente og midlertidige konstruksjoner og anlegg, med unntak av kapittel 8, 12, 13 og 14 som gjelder så langt de passer.
+
+Veiledning til fjerde ledd
+For varige og midlertidige konstruksjoner og anlegg er det en del bestemmelser i forskriften som kun gjelder så langt de passer. Unntaksbestemmelsen omfatter kravene i kapittel 8 Opparbeidet uteareal, kapittel 12 Planløsning og bygningsdeler i byggverk, kapittel 13 Inneklima og helse og kapittel 14 Energi. For øvrig gjelder forskriften for varige og midlertidige konstruksjoner og anlegg.
+
+§ 1-2 tabell 1: Forskriftens anvendelse på konstruksjoner og anlegg
+
+Byggteknisk forskrift
+
+Konstruksjoner og anlegg. Permanente og midlertidige
+
+Gjelder fullt ut
+
+Kapittel 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 15, 16 og 18
+
+Gjelder så langt de passer
+
+Kapittel 8, 12, 13 og 14
+
+(5) Forskriften gjelder for midlertidige bygninger, med unntak av kapittel 8, 12 og 13 som gjelder så langt de passer. I kapittel 14 gjelder kun § 14-3.
+
+Veiledning til femte ledd
+For midlertidige bygninger gjelder bestemmelsene i kapittel 8 Opparbeidet uteareal, kapittel 12 Planløsning og bygningsdeler i byggverk og kapittel 13 Inneklima og helse så langt de passer. I kapittel 14 gjelder kun § 14-3 for midlertidige bygninger. For øvrig gjelder forskriften.
+
+§ 1-2 tabell 2: Forskriftens anvendelse for midlertidig bygninger
+
+Byggteknisk forskrift
+
+Midlertidige bygninger
+
+Gjelder fullt ut
+
+Kapittel 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 15, 16, 18 og § 14-3
+
+Gjelder så langt de passer
+
+Kapittel 8, 12 og 13
+
+(6) I bygninger som oppføres som studentboliger av studentsamskipnader og studentboligstiftelser som har mottatt tilsagn om tilskudd til studentboliger etter forskrift 28. januar 2004 nr. 424 om tilskudd til studentboliger,
+
+a) er det tilstrekkelig at 20 prosent av boenhetene oppfyller kravene til tilgjengelig boenhet i § 12-7 fjerde ledd, § 12-8 første ledd, § 12-11 tredje ledd og § 12-18 tredje ledd, og utforming av bad og toalett i § 12-9 første ledd
+
+b) gjelder ikke krav om bod etter § 12-10 annet ledd
+
+c) skal det for besøkende være likestilt tilgang til toalett som oppfyller § 12-9 første ledd i hver etasje i bygning med krav om heis.
+
+Veiledning til sjette ledd
+Bestemmelsen gjør unntak fra krav til sportsbod og enkelte krav til tilgjengelighet for studentboliger.
+
+Unntakene gjelder kun for studentboliger som oppføres av studentsamskipnader og studentboliger som mottar tilskudd etter forskrift om tilskudd til studentboliger.
+
+Unntakene som følger av bokstav a gjelder for 80 prosent av boenhetene. For disse gjøres det unntak fra
+
+krav til rom og annet oppholdsareal (§ 12-7 fjerde ledd)
+krav til entre og garderobe (§ 12-8 første ledd)
+krav til balkong og terrasse (§ 12-11 tredje og fjerde ledd)
+krav til skilt, styrings- og betjeningspanel, håndtak, armaturer mv. (§ 12-18 tredje ledd)
+krav til utforming av bad og toalett (§ 12-9 første ledd).
+Paragraf 12-9 første ledd regulerer både krav om bad og toalett og krav til selve utformingen. Unntaket for studentboliger gjelder kun selve utformingen av bad og toalett.
+
+For alle studentboligene som omfattes av bestemmelsen er det unntak fra krav om sportsbod (§ 12-10 annet ledd). Dette følger av bestemmelsens bokstav b.
+
+For å ivareta et likestilt tilbud i studentboliger er det krav om ett tilgjengelig toalett som er åpent for alle i hver etasje, jf. § 12-9 første ledd. Kravet gjelder kun i bygninger med krav om heis. Dette sikrer at boenheter som er unntatt fra krav om tilgjengelighet etter bokstav a, har tilgang til tilgjengelig besøkstoalett i hver etasje i bygningen.
+
+(7) Unntakene i sjette ledd gjelder også for andre studentboliger dersom det tinglyses en heftelse på eiendommen om at boligen skal benyttes til utleie for studenter i minst 20 år fra ferdigattest eller midlertidig brukstillatelse. Det skal dokumenteres at heftelsen er tinglyst og dokumentasjonen skal være godtatt av kommunen før igangsettingstillatelse kan gis. Departementet er rettighetshaver til heftelsen.
+
+Veiledning til sjuende ledd
+Denne bestemmelsen gjelder for studentboliger som leies ut til personer med studierett ved universitet, høyskole eller fagskole og som har studiet som hovedbeskjeftigelse.
+
+Departementet er rettighetshaver til heftelsen som begrenser bruken av boliger til studenter. I særlige tilfeller kan departementet som rettighetshaver få heftelsen slettet. Dette kan være aktuelt dersom det av ulike årsaker ikke er behov for studentboliger på stedet lenger, for eksempel at hele studietilbudet bortfaller. Vurderingen av om en heftelse skal slettes beror på en konkret helhetsvurdering der det bør tas hensyn til kommunens studietilbud og boligbehov. Det vil normalt være kommunen som har best kunnskap om slike forhold. Departementet bør derfor vurdere sletting av en heftelse i samråd med den aktuelle kommunen.
+
+(8) For bruksendring fra tilleggsdel til hoveddel eller omvendt innenfor en boenhet gjelder krav i forskriften med unntak av § 12-2, § 12-9, § 12-10 annet ledd, § 13-5 annet og tredje ledd, § 13-8 og § 14-2 til § 14-5. Bestemmelsen omfatter bare bruksendring av rom som har tak, vegg eller gulv direkte mot hoveddel i boenheten. Bestemmelsen gjelder kun bruksendring i bolig der oppføring av boligen ble omsøkt før 1. juli 2011.
+
+Veiledning til åttende ledd
+Bestemmelsen gir unntak fra enkelte av kravene i forskriften ved bruksendring fra tilleggsdel til hoveddel, eller omvendt, innenfor en boenhet i bolig.
+
+Unntakene gjelder ved bruksendringer i boliger som ble oppført før TEK10 trådte i kraft, det vil si boliger der det ble søkt om oppføring før 1. juli 2011.
+
+Unntakene gjelder bare bruksendring innenfor samme boenhet.
+
+Bestemmelsen gir unntak fra
+
+krav om tilgjengelig boenhet i § 12-2
+krav til bad og toalett i § 12-9
+krav til sportsbod i § 12-10 annet ledd
+krav om radonsperre og tilrettelegging for tiltak i grunnen etter § 13-5 annet og tredje ledd
+krav til utsyn i § 13-8, og
+krav til energieffektivitet mv i §§ 14-2 til og med 14-5.
+Unntaket fra kravet til bod i § 12-10 fører til at det ikke er konkrete minimumskrav til gulvareal satt av til oppbevaring ved bruksendring. Det er likevel krav om at boenheten skal ha tilstrekkelig plass for oppbevaring av klær, mat, utstyr og lignende. Kravene til oppbevaring henger sammen med hvordan den aktuelle boenheten skal brukes.
+
+Krav om radonforebyggende tiltak, samt krav til maksimal radonkonsentrasjon i § 13-5 første ledd gjelder fortsatt selv om krav om radonsperre og tiltak i grunnen etter annet ledd er unntatt.
+
+Det er gitt unntak for de konkrete energikravene i § 14-2 til og med § 14-5, men det generelle kravet i § 14‐1 første ledd gjelder fortsatt. Dermed er det krav til at det tilrettelegges for forsvarlig energibruk. Unntakene gir rom for individuell tilpasning av de tekniske løsningene for energieffektivitet, inklusiv tykkelse på isolasjon. Unntakene vil også påvirke hvilke løsninger som kan velges for ventilasjon, se veiledning til § 13-2. Kravene til termisk inneklima i § 13-4 og støy i § 13-6 gjelder fortsatt.
+
+Bestemmelsen gir ikke unntak fra krav om romhøyde i § 12-7 og krav om dagslys i § 13-7, men i veiledning til disse bestemmelsene er det gitt egne preaksepterte ytelser for bruksendring fra tilleggsdel til hoveddel.
+
+ 
+
+(9) For fritidsfartøy, herunder husbåter, som omfattes av direktiv 2013/53/EU, gjelder forskrift 25. januar 2016 nr. 35 om produksjon og omsetning av fritidsfartøy og vannscootere mv.
+
+ 
+
+Veiledning til niende ledd
+Forskriften gjelder ikke for fritidsfartøy som omfattes av fritidsfartøydirektivet (direktiv 2013/53/EU). Dette kan blant annet være husbåter. Her gjelder forskrift om produksjon og omsetning av fritidsfartøy og vannscootere mv.
+9:35
+§ 1-3. Definisjoner
+I forskriften menes med
+
+Veiledning til første ledd
+I byggteknisk forskrift brukes mange begreper. For å gjøre byggteknisk forskrift lettere å forstå er de mest sentrale begrepene definert i denne bestemmelsen. Tydelige definisjoner er ment å bidra til redusert tidsbruk ved prosjektering, uavhengig kontroll og tilsyn.
+
+I tillegg til definisjonene gitt i denne bestemmelsen brukes en rekke andre begreper i regelverket, blant annet begreper som er definert i standarder. Definisjoner av de viktigste begrepene følger nedenfor etter bokstav n.
+
+Noen kapitler og paragrafer gir også definisjoner av begreper som bare benyttes der.
+
+a) boenhet: bruksenhet som har alle hovedfunksjoner og som skal brukes til boligformål
+
+Veiledning til første ledd bokstav a
+Begrepet boenhet brukes særlig i forskriftens kapittel 12 Planløsning og bygningsdeler i byggverk, kapittel 8 Opparbeidet uteareal og kapittel 11 Sikkerhet ved brann.
+
+b) byggverk: bygning, konstruksjon eller anlegg
+
+Veiledning til første ledd bokstav b
+Byggverk er et samlebegrep og omfatter konstruksjoner, anlegg og bygninger. Begrepet benyttes i de fleste kapitlene i forskriften og i plan- og bygningsloven. Der begrepet byggverk er brukt gjelder kravet ikke bare for bygninger men også for konstruksjoner og anlegg så langt det er relevant.
+
+c) funksjonskrav: overordnet formål eller oppgave som skal oppfylles i det ferdige byggverket
+
+Veiledning til første ledd bokstav c
+Funksjonskrav er krav som er formulert som overordnet formål, som skal oppfylles i det ferdige byggverket. Kravene i byggteknisk forskrift er i stor grad formulert som funksjonskrav. Funksjonskravene er angitt kvalitativt og kan gjelde byggverket som helhet eller bygningsdeler, installasjoner og utearealer. Funksjonskravene i forskriften er videre konkretisert enten som ytelseskrav i forskriften eller som preaksepterte ytelser i veiledningen til forskriften. Forskriftens kapittel 2 gir nærmere regler om forholdet mellom funksjonskrav, ytelser og preaksepterte ytelser samt dokumentasjon, i tillegg til forholdet til standarder.
+
+d) gangatkomst: gangvei fra kjørbar vei og parkering til inngangsparti til byggverk og uteoppholdsareal, og mellom disse
+
+Veiledning til første ledd bokstav d
+Gangatkomst er et begrep som i hovedsak benyttes i kapittel 8 Opparbeidet uteareal.
+
+e) hovedfunksjoner: stue, kjøkken, soverom, bad og toalett. Begrepet benyttes kun i forbindelse med bolig og krav om tilgjengelig boenhet.
+
+Veiledning til første ledd bokstav e
+Hovedfunksjoner er et begrep som kun benyttes i forbindelse med bolig og krav om tilgjengelig boenhet. Begrepet benyttes i hovedsak i kapittel 12 Planløsning og bygningsdeler i byggverk.
+
+f) inngangsparti: byggverkets atkomstområde ved hovedinngangsdør
+
+Veiledning til første ledd bokstav f
+Inngangsparti er et begrep som benyttes for byggverk og særlig for bygning med boenhet, arbeids- og publikumsbygninger. Begrepet benyttes i hovedsak i kapittel 12 Planløsning og bygningsdeler i byggverk.
+
+g) likeverdige standarder: standarder som dekker samme fagområde, bygger på de samme forutsetninger, har samme gyldighet og gir tilsvarende kvaliteter
+
+Veiledning til første ledd bokstav g
+Likeverdige standarder er et begrep som benyttes i § 2-1 Dokumentasjon for oppfyllelse av krav. Generelt. Begrepet benyttes i forbindelse med dokumentasjon for oppfyllelse av krav og forholdet til preaksepterte ytelser og standarder.
+
+h) mellometasje: plan som ligger mellom to plan og har åpen forbindelse til underliggende plan. En mellometasje kan for eksempel være mesanin.
+
+Veiledning til første ledd bokstav h
+Mellometasje er et begrep som benyttes ved beregningen av måleverdige plan etter § 6-1 og for krav til sikkerhet ved brann og utgang fra branncelle.
+
+i) opparbeidet uteareal: opparbeidet atkomst, parkeringsareal, uteoppholdsareal i tilknytning til byggverk og uteoppholdsareal for allmennheten
+
+Veiledning til første ledd bokstav i
+Opparbeidet uteareal er et begrep som benyttes i kapittel 8 Opparbeidet uteareal.
+
+j) preakseptert ytelse: ytelse angitt av Direktoratet for byggkvalitet, og som vil oppfylle, eller bidra til å oppfylle, ett eller flere funksjonskrav i byggteknisk forskrift
+
+Veiledning til første ledd bokstav j
+Preakseptert ytelse er et begrep som benyttes særlig i kapittel 2 Dokumentasjon for oppfyllelse av krav, og gjennom store deler av veiledningen til forskriften. Preaksepterte ytelser vil oppfylle eller bidra til å oppfylle tilhørende funksjonskrav i forskriften. De preaksepterte ytelsene til de ulike bestemmelsene i forskriften framgår under egen overskrift i veiledningen.
+
+k) produksjonsunderlag: arbeidstegninger, beskrivelsestekster, spesifikasjoner og annet underlagsmateriale som skal ligge til grunn for utførelsen
+
+Veiledning til første ledd bokstav k
+Produksjonsunderlag er et begrep som benyttes i § 2-3 Dokumentasjon for oppfyllelse av ytelser. Produksjonsunderlag. Prosjekterende skal utarbeide produksjonsunderlag som skal legges til grunn av utførende. Produksjonsunderlaget skal gi et tilstrekkelig grunnlag for de utførende slik at de kan gjennomføre de faktiske byggearbeidene.
+
+l) rom for varig opphold: rom for varig opphold i arbeids- og publikumsbygg er arbeidsrom og publikumsrom. Lagerrom, korridor, gang, garderobe, toalett, dusjrom og lignende er ikke rom for varig opphold. Rom for varig opphold i boenhet er stue og tilsvarende rom, kjøkken og soverom.
+
+Veiledning til første ledd bokstav l
+Rom for varig opphold er et begrep som særlig benyttes i kapittel 12 Planløsning og bygningsdeler i byggverk og kapittel 13 Inneklima og helse og har betydning for hvilke tekniske krav som stilles.
+
+For bolig er rom for varig opphold stue og tilsvarende rom, kjøkken og soverom.
+
+m) trinnfri: flate som kan ha terskel eller nivåforskjell på maksimum 25 mm. Terskel eller nivåforskjell mellom 20 mm og 25 mm anses som trinnfri dersom den har en skråskåren kant som ikke er brattere enn 45 grader.
+
+Veiledning til første ledd bokstav m
+Trinnfri er et begrep som benyttes i forskriftens kapittel 8 Opparbeidet uteareal og kapittel 12 Planløsning og bygningsdeler i byggverk.
+
+n) ytelse: teknisk, bruks- eller miljømessig kvalitet, kapasitet eller egenskap ved byggverk, bygningsdel, installasjon eller utearealer. En ytelse er en tolking og konkretisering av funksjonskrav og er angitt kvantitativt eller kvalitativt.
+
+Veiledning til første ledd bokstav n
+Ytelse er et begrep som blant annet benyttes i § 2-3 Dokumentasjon for oppfyllelse av ytelser. Produksjonsunderlag. En ytelse kan være angitt i forskriften og er da et krav som skal oppfylles. Det kan også være en preakseptert ytelse angitt i veiledningen, og som vil oppfylle eller bidra til å oppfylle tilhørende funksjonskrav i forskriften. En ytelse er en konkretisering av et funksjonskrav. En ytelse er angitt kvalitativt der det er mulig.
+
+Veiledning – andre definisjoner
+I tillegg til definisjonene gitt i forskriften brukes det en rekke andre begreper i regelverket. Nedenfor følger en liste med flere definisjoner.
+
+Arealbegreper definert i standarder
+1. Bebygd areal (BYA): horisontalprojeksjon av enten bygning(er), bygningsdeler eller tilhørende konstruksjoner over bakken, jf. NS 3940:2012
+
+2. Bruksareal (BRA): areal innenfor omsluttende vegger, jf. NS 3940:2012
+
+Oppvarmet (del av) BRA: den delen av BRA som tilføres varme fra bygningens varmesystem og eventuelt kjøling fra bygningens kjølesystem og som er omsluttet av bygningens klimaskjerm, jf. NS 3031:2014
+
+3. Bruttoareal (BTA): areal begrenset av ytterveggens utside eller midt i delevegg, jf. NS 3940:2012
+
+Ved beregning av bruttoareal i tilknytning til kap. 11 Sikkerhet ved brann gjelder følgende supplement til definisjonen i NS 3940:2012.
+
+Til punkt 5.4.4 Bruttoareal for en etasje eller et plan
+
+Bruttoareal for en etasje eller et plan beregnes fra utvendig avsluttende overflate av yttervegg eller andre omsluttende bygningsdeler, f.eks. kledning eller rekkverk. Hvis rekkverk plasseres inne på dekket, måles til ytterkant dekke. Innhuk og framspring av konstruksjonsmessig eller estetisk art medregnes ikke.
+
+Til punkt 5.4.5 Bruttoareal for en bygning
+
+Bruttoarealet for en bygning er summen av bruttoarealene for alle plan og etasjer. Planene kan være helt eller delvis under terreng. Loft, takterrasser, balkonger, svalganger, altanganger o.l. og tekniske plan skal medregnes.
+
+Andre begreper definert i standarder
+1. Bruksenhet: rom eller samling av rom og åpne deler som sammen anvendes i en bestemt hensikt av én bruker, som kan være eier, leier eller annen bruksretthaver, jf. NS 3940:2012
+
+En bruksenhet kan være én bygning, f.eks. kontorbygg, eller flere bygninger, f.eks. sykehus, men kan også være del av en bygning, f.eks. boenhet (bolig), kontorenhet, eller for eksempel avdeling eller post på et sykehus.
+
+2. Luminanskontrast: kontrast som oppstår grunnet synlige forskjeller mellom objektets og bakgrunnens luminans, jf. NS 11001-1:2018.
+
+Luminans: et objekts lyshet, måles i candela/m2.
+
+3. Netto varmebehov: netto energibehov til romoppvarming, ventilasjonsvarme og varmtvann, jf. NS 3700:2013
+
+4. Normalisert kuldebroverdi: samlet stasjonær varmestrøm fra kuldebroer dividert med oppvarmet del av BRA, jf. NS 3031:2014
+
+5. Småhus: enebolig, to- til firemannsbolig, rekkehus, kjedehus og terrassehus til og med tre etasjer, jf. NS 3457-3:2013
+
+6. Varmegjennomgangskoeffisient: stasjonær varmestrøm dividert med arealet og temperaturforskjellen mellom hver side av et system, jf. NS 3031:2014
+
+Kalles ofte for U-verdi som er varmetapet i watt gjennom 1 m2 areal ved en temperaturforskjell på 1 K.
+
+7. Varmetapstall: varmetransportkoeffisienten for transmisjon, infiltrasjon og ventilasjon dividert på oppvarmet del av BRA, jf. NS 3031:2014
+9:36
+Andre begreper
+1. Biobrensel: Biomasse som benyttes som brensel
+
+2. Branntekniske termer: se Kollegiet for brannfaglig terminologi
+
+3. Bygningsteknisk installasjon: installasjoner (innendørs eller utendørs) som er nødvendige for byggverkets drift
+
+Omfatter faste installasjoner som inngår i selve byggverket. Installasjoner knyttet til aktiviteter i byggverket, for eksempel prosessanlegg i næringsvirksomhet, er ikke en del av de bygningstekniske installasjonene.
+
+Eksempler på bygningstekniske installasjoner er varmeinstallasjon, kuldeinstallasjon, ventilasjonsanlegg, vann- og avløpsinstallasjoner, løfteinnretning (f.eks. heis, rulletrapp).
+
+4. Drift: alle oppgaver og rutiner som er nødvendig for at et byggverk skal fungere som planlagt
+
+5. Direktevirkende elektrisitet: panelovner, stråleovner, elektriske varmekabler og elektrokjel. Omfatter ikke elektrisitet som benyttes til drift av varmepumper
+
+6. Fasadeliv: ytterflate av en yttervegg
+
+7. Forvaltning: økonomisk styring og administrasjon av drift og vedlikehold i et byggverk
+
+8. Fossile brensler: petroleumsprodukter som mineralsk fyringsolje, parafin, kull, koks, naturgass, propan o.l.
+
+9. Grunnlast: effekten opp til et visst nivå som skal til for å dekke hoveddelen av årlig varmebehov på en mest mulig lønnsom måte
+
+10. Lukket ildsted: ovn og lukket peis
+
+11. Overvann: overflateavrenning fra nedbør og smeltevann på plasser, gater, takflater mv.
+
+12. Parapet: vegg- eller rekkverklignende barriere langs kanten av tak, terrasse eller en forlengelse av veggens fasadeliv opp forbi takflaten
+
+13. Røykkanal: hele kanalen for røykgass fra fyringsenheten til utslipp i atmosfæren
+
+Omfatter røykrør fra ildsted til skorstein (av stål eller støpejern, eventuelt støpt eller murt anbringer fra kjel) samt skorstein.
+
+14. Skorstein: Konstruksjon av ett eller flere lag som omslutter den vertikale delen av røykkanalen.
+
+En skorstein kan inneholde flere vertikale røykkanaler.
+
+Prefabrikkerte skorsteiner kan også inneholde tilluftskanal til ildsted.
+
+15. Takoppbygg: fellesbetegnelse på ulike konstruksjoner i takﬂaten
+
+Eksempel kan være en ark eller et takopplett.
+
+16. Total solfaktor: angir andelen av solstrålingen som slipper gjennom en kombinasjon av glass og solskjermingssystemer
+
+17. Universell utforming: utforming eller tilrettelegging av hovedløsningen i de fysiske forholdene slik at virksomhetens alminnelige funksjon kan benyttes av flest mulig
+
+18. Vedlikehold: nødvendige tiltak for å opprettholde byggverket med de tekniske installasjonene på et fastsatt kvalitetsnivå
+
+19. Våtrom: rom hvor overflater på vegger og gulv jevnlig eller av og til blir utsatt for fritt vann (vannsøl)
+
+Våtrom omfatter bad, dusjrom og vaskerom
+
+Henvisninger
+NS 3940:2012 Areal- og volumberegninger av bygninger
+NS 11001-1:2018 Universell utforming av byggverk - Del 1: Arbeids- og publikumsbygninger
+NS 3700:2013 Kriterier for passivhus og lavenergibygninger – Boligbygninger
+NS 3031:2014 Beregning av bygningers energiytelse - Metode og data
+NS 3457-3:2013 Klassifikasjon av byggverk – Del 3: Bygningstyper
