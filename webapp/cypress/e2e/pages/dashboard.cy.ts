@@ -61,7 +61,8 @@ describe("Admin dashboard page displays correctly", () => {
           .find(".points")
           .invoke("text")
           .then((pointsText) => {
-            const points = parseInt(pointsText.match(/\d+/)[0], 10);
+            const match = /\d+/.exec(pointsText);
+            const points = match ? Number(match[0]) : 0;            
             totalPoints += points;
           });
       })
