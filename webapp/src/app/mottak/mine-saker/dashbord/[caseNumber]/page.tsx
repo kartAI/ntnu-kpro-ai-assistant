@@ -40,8 +40,6 @@ const fetchDetections = (): Detection[] => {
   return detections;
 }
 
-
-
 export default function CaseDashboard() {
   const { caseNumber } = useParams();
   const detections = fetchDetections();

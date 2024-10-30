@@ -7,6 +7,7 @@ interface IframeProps {
   height?: string | number;
   frameBorder?: number;
   allowFullScreen?: boolean;
+  className?: string;
 }
 
 const EmbeddedFrame: React.FC<IframeProps> = ({
@@ -15,6 +16,7 @@ const EmbeddedFrame: React.FC<IframeProps> = ({
   width = '90%',
   height = '600vh',
   allowFullScreen = false,
+  className = '',
   ...props
 }) => {
   return (
@@ -24,7 +26,7 @@ const EmbeddedFrame: React.FC<IframeProps> = ({
       width={width}
       height={height}
       allowFullScreen={allowFullScreen}
-      className='h-screen'
+      className={`${className} h-screen`} 
       {...props}
     ></iframe>
   );
