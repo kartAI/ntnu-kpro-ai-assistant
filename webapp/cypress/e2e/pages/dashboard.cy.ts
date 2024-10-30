@@ -81,7 +81,7 @@ describe("Admin dashboard page displays correctly", () => {
             const expectedProgressPercentage = (totalPoints / 10) * 100;
 
             // Check that the aria-valuenow correctly matches the progress percentage logic
-            expect(parseInt($progressBar.attr("aria-valuenow"))).to.equal(
+            expect(parseInt($progressBar.attr("aria-valuenow") ?? '')).to.equal(
               totalPoints,
             );
             expect(expectedProgressPercentage).to.equal(
@@ -186,7 +186,7 @@ describe("Admin dashboard page displays correctly", () => {
     });
 
     it("should load the iframe without errors", () => {
-      let timeout = 10_000;
+      const timeout = 10_000;
       cy.get('[data-cy="plansituasjon"]', { timeout: timeout })
         .should("exist")
         .and("have.attr", "src", external_component_url)
@@ -307,7 +307,7 @@ describe("Admin dashboard page displays correctly", () => {
       });
 
       it('should load the iframe without errors', () => {
-        let timeout = 10_000;
+        const timeout = 10_000;
         cy.get('[data-cy="plansituasjon"]', { timeout: timeout })
           .should('exist')
           .and('have.attr', 'src', external_component_url)
@@ -387,16 +387,16 @@ describe("Admin dashboard page displays correctly", () => {
                     cy.get('[data-cy=feedback-text]')
                         .invoke('text')
                         .then((feedback) => {
-                            expect(feedback.trim()).not.to.be.empty;
-                            cy.log(`Success feedback: ${feedback}`); // Log feedback for reference
-                        });
+                          expect(feedback.trim()).to.not.be.empty.and.to.be.a("string");
+                          cy.log(`Success feedback: ${feedback}`); // Log feedback for reference
+                      });
                 } else if ($statusIndicator.hasClass('failure')) {
                     // Failure case: Check for a warning icon and non-empty feedback text
                     cy.get('[data-cy=icon]').should('have.class', 'icon-warning');
                     cy.get('[data-cy=feedback-text]')
                         .invoke('text')
                         .then((feedback) => {
-                            expect(feedback.trim()).not.to.be.empty;
+                          expect(feedback.trim()).to.not.be.empty.and.to.be.a("string");
                             cy.log(`Failure feedback: ${feedback}`); // Log feedback for reference
                         });
                 }
@@ -430,8 +430,8 @@ describe("Admin dashboard page displays correctly", () => {
                 cy.get('[data-cy=feedback-text]')
                     .invoke('text')
                     .then((feedback) => {
-                        expect(feedback.trim()).not.to.be.empty;
-                        cy.log(`Success feedback: ${feedback}`); // Log feedback for reference
+                      expect(feedback.trim()).to.not.be.empty.and.to.be.a("string");
+                      cy.log(`Success feedback: ${feedback}`); // Log feedback for reference
                     });
             } else if ($statusIndicator.hasClass('failure')) {
                 // Failure case: Check for a warning icon and non-empty feedback text
@@ -439,8 +439,8 @@ describe("Admin dashboard page displays correctly", () => {
                 cy.get('[data-cy=feedback-text]')
                     .invoke('text')
                     .then((feedback) => {
-                        expect(feedback.trim()).not.to.be.empty;
-                        cy.log(`Failure feedback: ${feedback}`); // Log feedback for reference
+                      expect(feedback.trim()).to.not.be.empty.and.to.be.a("string");
+                      cy.log(`Failure feedback: ${feedback}`); // Log feedback for reference
                     });
             }
         });
