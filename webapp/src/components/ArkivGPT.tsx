@@ -129,10 +129,10 @@ export default function ArkivGPTPage() {
                     Array.from({ length: 5 }).map((_, idx) => (
                       <TableRow key={idx} className="animate-pulse opacity-50">
                         <TableCell className="px-6 py-4 blur-sm">
-                          Loading...
+                          Laster...
                         </TableCell>
                         <TableCell className="px-6 py-4 blur-sm">
-                          Loading AI-Oppsummering...
+                          Laster AI-oppsummering...
                         </TableCell>
                         <TableCell className="px-6 py-4 blur-sm">
                           <LinkIcon className="h-6 w-6" />
@@ -145,7 +145,7 @@ export default function ArkivGPTPage() {
                         colSpan={4}
                         className="py-8 text-center text-xl text-red-500"
                       >
-                        No data available
+                        Fant ingen resultater
                       </TableCell>
                     </TableRow>
                   ) : (
