@@ -80,7 +80,7 @@ export default function Dashboard() {
                     hasInputCadaidWidget={hasInputCadaidWidget}
                     reportUrl={BASE_URL + "/cadaid"}/>
                 <div data-cy="planprat"
-                    className="Border rounded-md p-4 shadow-md hover:shadow-lg transition-all cursor-pointer row-span-2 col-span-2">
+                    className="Border rounded-md p-4 shadow-md hover:shadow-lg transition-all cursor-pointer row-span-3 col-span-2">
                     <h1>planprat</h1>
                 </div>
                 <DigitalTiltaksdataWidget hasInputDigitalTiltaksdataWidget={hasInputDigitalTiltaksdataWidget}
