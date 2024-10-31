@@ -19,7 +19,7 @@ export function ThreeDVisningWidget({setHasInputThreeDVisningWidget, hasInputThr
     const toggleOverlay = () => setIsOverlayOpen(!isOverlayOpen);
     return(
         <section data-cy="3d-visning-widget"
-            className="border rounded-md p-4 shadow-md hover:shadow-lg transition-all cursor-pointer col-span-2"
+            className={`border rounded-md p-4 shadow-md hover:shadow-lg transition-all cursor-pointer col-span-2 ${hasInputThreeDVisningWidget? "flex-1" :  "flex-none"}`}
             onClick={toggleOverlay}>
             
             {hasInputThreeDVisningWidget? 
@@ -31,7 +31,7 @@ export function ThreeDVisningWidget({setHasInputThreeDVisningWidget, hasInputThr
             :
             <div> 
                 <div className="flex justify-between items-center">
-                    <h1 className="font-bold">Last opp 3d visning</h1>
+                    <h1 className="font-bold text-xl">Last opp 3d visning</h1>
                     <Image src={hasInputThreeDVisningWidget? "/Ikoner/Dark/SVG/Check, Success.svg" : "/Ikoner/Dark/SVG/Warning.svg"}
                         alt={hasInputThreeDVisningWidget? "hake" : "varselsymbol"}
                         className="bg-kartAI-blue rounded-sm p-1"

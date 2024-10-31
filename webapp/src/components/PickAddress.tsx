@@ -58,13 +58,13 @@ export function PickAddress({setHasInputPickAddress}: pickAddressProps) {
                     />
                     <input 
                         type="text" 
-                        placeholder="Bnr." 
+                        placeholder="Bruksnummer (Bnr.)" 
                         className="border p-2 w-full mb-4" 
                         onChange={(e) => setInputGnr(e.target.value)}
                     />
                     <input 
                         type="text" 
-                        placeholder="Gnr." 
+                        placeholder="Gårdsnummer (Gnr.)" 
                         className="border p-2 w-full mb-4" 
                         onChange={(e) => setInputBnr(e.target.value)}
                     />

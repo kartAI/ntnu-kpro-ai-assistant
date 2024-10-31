@@ -9,8 +9,16 @@ import { Button } from "~/components/ui/button";
 import CaseDocumentsComponent from "~/components/CaseDocuments";
 import ResultAI from "~/components/ResultAI";
 
+const BASE_URL = "/for-soknad/byggeideer/dashbord"
+const documents = [
+    { name: 'Plantegning.pdf', url: BASE_URL + '/' + 'Plantegning.pdf' },
+    { name: 'Snitt_øst.jpg', url: BASE_URL + '/' + 'Snitt_øst.jpg' },
+    { name: 'Snitt_vest.jpg', url: BASE_URL + '/' + 'Snitt_vest.jpg' },
+    { name: 'Snitt_nord.jpg', url: BASE_URL + '/' + 'Snitt_nord.jpg' },
+  ];
+
 export default function Dashboard() {
-    const BASE_URL = "/for-soknad/byggeideer/dashbord"
+    
     const [hasInputPickAddress, setHasInputPickAddress] = useState<boolean>(() => {
         const savedHasInputPickAddress = sessionStorage.getItem('hasInputPickAddress');
         return savedHasInputPickAddress ? JSON.parse(savedHasInputPickAddress) as boolean : false; 
@@ -27,6 +35,8 @@ export default function Dashboard() {
         const saveHasInputThreeDVisningWidget = sessionStorage.getItem('hasInputThreeDVisningWidget');
         return saveHasInputThreeDVisningWidget ? JSON.parse(saveHasInputThreeDVisningWidget) as boolean : false;
     });   
+    const [documentList, setDocumentList] = useState<typeof documents>([]);
+
 
     useEffect(() => {
         sessionStorage.setItem('hasInputPickAddress', JSON.stringify(hasInputPickAddress));
@@ -44,20 +54,19 @@ export default function Dashboard() {
         sessionStorage.setItem('hasInputThreeDVisningWidget', JSON.stringify(hasInputThreeDVisningWidget));
     }, [hasInputThreeDVisningWidget]);
 
+    useEffect(() => {
+        if (hasInputCadaidWidget) {
+          setDocumentList(prevList => [...prevList, ...documents]);
+        }
+      }, [hasInputCadaidWidget]);
     
 
     
-    const documents = [
-        { name: 'Plantegning.pdf', url: BASE_URL + '/' + 'Plantegning.pdf' },
-        { name: 'Snitt_øst.jpg', url: BASE_URL + '/' + 'Snitt_øst.jpg' },
-        { name: 'Snitt_vest.jpg', url: BASE_URL + '/' + 'Snitt_vest.jpg' },
-        { name: 'Snitt_nord.jpg', url: BASE_URL + '/' + 'Snitt_nord.jpg' },
-        { name: 'Bevis_på_nabovarseler.pdf', url: BASE_URL + '/' + 'Bevis_på_nabovarseler.pdf' },
-        { name: 'Søknadsdokument.pdf', url: BASE_URL + '/' + 'Søknadsdokument.pdf' },
-      ];
+
+    
 
     return(
-        <div className="ml-14 mr-14">
+        <div className="ml-14 mr-14 mb-10" >
             <h1 data-cy="title"
                 className="text-3xl"><strong>Byggeidee Dashbord</strong></h1>
             <PickAddress setHasInputPickAddress={setHasInputPickAddress}/>
@@ -76,17 +85,19 @@ export default function Dashboard() {
                 </div>
                 <DigitalTiltaksdataWidget hasInputDigitalTiltaksdataWidget={hasInputDigitalTiltaksdataWidget}
                     setHasInputDigitalTiltaksdataWidget={setHasInputDigitalTiltaksdataWidget}/>
-                <ThreeDVisningWidget setHasInputThreeDVisningWidget={setHasInputThreeDVisningWidget} 
-                    hasInputThreeDVisningWidget={hasInputThreeDVisningWidget}/>
-                <div className="md:flex md justify-between w-auto">
-                    <CaseDocumentsComponent data-cy="document-overview" 
-                        documents={documents}/>
-                
+                <div className="col-span-2">
                     <ResultAI data-cy="arkiv-gpt" 
-                        title={"ArkivGPT"} 
-                        status={hasInputPickAddress? 'success' : 'failure'} 
-                        feedback={hasInputPickAddress? "Arkivdata funnet" : "Ingen tomt valgt"} 
-                        reportUrl={'https://www.youtube.com/watch?v=dQw4w9WgXcQ'} />
+                            title={"ArkivGPT"} 
+                            status={hasInputPickAddress? 'success' : 'failure'} 
+                            feedback={hasInputPickAddress? "Arkivdata funnet" : "Ingen tomt valgt"} 
+                            reportUrl={'https://www.youtube.com/watch?v=dQw4w9WgXcQ'} />
+
+                </div>
+                <div className="col-span-6 row-span-3 flex gap-10">
+                    <ThreeDVisningWidget setHasInputThreeDVisningWidget={setHasInputThreeDVisningWidget} 
+                    hasInputThreeDVisningWidget={hasInputThreeDVisningWidget}/>
+                    <CaseDocumentsComponent data-cy="document-overview" 
+                        documents={hasInputCadaidWidget? documents : []}/>
                     <Button data-cy="start-aplication-button" 
                         className="bg-kartAI-blue">
                         Gå til søknad

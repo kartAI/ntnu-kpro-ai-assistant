@@ -7,6 +7,10 @@ interface CadaidWidgetProps {
     hasInputCadaidWidget: boolean;
     reportUrl: string; 
 }
+interface response {
+    message: string;
+    type: string;
+}
 
 export function CadaidWidget({setHasInputCadaidWidget, hasInputCadaidWidget, reportUrl }: CadaidWidgetProps) {
     const router = useRouter();
@@ -15,7 +19,9 @@ export function CadaidWidget({setHasInputCadaidWidget, hasInputCadaidWidget, rep
         router.push(reportUrl);
     };
     
-    const hardcodedRespons = ["du har fasade", "du mangler snit", "du mangler situasjons kart"]
+    const hardcodedRespons = [{message: "Du har fasade", type: "CONFIRMED"}, 
+            {message: "Du mangler snit", type: "MISSING"}, 
+            {message: "Du mangler situasjons kart", type: "MISSING" }]
     
     const handleClick = () => {
         handleNavigation();
@@ -29,7 +35,7 @@ export function CadaidWidget({setHasInputCadaidWidget, hasInputCadaidWidget, rep
             className="border rounded-md p-4 shadow-md hover:shadow-lg transition-all cursor-pointer col-span-2"
             onClick={handleClick}>
                 <div className="flex justify-between items-center">
-                    <h1 className="font-bold">Få oversikt over plantegninger</h1>
+                    <h1 className="font-bold text-xlwebapp/src/app/for-soknad/byggeideer/dashbord/page.tsx">Få oversikt over plantegninger</h1>
                     <Image src={hasInputCadaidWidget? "/Ikoner/Dark/SVG/Check, Success.svg" : "/Ikoner/Dark/SVG/Warning.svg"}
                         alt={hasInputCadaidWidget? "hake" : "varselsymbol"}
                         className="bg-kartAI-blue rounded-sm p-1"
@@ -39,8 +45,9 @@ export function CadaidWidget({setHasInputCadaidWidget, hasInputCadaidWidget, rep
                 </div>
                 {hasInputCadaidWidget? 
                 <ul>
-                    {hardcodedRespons.map((str, index) => (
-                        <li key={index}>{str}</li>
+                    {hardcodedRespons.map((response  , index) => (
+                        <li className={`${response.type === "MISSING" ? "text-red-600" : "text-black"}`}
+                        key={index}>{response.message}</li>
                     ))}
                 </ul>   
                 : 
