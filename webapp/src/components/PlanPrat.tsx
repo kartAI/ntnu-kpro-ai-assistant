@@ -43,7 +43,7 @@ export function PlanPrat() {
       }
     };
 
-    const handleKeyDown = async(e: KeyboardEvent<HTMLTextAreaElement>): void => {
+    const handleKeyDown = async(e: KeyboardEvent<HTMLTextAreaElement>): Promise<void> => {
         if (e.key === 'Enter') {
           e.preventDefault(); // Prevents creating a new line in the textarea
           await handleSubmit(); // Calls handleSubmit when Enter is pressed
