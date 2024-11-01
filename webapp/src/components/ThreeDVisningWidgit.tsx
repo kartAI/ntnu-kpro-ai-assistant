@@ -5,7 +5,7 @@ import Image from "next/image";
 import EmbeddedFrame from "./EmbeddedFrame";
 
 interface ThreeDVisningWidgetProps {
-    setHasInputThreeDVisningWidget: React.Dispatch<React.SetStateAction<boolean>>;
+    setHasInputThreeDVisningWidget: (value: boolean) => void;
     hasInputThreeDVisningWidget: boolean;
 }
 export function ThreeDVisningWidget({setHasInputThreeDVisningWidget, hasInputThreeDVisningWidget}: ThreeDVisningWidgetProps) {

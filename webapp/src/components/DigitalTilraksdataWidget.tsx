@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 
 interface DigitalTiltaksdataWidgetProps {
     hasInputDigitalTiltaksdataWidget: boolean;
-    setHasInputDigitalTiltaksdataWidget: React.Dispatch<React.SetStateAction<boolean>>;
+    setHasInputDigitalTiltaksdataWidget: (value: boolean) => void;
 }
 
 export function DigitalTiltaksdataWidget({hasInputDigitalTiltaksdataWidget, setHasInputDigitalTiltaksdataWidget}:DigitalTiltaksdataWidgetProps) {

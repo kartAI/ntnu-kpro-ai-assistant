@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 interface CadaidWidgetProps {
-    setHasInputCadaidWidget: React.Dispatch<React.SetStateAction<boolean>>;
+    setHasInputCadaidWidget: (value: boolean) => void;
     hasInputCadaidWidget: boolean;
     reportUrl: string; 
 }

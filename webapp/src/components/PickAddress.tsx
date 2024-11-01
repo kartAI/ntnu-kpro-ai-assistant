@@ -3,16 +3,17 @@ import React, { useState } from "react";
 import { Button } from "./ui/button";
 
 interface pickAddressProps {
-    setHasInputPickAddress: React.Dispatch<React.SetStateAction<boolean>>
+    setHasInputPickAddress: (value: boolean) => void
 
 }
 export function PickAddress({setHasInputPickAddress}: pickAddressProps) {
     const [address, setAddress] = useState<string>("Ingen adresse valgt")
     const [property, setProperty] = useState<string>("Ingen eiendom valgt")
-    const [showOverlay, setShowOverlay] = useState(false);
-    const [inputAddress, setInputAddress] = useState('');
+    const [showOverlay, setShowOverlay] = useState<boolean>(false);
+    const [inputAddress, setInputAddress] = useState<string>('');
     const [inputGnr, setInputGnr] = useState('');
     const [inputBnr, setInputBnr] = useState('');
+
 
     function setAdressAndProperty() {
         if (inputAddress && inputBnr && inputGnr) {
