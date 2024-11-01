@@ -37,10 +37,10 @@ const shortcuts: ShortcutLink[] = [
                 title: "Mer informasjon?",
                 arrow: false,
                 links: [
-                    { label: 'Kundestøtte', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'},
-                    { label: 'Kontakt kommunen', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'},
-                    { label: 'eByggesøk', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'},
-                    { label: 'Direktoratet for byggekvalitet', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'},
+                    { label: 'Min side', url: '/for-soknad/byggeideer/dashbord'},
+                    { label: 'Kontakt kommunen', url: 'https://www.kristiansand.kommune.no/'},
+                    { label: 'eByggesøk', url: 'https://www.kristiansand.kommune.no/'},
+                    { label: 'Direktoratet for byggekvalitet', url: 'https://www.kristiansand.kommune.no/'},
                 ]
             }
         ]
