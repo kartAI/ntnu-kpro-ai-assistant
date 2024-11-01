@@ -66,7 +66,7 @@ export default function Dashboard() {
             title={"ArkivGPT"}
             status={hasInputPickAddress ? 'success' : 'failure'}
             feedback={hasInputPickAddress ? "Arkivdata funnet" : "Ingen tomt valgt"}
-            reportUrl={'https://www.youtube.com/watch?v=dQw4w9WgXcQ'}
+            reportUrl={'http://localhost:3001/for-soknad/arkivgpt'}
           />
         </div>
         <div className="col-span-6 row-span-3 flex gap-10">
