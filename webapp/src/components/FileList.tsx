@@ -10,7 +10,7 @@ interface FileListProps {
 
 const FileList: React.FC<FileListProps> = ({ files, onRemove, onUpload }) => {
   return (
-    <div className="mb-6 bg-white p-4 rounded-lg shadow-md">
+    <div className="mb-6 bg-white p-4 rounded-lg">
       <h1 className="font-bold mb-4">CADAiD</h1>
       <ul className="space-y-2" data-cy="file-list">
         {files.map((file) => (
