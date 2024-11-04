@@ -3,6 +3,7 @@ import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 import { applicationRouter } from "./routers/application";
 import { documentRouter } from "./routers/document";
 import { modelErrorRouter } from "./routers/model-error";
+import { planpratRouter } from "./routers/planprat";
 
 /**
  * This is the primary router for your server.
@@ -15,6 +16,7 @@ export const appRouter = createTRPCRouter({
   document: documentRouter,
   response: modelErrorRouter,
   modelErrors: modelErrorRouter,
+  planprat: planpratRouter,
 });
 
 // export type definition of API
