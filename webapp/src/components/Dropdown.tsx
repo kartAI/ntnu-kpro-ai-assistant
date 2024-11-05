@@ -12,8 +12,8 @@ const OpenDropdown = ({
   openedNavbarSection: number | null;
   handleClick: (index: number) => void;
 }) => (
-  <div className="absolute right-0 mt-11 w-screen bg-white z-30">
-    {shortcuts.map((shortcut, index) => {
+<div className="absolute right-0 mt-11 w-screen max-h-[calc(100vh-170px)] overflow-y-auto bg-white z-30">
+{shortcuts.map((shortcut, index) => {
       const isActive = index === openedNavbarSection;
       return (
         <div key={index} className="border-b border-gray-200">
@@ -46,6 +46,11 @@ const OpenDropdown = ({
                         className="block text-sm text-black hover:text-gray-600 py-1"
                       >
                         {link.label}
+                        {link.text && (
+                        <span className='text-xs font-light py-1 flex flex-row gap-4'>
+                          {link.text}
+                        </span>
+                        )}
                       </a>
                     ))}
                   </div>
