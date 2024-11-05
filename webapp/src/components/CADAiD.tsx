@@ -115,7 +115,6 @@ const CadaidPage: React.FC = () => {
               console.error(error);
               setErrorMessage("En feil oppsto under lagring av responsen.");
             });
-          // }
         });
       } catch (error) {
         console.error(error);
