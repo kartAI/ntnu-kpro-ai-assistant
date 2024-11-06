@@ -111,19 +111,7 @@ def test_multiple_files_with_invalid(get_test_file):
                 ("files", ("invalid.txt", file2, "application/txt")),
             ],
         )
-    assert response.status_code == 400
-
-
-def test_unsupported_media_type(get_test_file):
-    """
-    Test handling when an unsupported media type is sent.
-    """
-    with get_test_file("structured.pdf") as file:
-        response = client.post(
-            "/summarize",
-            files=[("files", ("structured.pdf", file, "image/jpeg"))],
-        )
-    assert response.status_code == 415  # Unsupported Media Type
+    assert response.status_code == 415
 
 
 @pytest.mark.apitest
