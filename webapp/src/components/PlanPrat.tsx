@@ -50,7 +50,7 @@ export function PlanPrat() {
   ): Promise<void> => {
     if (e.key === "Enter") {
       e.preventDefault();
-      await handleSubmit(); // Calls handleSubmit when Enter is pressed
+      await handleSubmit();
     }
   };
   return (
