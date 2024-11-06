@@ -39,7 +39,11 @@ export function ThreeDVisningWidget({setHasInputThreeDVisningWidget, hasInputThr
                         height={30}/> 
 
                 </div>
-                <p>Om du har en lenke til en 3d visning av hva du tenker å bygge kan du legge det til her</p>
+                
+                <p className="underline">KLIKK HER:</p>
+                <p>Leg til lenke av din 3d visning</p>
+                
+             
             </div>
             }
 

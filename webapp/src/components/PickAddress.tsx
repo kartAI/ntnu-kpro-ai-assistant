@@ -13,6 +13,7 @@ export function PickAddress({setHasInputPickAddress}: pickAddressProps) {
     const [inputAddress, setInputAddress] = useState<string>('');
     const [inputGnr, setInputGnr] = useState('');
     const [inputBnr, setInputBnr] = useState('');
+    const [inputAttempted, setInputAttempted] = useState<boolean>(false)
 
 
     function setAdressAndProperty() {
@@ -22,6 +23,8 @@ export function PickAddress({setHasInputPickAddress}: pickAddressProps) {
             setHasInputPickAddress(true)
             handleToggleOverlay()
         } 
+        console.log(inputAddress != '')
+        setInputAttempted(true)
         
     }
 
@@ -53,22 +56,34 @@ export function PickAddress({setHasInputPickAddress}: pickAddressProps) {
                     <input 
                         type="text" 
                         placeholder="Adresse" 
-                        className="border p-2 w-full mb-4" 
+                        className="border p-2 w-full" 
                         onChange={(e) => setInputAddress(e.target.value)}
                     
                     />
+                    {!inputAddress && inputAttempted ?  
+                    <p className="text-red-600 text-right">DU MÅ FYLLE UT ADRESSE</p>
+                    :
+                    null}
                     <input 
                         type="text" 
                         placeholder="Bruksnummer (Bnr.)" 
-                        className="border p-2 w-full mb-4" 
-                        onChange={(e) => setInputGnr(e.target.value)}
+                        className="border p-2 w-full mt-4" 
+                        onChange={(e) => setInputBnr(e.target.value)}
                     />
+                    {!inputBnr && inputAttempted ?  
+                    <p className="text-red-600 text-right">DU MÅ FYLLE UT BRUKSNUMMER (Bnr.)</p>
+                    :
+                    null}
                     <input 
                         type="text" 
                         placeholder="Gårdsnummer (Gnr.)" 
-                        className="border p-2 w-full mb-4" 
-                        onChange={(e) => setInputBnr(e.target.value)}
+                        className="border p-2 w-full mt-4" 
+                        onChange={(e) => setInputGnr(e.target.value)}
                     />
+                    {!inputGnr && inputAttempted ?  
+                    <p className="text-red-600 text-right">DU MÅ FYLLE UT GÅRDSNUMMER (Gnr.)</p>
+                    :
+                    null}
 
                     <div className="flex justify-end gap-4">
                         <Button 

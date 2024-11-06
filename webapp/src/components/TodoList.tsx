@@ -7,6 +7,7 @@ interface todoListProps {
     hasInputThreeDVisningWidget: boolean,
 
 }
+
 export function TodoList({hasInputPickAddress, 
         hasInputCadaidWidget, 
         hasInputDigitalTiltaksdataWidget, 
@@ -21,7 +22,7 @@ export function TodoList({hasInputPickAddress,
 
     return(
         <section data-cy="todo-list"
-            className="border border-gray-300 rounded-lg p-6 shadow-sm bg-blue-50 max-w-lg mx-auto row-span-3 col-span-2">
+            className="border border-gray-300 rounded-lg p-6 shadow-sm bg-blue-50 mx-auto row-span-3 lg:col-span-2 space-y-4">
             <h1 className="font-bold text-xl">Gjøremål</h1>
             {hasInputPickAddress? <p>{arkivGPTText}</p> : <p>{addressText}</p>}
             {hasInputCadaidWidget? null : <p>{cadaidText}</p>}

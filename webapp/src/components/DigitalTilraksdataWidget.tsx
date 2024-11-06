@@ -20,7 +20,7 @@ export function DigitalTiltaksdataWidget({hasInputDigitalTiltaksdataWidget, setH
     const toggleOverlay = () => setIsOverlayOpen(!isOverlayOpen);
     return(
         <section data-cy="digital-tiltaksdata-widget"
-            className="Border rounded-md p-4 shadow-md hover:shadow-lg transition-all cursor-pointer col-span-2"
+            className="Border rounded-md p-4 shadow-md hover:shadow-lg transition-all cursor-pointer lg:col-span-2"
             onClick={toggleOverlay}>
             
             {hasInputDigitalTiltaksdataWidget? 
@@ -52,7 +52,8 @@ export function DigitalTiltaksdataWidget({hasInputDigitalTiltaksdataWidget, setH
                         height={30}/> 
 
                 </div>
-                <p>Tegn opp området du tenker å bygge på</p>
+                <p className="underline">KLIKK HER: </p>
+                <p>Tegn opp området du tenker å bygge på for å se om det er hindringer for å bygge</p>
             </div>
             }
 

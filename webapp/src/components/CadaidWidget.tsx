@@ -32,7 +32,7 @@ export function CadaidWidget({setHasInputCadaidWidget, hasInputCadaidWidget, rep
 
     return(
         <section data-cy="cadaid-widget"
-            className="border rounded-md p-4 shadow-md hover:shadow-lg transition-all cursor-pointer col-span-2"
+            className="border rounded-md p-4 shadow-md hover:shadow-lg transition-all cursor-pointer lg:col-span-2"
             onClick={handleClick}>
                 <div className="flex justify-between items-center">
                     <h1 className="font-bold text-xlwebapp/src/app/for-soknad/byggeideer/dashbord/page.tsx">Få oversikt over plantegninger</h1>
@@ -51,7 +51,10 @@ export function CadaidWidget({setHasInputCadaidWidget, hasInputCadaidWidget, rep
                     ))}
                 </ul>   
                 : 
-                <p>Last opp plantegning for å få oversikt over inholdet</p>}
+                <div>
+                    <p className="underline">KLIKK HER: </p>
+                    <p>Laste opp plantegning for å få se hva som må legges til før du skriver søknad</p>
+                </div>}
 
         </section>
     )

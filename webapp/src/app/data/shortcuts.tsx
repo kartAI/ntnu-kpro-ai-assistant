@@ -29,7 +29,7 @@ const shortcuts: ShortcutLink[] = [
                     { label: 'DOK-analyse', url: '/for-soknad/dok-analyse' },
                     { label: 'Tiltakskart', url: '/for-soknad/tiltakskart' },
                     { label: '3D-situasjonsmodell', url: '/for-soknad/3d-situasjon' },
-                    { label: 'Saken oppsummert', url: '/for-soknad/oppsummering' },
+                    { label: 'Min byggeidee', url: '/for-soknad/byggeideer/dashbord' },
                     
                 ],
             },
@@ -37,7 +37,7 @@ const shortcuts: ShortcutLink[] = [
                 title: "Mer informasjon?",
                 arrow: false,
                 links: [
-                    { label: 'Min side', url: '/for-soknad/byggeideer/dashbord'},
+                    { label: 'Kundestøtte', url: '/ekstern/kundestøtte'},
                     { label: 'Kontakt kommunen', url: 'https://www.kristiansand.kommune.no/'},
                     { label: 'eByggesøk', url: 'https://www.kristiansand.kommune.no/'},
                     { label: 'Direktoratet for byggekvalitet', url: 'https://www.kristiansand.kommune.no/'},
