@@ -25,7 +25,8 @@ export function PlanPrat() {
   }
 
   const handleTextChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
-    setText(e.target.value); // Update state with textarea input
+    // Update state with textarea input
+    setText(e.target.value);
   };
 
   const handleSubmit = async (): Promise<void> => {
