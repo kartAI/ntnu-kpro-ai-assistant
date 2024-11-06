@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { use, useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 interface CadaidWidgetProps {
@@ -13,6 +13,7 @@ interface response {
 }
 
 export function CadaidWidget({setHasInputCadaidWidget, hasInputCadaidWidget, reportUrl }: CadaidWidgetProps) {
+    const [cadaidRespons, setCadaidRespons] = useState<response[]>([])
     const router = useRouter();
 
     const handleNavigation = () => {
@@ -23,12 +24,36 @@ export function CadaidWidget({setHasInputCadaidWidget, hasInputCadaidWidget, rep
             {message: "Du mangler snit", type: "MISSING"}, 
             {message: "Du mangler situasjons kart", type: "MISSING" }]
     
-    const handleClick = () => {
-        handleNavigation();
-        if (!hasInputCadaidWidget) {
-            setHasInputCadaidWidget(true);
+            const handleClick = () => {
+                handleNavigation();
+                if (!hasInputCadaidWidget) {
+                    setHasInputCadaidWidget(true);
+                    setCadaidRespons(hardcodedRespons); // set to hardcodedRespons here
+                }
+            }
+    useEffect(() => {
+        if (cadaidRespons.length > 0) {
+            localStorage.setItem("CadaidRespons", JSON.stringify(cadaidRespons)) ;
         }
-    }
+    }, [cadaidRespons] )
+
+    useEffect(() => {
+        const storedCadaidRespons = localStorage.getItem("CadaidRespons")
+
+        if (storedCadaidRespons) {
+            try {
+                const parsedRespons: response[] = JSON.parse(storedCadaidRespons) as response[];
+                setCadaidRespons(parsedRespons);
+                
+                if (parsedRespons.length > 0) {
+                    setHasInputCadaidWidget(true);
+                }
+                
+            } catch {
+                console.error("respons could not be parsed")
+            }
+        }
+    }, [setHasInputCadaidWidget])
 
     return(
         <section data-cy="cadaid-widget"
@@ -45,7 +70,7 @@ export function CadaidWidget({setHasInputCadaidWidget, hasInputCadaidWidget, rep
                 </div>
                 {hasInputCadaidWidget? 
                 <ul>
-                    {hardcodedRespons.map((response  , index) => (
+                    {cadaidRespons.map((response  , index) => (
                         <li className={`${response.type === "MISSING" ? "text-red-600" : "text-black"}`}
                         key={index}>{response.message}</li>
                     ))}

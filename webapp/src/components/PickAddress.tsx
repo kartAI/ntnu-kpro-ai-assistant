@@ -1,29 +1,59 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 
 interface pickAddressProps {
-    setHasInputPickAddress: (value: boolean) => void
+    setHasInputPickAddress: (value: boolean) => void;
+    hasInputPickAddress: boolean;
 
 }
-export function PickAddress({setHasInputPickAddress}: pickAddressProps) {
-    const [address, setAddress] = useState<string>("Ingen adresse valgt")
-    const [property, setProperty] = useState<string>("Ingen eiendom valgt")
+
+export function PickAddress({setHasInputPickAddress, hasInputPickAddress}: pickAddressProps) {
+    const [address, setAddress] = useState<string>();
+    const [property, setProperty] = useState<string>();
     const [showOverlay, setShowOverlay] = useState<boolean>(false);
     const [inputAddress, setInputAddress] = useState<string>('');
-    const [inputGnr, setInputGnr] = useState('');
-    const [inputBnr, setInputBnr] = useState('');
-    const [inputAttempted, setInputAttempted] = useState<boolean>(false)
+    const [inputGnr, setInputGnr] = useState<string>();
+    const [inputBnr, setInputBnr] = useState<string>();
+    const [inputAttempted, setInputAttempted] = useState<boolean>(false);
+
+    useEffect(() => {
+        // Only store in localStorage if values are valid (non-empty)
+        if (address && inputBnr && inputGnr && hasInputPickAddress) {
+            localStorage.setItem("address", address);
+            localStorage.setItem("bnr", inputBnr);
+            localStorage.setItem("gnr", inputGnr);
+            localStorage.setItem("hasInputPickAddress", JSON.stringify(hasInputPickAddress));
+        }
+    }, [address, inputBnr, inputGnr, hasInputPickAddress]);
+    
+    useEffect(() => {
+        // Load from localStorage on initial render
+        const storedAddress = localStorage.getItem("address");
+        const storedBnr = localStorage.getItem("bnr");
+        const storedGnr = localStorage.getItem("gnr");
+        const storedHasInputPickAddress = localStorage.getItem("hasInputPickAddress");
+
+        if (storedAddress && storedBnr && storedGnr && storedHasInputPickAddress) {
+            setAddress(storedAddress);
+            setInputBnr(storedBnr);
+            setInputGnr(storedGnr);
+            setProperty(`Gnr. ${storedGnr}, Bnr. ${storedBnr}`);
+            const parsedHasInputPickAddress = JSON.parse(storedHasInputPickAddress) as boolean;
+            setHasInputPickAddress(parsedHasInputPickAddress);
+        }
+    }, [setHasInputPickAddress]);
 
 
+    
     function setAdressAndProperty() {
+        console.log(inputAddress + inputBnr + inputGnr)
         if (inputAddress && inputBnr && inputGnr) {
             setAddress(inputAddress)
-            setProperty(`Gnr. ${inputGnr}, Bnr. ${inputBnr}`)
             setHasInputPickAddress(true)
+            setProperty(`Gnr. ${inputGnr}, Bnr. ${inputBnr}`);
             handleToggleOverlay()
         } 
-        console.log(inputAddress != '')
         setInputAttempted(true)
         
     }
@@ -37,11 +67,11 @@ export function PickAddress({setHasInputPickAddress}: pickAddressProps) {
             className="flex gap-6">
             <section>
                 <h1>Adresse:</h1>
-                <h1>{address}</h1>
+                <h1 className={address? "text-black" : "text-red-600"}>{address? address : "Ingen addresse valgt"}</h1>
             </section>
             <section>
                 <h1>Eiendom:</h1>
-                <h1>{property}</h1>
+                <h1 className={property? "text-black" : "text-red-600"}>{property? property : "Ingen tomt valgt"}</h1>
             </section>
             <Button onClick={handleToggleOverlay}
                 className="px-4 py-2 bg-kartAI-blue">

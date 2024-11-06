@@ -117,10 +117,10 @@ const NextBreadcrumb = ({ homeElement, separator, listClasses, activeClasses }: 
     };
 
     return (
-        <div className='sticky top-[60px] pl-10 z-40'>
+        <div className='sticky top-[60px] z-40'>
             {history.length > 1 && (
             <ul className='hidden text-secondary-black backdrop-blur-sm text-md md:flex md:py-2 md:px-2 relative'>
-                <li className='hover:underline mx-2 font-light'>
+                <li className='ml-10 hover:underline mx-2 font-light'>
                     <Link href={'/'} onClick={() => handleLinkClick('/')}>
                         {homeElement}
                     </Link>

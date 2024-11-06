@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 
@@ -12,10 +12,32 @@ interface DigitalTiltaksdataWidgetProps {
 export function DigitalTiltaksdataWidget({hasInputDigitalTiltaksdataWidget, setHasInputDigitalTiltaksdataWidget}:DigitalTiltaksdataWidgetProps) {
     const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
+    useEffect(() => {
+        if (hasInputDigitalTiltaksdataWidget) {
+            localStorage.setItem("hasInputDigitalTiltaksdataWidget", JSON.stringify(hasInputDigitalTiltaksdataWidget));
+        }
+    })
+
+    useEffect(() => {
+        const storedHasInputDigitalTiltaksdataWidget = localStorage.getItem("hasInputDigitalTiltaksdataWidget")
+
+        if (storedHasInputDigitalTiltaksdataWidget) {
+            try {
+                const parsedHasInputDigitalTiltaksdataWidget: boolean = JSON.parse(storedHasInputDigitalTiltaksdataWidget) as boolean;
+                setHasInputDigitalTiltaksdataWidget(parsedHasInputDigitalTiltaksdataWidget);
+            } catch {
+                console.error("respons could not be parsed");
+                
+            }
+        }
+    })
     const applyInput= () => {
         setHasInputDigitalTiltaksdataWidget(true);
         setIsOverlayOpen(false);
     };
+    
+
+
 
     const toggleOverlay = () => setIsOverlayOpen(!isOverlayOpen);
     return(

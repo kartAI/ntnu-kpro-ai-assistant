@@ -10,7 +10,7 @@ export function ArkivGPTWidget({hasInputPickAddress}: ArkivGPTWidgetProps) {
     const router = useRouter();
 
     const handleNavigation = () => {
-        router.push('http://localhost:3000/for-soknad/byggeideer/dashbord/arkivgpt');
+        router.push('//localhost:3000/for-soknad/byggeideer/dashbord/arkivgpt');
     };
 
 

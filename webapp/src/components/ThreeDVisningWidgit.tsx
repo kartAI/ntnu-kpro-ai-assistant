@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import EmbeddedFrame from "./EmbeddedFrame";
@@ -8,8 +8,36 @@ interface ThreeDVisningWidgetProps {
     setHasInputThreeDVisningWidget: (value: boolean) => void;
     hasInputThreeDVisningWidget: boolean;
 }
+const mockUrl = "https://byggesak3d.norkart.no/view/bf204afe-e50e-4ac6-8839-ebd9406167ac"
+
 export function ThreeDVisningWidget({setHasInputThreeDVisningWidget, hasInputThreeDVisningWidget}: ThreeDVisningWidgetProps) {
     const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+    const [url, setUrl] = useState<string>('')
+
+
+    useEffect(() => {
+        // Only store in localStorage if values are valid (non-empty)
+        if (url) {
+            localStorage.setItem("url", url);
+        }
+        if(hasInputThreeDVisningWidget){
+            localStorage.setItem("hasInputThreeDVisningWidget", JSON.stringify(hasInputThreeDVisningWidget));
+
+        }
+    }, [url, hasInputThreeDVisningWidget]);
+
+    useEffect(() => {
+        // Load from localStorage on initial render
+        const storedUrl = localStorage.getItem("url");
+      
+        const storedHasInputThreeDVisningWidget = localStorage.getItem("hasInputThreeDVisningWidget");
+
+        if (storedUrl && storedHasInputThreeDVisningWidget) {
+            setUrl(storedUrl)
+            const parsedHasInputThreeDVisningWidget = JSON.parse(storedHasInputThreeDVisningWidget) as boolean;
+            setHasInputThreeDVisningWidget(parsedHasInputThreeDVisningWidget);
+        }
+    }, [setHasInputThreeDVisningWidget]);
 
     const applyInput = () => {
         setHasInputThreeDVisningWidget(true);
@@ -24,7 +52,7 @@ export function ThreeDVisningWidget({setHasInputThreeDVisningWidget, hasInputThr
             
             {hasInputThreeDVisningWidget? 
             <EmbeddedFrame data-cy="tiltaksvisning"  
-                src="https://byggesak3d.norkart.no/view/bf204afe-e50e-4ac6-8839-ebd9406167ac" 
+                src={url} 
                 title="3D tiltaksvisning"
                 height={"50"}
                  /> 
@@ -55,7 +83,9 @@ export function ThreeDVisningWidget({setHasInputThreeDVisningWidget, hasInputThr
                         <p className="text-lg mb-4">Lenke: http://localhost:3000/for-soknad/3d-situasjon</p>
                         <div className="flex justify-end gap-4">
                             <Button
-                                onClick={toggleOverlay}
+                                onClick={() => {
+                                    setUrl(mockUrl)
+                                    toggleOverlay()}}
                                 className="bg-kartAI-blue hover:bg-red-600"
                             >
                                 Lukk

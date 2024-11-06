@@ -48,7 +48,7 @@ export default function Dashboard() {
             <strong>Organiser min byggeidee</strong>
         </h1>
         <p className="mt-4 mb-4">På denne siden kan du legge inn det du vet om dine byggeplan og få respons fra våre KI hjelpere</p>
-        <PickAddress setHasInputPickAddress={setHasInputPickAddress} />
+        <PickAddress setHasInputPickAddress={setHasInputPickAddress} hasInputPickAddress={hasInputPickAddress}/>
         <section className="mt-4 grid lg:grid-cols-6 grid-cols-1 lg:grid-rows-2 gap-10">
           <TodoList
             hasInputPickAddress={hasInputPickAddress}

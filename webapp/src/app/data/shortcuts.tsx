@@ -8,6 +8,7 @@ export interface ShortcutLink {
         links: {
             label: string;
             url: string;
+            text?: string;
         }[];
     }[];
     pages?: string[];
@@ -16,21 +17,18 @@ export interface ShortcutLink {
 
 const shortcuts: ShortcutLink[] = [
     {
-        header: 'Skal du bygge?',
+        header: 'Før du skal søke',
         subgroups: [
             {
                 title: "Aktuelle KI-assistenter",
                 arrow: true,
                 links: [
-                    { label: 'CADAiD', url: '/for-soknad/cadaid' },
-                    { label: 'ArkivGPT', url: '/for-soknad/arkivgpt' },
-                    { label: 'Planprat', url: '/for-soknad/planprat' },
-                    { label: 'Søknadsinformasjon', url: '/for-soknad/soknadsinfo' },
-                    { label: 'DOK-analyse', url: '/for-soknad/dok-analyse' },
-                    { label: 'Tiltakskart', url: '/for-soknad/tiltakskart' },
-                    { label: '3D-situasjonsmodell', url: '/for-soknad/3d-situasjon' },
-                    { label: 'Min byggeidee', url: '/for-soknad/byggeideer/dashbord' },
-                    
+                    { label: 'CADAiD', url: '/for-soknad/cadaid', text: "Verifiser plantegningene dine" },
+                    { label: 'ArkivGPT', url: '/for-soknad/arkivgpt', text: "Snakk med byggesaksarkivet" },
+                    { label: 'Planchat', url: '/for-soknad/planprat', text: "Få oversikt over hva du har lov å gjøre med denne chatbotten" },
+                    { label: 'Tiltakskart', url: '/for-soknad/tiltakskart', text: "Se tiltakene rundt deg"},
+                    { label: '3D-situasjonsmodell', url: '/for-soknad/3d-situasjon', text: "Se ditt tiltak i 3D kart" },
+                    { label: 'Min byggeide', url: '/for-soknad/byggeideer/dashbord', text: "Organiser informasjonen rundt din byggesøknad" },
                 ],
             },
             {
@@ -38,9 +36,9 @@ const shortcuts: ShortcutLink[] = [
                 arrow: false,
                 links: [
                     { label: 'Kundestøtte', url: '/ekstern/kundestøtte'},
-                    { label: 'Kontakt kommunen', url: 'https://www.kristiansand.kommune.no/'},
-                    { label: 'eByggesøk', url: 'https://www.kristiansand.kommune.no/'},
-                    { label: 'Direktoratet for byggekvalitet', url: 'https://www.kristiansand.kommune.no/'},
+                    { label: 'Kontakt kommunen', url: '/ekstern/kontakt'},
+                    { label: 'eByggesøk', url: '/ekstern/eByggesøk'},
+                    { label: 'Direktoratet for byggekvalitet', url: '/ekstern/Direktoratet for byggekvalitet'},
                 ]
             }
         ]
@@ -52,37 +50,36 @@ const shortcuts: ShortcutLink[] = [
                 title: "Aktuelle KI-assistenter",
                 arrow: true,
                 links: [
-                    { label: 'CADAiD', url: '/under-soknad/cadaid' },
-                    { label: 'ArkivGPT', url: '/under-soknad/arkivgpt' },
-                    { label: 'Planprat', url: '/under-soknad/planprat' },
-                    { label: 'Søknadsinformasjon', url: '/under-soknad/soknadsinfo' },
-                    { label: 'DOK-analyse', url: '/under-soknad/dok-analyse' },
-                    { label: 'Tiltakskart', url: '/under-soknad/tiltakskart' },
-                    { label: '3D-situasjonsmodell', url: '/under-soknad/3d-situasjon' },
-                    { label: 'Saken oppsummert', url: '/under-soknad/oppsummering' },
+                    { label: 'CADAiD', url: '/under-soknad/cadaid', text: "Verifiser plantegningene dine" },
+                    { label: 'ArkivGPT', url: '/under-soknad/arkivgpt', text: "Snakk med byggesaksarkivet" },
+                    { label: 'Planchat', url: '/under-soknad/planprat', text: "Få oversikt over hva du har lov å gjøre med denne chatbotten"},
+                    { label: 'Søknadsinformasjon', url: '/for-soknad/soknadsinfo', text: "Se detaljert analyse av, og informasjon rundt, din byggesøknad" },
+                    { label: 'Tiltakskart', url: '/under-soknad/tiltakskart', text: "Se tiltakene rundt deg" },
+                    { label: '3D-situasjonsmodell', url: '/under-soknad/3d-situasjon', text: "Se ditt tiltak i 3D kart" },
+                    { label: 'Saken oppsummert', url: '/under-soknad/byggeideer/dashbord', text: "Få totaloversikt over søknaden din" },
                 ],
             },
             {
                 title: "Mer informasjon?",
                 arrow: false,
                 links: [
-                    { label: 'Kundestøtte', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'},
-                    { label: 'Kontakt kommunen', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'},
-                    { label: 'eByggesøk', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'},
-                    { label: 'Direktoratet for byggekvalitet', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'},
+                    { label: 'Kundestøtte', url: '/ekstern/kundestøtte'},
+                    { label: 'Kontakt kommunen', url: '/ekstern/kontakt'},
+                    { label: 'eByggesøk', url: '/ekstern/eByggesøk'},
+                    { label: 'Direktoratet for byggekvalitet', url: '/ekstern/Direktoratet for byggekvalitet'},
                 ]
             }
         ]
     },
     {
-        header: 'KS-eByggesak',
+        header: 'eByggesak',
         subgroups: [
             {
                 title: "Mine saker",
                 arrow: true,
                 links: [
-                    { label: 'Se mine saker', url: '/mottak/mine-saker' },
-                    { label: 'Saksarkiv', url: '/mottak/arkiv' },
+                    { label: 'Se mine saker', url: '/mottak/mine-saker', text: 'Se sakene du skal "behandle"' },
+                    { label: 'Saksarkiv', url: 'https://www.kristiansand.kommune.no/navigasjon/bolig-kart-og-eiendom/plan-og-bygg/byggesak/byggesaksarkiv/', text: "Se saksarkivet til Kristiandsand kommune" },
                 ],
             }
         ]
