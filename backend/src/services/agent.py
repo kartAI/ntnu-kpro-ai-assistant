@@ -1,4 +1,3 @@
-import os
 import logging
 from typing import Annotated
 from typing_extensions import TypedDict
@@ -14,7 +13,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 
 from src.configuration import API_KEY
-from src.types import PropertyIdentifiers, SummaryResponse
+from src.types import PropertyIdentifiers, SummaryResponse, Detection
 
 logger = logging.getLogger(__name__)
 
@@ -89,7 +88,9 @@ def find_property_identifiers(file_contents: list[str]) -> PropertyIdentifiers:
     return property_identifiers
 
 
-def invoke_agent(file_contents: list[str]) -> SummaryResponse:
+def invoke_agent(
+    file_contents: list[str], cadaid_detections: list[Detection]
+) -> SummaryResponse:
     """
     Invoke the summarization agent.
 
