@@ -10,9 +10,12 @@ interface FileListProps {
 
 const FileList: React.FC<FileListProps> = ({ files, onRemove, onUpload }) => {
   return (
-    <div className="mb-6 bg-white p-4 rounded-lg">
-      <h1 className="font-bold mb-4">CADAiD</h1>
-      <ul className="space-y-2" data-cy="file-list">
+    <div className="mb-6 bg-white rounded-lg">
+      <h1 className="mt-10 text-left text-3xl font-bold mb-5">CADAiD</h1>
+      <span className="my-10 text-left text-xl">
+        Her kan du laste opp og verifisere plantegningene dine.
+      </span>
+      <ul className="mt-10" data-cy="file-list">
         {files.map((file) => (
           <li key={file.name} className="flex items-center justify-between p-3 border rounded-lg">
             <span className="font-medium">{file.name}</span>
