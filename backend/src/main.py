@@ -8,6 +8,7 @@ from src.types import SummaryResponse, PlanPratRequest, PlanPratResponse
 from src.services.reader import Reader
 from src.services.readers.factory import create_reader
 from src.services.agent import invoke_agent, invoke_plan_agent
+from src.services.external_ai_models import query_cad_aid
 
 app = FastAPI()
 
@@ -44,7 +45,8 @@ def summarize(
             if not content:
                 raise HTTPException(status_code=400, detail="File is empty")
 
-        response = invoke_agent(contents)
+        cadaid_detections = query_cad_aid(files) if include_modules else []
+        response = invoke_agent(contents, cadaid_detections)
         return response
 
     except ValueError as e:
