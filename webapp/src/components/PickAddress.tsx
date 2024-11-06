@@ -85,7 +85,7 @@ export function PickAddress({setHasInputPickAddress}: pickAddressProps) {
                     :
                     null}
 
-                    <div className="flex justify-end gap-4">
+                    <div className="flex justify-end gap-4 mt-4">
                         <Button 
                             className=" bg-kartAI-blue hover:bg-red-600"
                             onClick={handleToggleOverlay}>

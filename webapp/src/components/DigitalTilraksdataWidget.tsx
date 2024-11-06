@@ -53,7 +53,7 @@ export function DigitalTiltaksdataWidget({hasInputDigitalTiltaksdataWidget, setH
 
                 </div>
                 <p className="underline">KLIKK HER: </p>
-                <p>Tegn opp området du tenker å bygge på for å se om det er hindringer for å bygge</p>
+                <p>Tegn opp området du tenker å bygge på for å se om det er noen hindringer for å bygge der</p>
             </div>
             }
 

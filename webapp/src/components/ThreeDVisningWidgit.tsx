@@ -19,7 +19,7 @@ export function ThreeDVisningWidget({setHasInputThreeDVisningWidget, hasInputThr
     const toggleOverlay = () => setIsOverlayOpen(!isOverlayOpen);
     return(
         <section data-cy="3d-visning-widget"
-            className={`border rounded-md p-4 shadow-md hover:shadow-lg transition-all cursor-pointer col-span-2 ${hasInputThreeDVisningWidget? "flex-1" :  "flex-none"}`}
+            className={`border rounded-md p-4 shadow-md hover:shadow-lg transition-all cursor-pointer w-auto ${hasInputThreeDVisningWidget? "flex-1" :  "flex-none"}`}
             onClick={toggleOverlay}>
             
             {hasInputThreeDVisningWidget? 

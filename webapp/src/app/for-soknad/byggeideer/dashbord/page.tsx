@@ -24,7 +24,6 @@ export default function Dashboard() {
       router.push('https://www.kristiansand.kommune.no/');
   };
 
-
   const [documentList, setDocumentList] = useState<typeof documents>([]);
 
   useEffect(() => {
@@ -32,7 +31,9 @@ export default function Dashboard() {
       setDocumentList(prevList => [...prevList, ...documents]);
     }
   }, [hasInputCadaidWidget]);
+
   const BASE_URL = "/for-soknad/byggeideer/dashbord";
+
   const documents = [
     { name: 'Plantegning.pdf', url: BASE_URL + '/' + 'Plantegning.pdf' },
     { name: 'Snitt_øst.jpg', url: BASE_URL + '/' + 'Snitt_øst.jpg' },
@@ -44,11 +45,11 @@ export default function Dashboard() {
       <div className="ml-14  mr-14">
         <h1 data-cy="title" 
           className="text-3xl">
-            <strong>Organiser din byggeidee</strong>
+            <strong>Organiser min byggeidee</strong>
         </h1>
         <p className="mt-4 mb-4">På denne siden kan du legge inn det du vet om dine byggeplan og få respons fra våre KI hjelpere</p>
         <PickAddress setHasInputPickAddress={setHasInputPickAddress} />
-        <section className="mt-4 grid lg:grid-cols-6 grid-cols-1 lg:grid-rows-2 grid-rows-10 gap-10">
+        <section className="mt-4 grid lg:grid-cols-6 grid-cols-1 lg:grid-rows-2 gap-10">
           <TodoList
             hasInputPickAddress={hasInputPickAddress}
             hasInputCadaidWidget={hasInputCadaidWidget}
@@ -69,14 +70,14 @@ export default function Dashboard() {
             setHasInputDigitalTiltaksdataWidget={setHasInputDigitalTiltaksdataWidget}
           />
           <ArkivGPTWidget hasInputPickAddress={hasInputPickAddress}/>
-          <div className="col-span-6 row-span-3 flex gap-10">
+          <div className=" lg:flex gap-10">
             <ThreeDVisningWidget
               setHasInputThreeDVisningWidget={setHasInputThreeDVisningWidget}
               hasInputThreeDVisningWidget={hasInputThreeDVisningWidget}
             />
             <CaseDocumentsComponent
               data-cy="document-overview"
-              documents={hasInputCadaidWidget ? documents : []}
+              documents={documentList}
             />
             <Button data-cy="start-application-button" 
               className="bg-kartAI-blue"
