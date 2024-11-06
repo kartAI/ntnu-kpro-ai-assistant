@@ -13,19 +13,10 @@ from langchain.output_parsers import PydanticOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 
+from src.configuration import API_KEY
 from src.types import PropertyIdentifiers, SummaryResponse
 
 logger = logging.getLogger(__name__)
-
-load_dotenv()
-
-api_key = os.getenv("AZURE_OPENAI_API_KEY")
-api_base = os.getenv("AZURE_OPENAI_API_BASE")
-api_version = os.getenv("API_VERSION")
-deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
-
-# TODO: add correct elements to the AzureOpenAI class
-API_KEY = os.getenv("OPENAI_API_KEY")
 
 llm = ChatOpenAI(temperature=0, api_key=API_KEY)
 
@@ -70,7 +61,7 @@ def _retrieve_law_context():
 
 def find_property_identifiers(file_contents: list[str]) -> PropertyIdentifiers:
     content = "\n".join(file_contents)
-    
+
     prompt = PromptTemplate(
         template="""
         You are an assistant that helps with finding finding three particular numbers, gnr (gårdsnummer), bnr (bruksnummer), snr (seksjonsnummer) in building permits.
@@ -96,8 +87,6 @@ def find_property_identifiers(file_contents: list[str]) -> PropertyIdentifiers:
     chain = prompt | llm | PydanticOutputParser(pydantic_object=PropertyIdentifiers)
     property_identifiers = chain.invoke({"content": content})
     return property_identifiers
-
-
 
 
 def invoke_agent(file_contents: list[str]) -> SummaryResponse:
@@ -185,4 +174,3 @@ def create_agent():
     graph_builder.set_finish_point("chatbot")
     graph = graph_builder.compile()
     return graph
-
