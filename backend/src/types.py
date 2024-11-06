@@ -19,3 +19,8 @@ class PropertyIdentifiers(BaseModel):
     gnr: Optional[int] = None
     bnr: Optional[int] = None
     snr: Optional[int] = None
+
+class ArkivGPTResponse(BaseModel):
+    Id: str;
+    Resolution: str;
+    Document: str;
