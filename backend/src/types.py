@@ -14,3 +14,8 @@ class PlanPratRequest(BaseModel):
 
 class PlanPratResponse(BaseModel):
     answer: str
+
+class PropertyIdentifiers(BaseModel):
+    gnr: Optional[int] = None
+    bnr: Optional[int] = None
+    snr: Optional[int] = None

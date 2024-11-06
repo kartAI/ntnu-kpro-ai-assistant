@@ -9,10 +9,11 @@ from langchain_openai import AzureOpenAI
 from langgraph.graph import StateGraph
 from langgraph.graph.message import add_messages
 from langchain_core.output_parsers import StrOutputParser
+from langchain.output_parsers import PydanticOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 
-from src.main import SummaryResponse
+from src.types import PropertyIdentifiers, SummaryResponse
 
 logger = logging.getLogger(__name__)
 
@@ -67,7 +68,37 @@ def _retrieve_law_context():
     return context
 
 
-def invoke_agent(file_content: list[str]) -> SummaryResponse:
+def find_property_identifiers(file_contents: list[str]) -> PropertyIdentifiers:
+    content = "\n".join(file_contents)
+    
+    prompt = PromptTemplate(
+        template="""
+        You are an assistant that helps with finding finding three particular numbers, gnr (gårdsnummer), bnr (bruksnummer), snr (seksjonsnummer) in building permits.
+
+        In Norway, a property's unique designation in the land register is known as the gårds- og bruksnummer (gnr/bnr), identifying a farm (gårdsnummer) and a subdivided unit (bruksnummer). New properties get sequential bruksnummer, and leased plots receive a festenummer (fnr). Apartments with independent ownership must also have a seksjonsnummer. For full uniqueness, the designation, or registernummeret, includes a municipality number (knr) as a prefix, though it's typically omitted within the municipality.
+
+        Examples:
+        (Knr. 1101,) gnr. 1, bnr. 2 (1/2)
+        (Knr. 1101,) gnr. 1, bnr. 2, fnr. 1 (1/2/1)
+        (Knr. 1101,) gnr. 1, bnr. 2, snr. 1 (1/2/0/1)
+
+        You are tasked with these numbers in the following text.
+        Building permit: {content}
+
+        Please format your response as a JSON object matching the PropertyIdentifiers model with these exact keys they can only be integers, else set it as None:
+        - "gnr": Optional(int) The gårdsnummer for the property.
+        - "bnr": Optional(int) The bruksnummer for the property.
+        - "snr": Optional(int) The seksjonsnummer for the property.
+        """
+    )
+    chain = prompt | llm | PydanticOutputParser(pydantic_object=PropertyIdentifiers)
+    property_identifiers = chain.invoke({"content": content})
+    return property_identifiers
+
+
+
+
+def invoke_agent(file_contents: list[str]) -> SummaryResponse:
     """
     Invoke the summarization agent.
 
@@ -79,7 +110,7 @@ def invoke_agent(file_content: list[str]) -> SummaryResponse:
     """
     # TODO: Implement the agent logic
     return SummaryResponse(
-        summary=file_content[0],
+        summary=file_contents[0],
         cad_aid_summary="",
         arkivgpt_summary="",
     )
