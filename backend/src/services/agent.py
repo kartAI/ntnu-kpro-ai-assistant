@@ -75,7 +75,9 @@ def find_property_identifiers(file_contents: list[str]) -> PropertyIdentifiers:
         template="""
         You are an assistant that helps with finding finding three particular numbers, gnr (gårdsnummer), bnr (bruksnummer), snr (seksjonsnummer) in building permits.
 
-        In Norway, a property's unique designation in the land register is known as the gårds- og bruksnummer (gnr/bnr), identifying a farm (gårdsnummer) and a subdivided unit (bruksnummer). New properties get sequential bruksnummer, and leased plots receive a festenummer (fnr). Apartments with independent ownership must also have a seksjonsnummer. For full uniqueness, the designation, or registernummeret, includes a municipality number (knr) as a prefix, though it's typically omitted within the municipality.
+        In Norway, a property's unique designation in the land register is known as the gårds- og bruksnummer (gnr/bnr), identifying a farm (gårdsnummer) and a subdivided unit (bruksnummer). 
+        New properties get sequential bruksnummer, and leased plots receive a festenummer (fnr). Apartments with independent ownership must also have a seksjonsnummer. 
+        For full uniqueness, the designation, or registernummeret, includes a municipality number (knr) as a prefix, though it's typically omitted within the municipality.
 
         Examples:
         (Knr. 1101,) gnr. 1, bnr. 2 (1/2)
@@ -183,3 +185,4 @@ def create_agent():
     graph_builder.set_finish_point("chatbot")
     graph = graph_builder.compile()
     return graph
+
