@@ -21,7 +21,7 @@ def create_reader(file: UploadFile) -> Reader:
                 return OCRReader()
         case "image/jpeg" | "image/png":
             return OCRReader()
-        case "application/xml":
+        case "application/xml" | "text/xml":
             return XmlReader()
         case _:
             logger.warning(f"Unsupported media type: {file.content_type} for file: {file.filename}")
