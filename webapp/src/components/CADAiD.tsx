@@ -155,7 +155,11 @@ const CadaidPage: React.FC = () => {
     >
       {/* Left Column */}
       <div className="w-full md:w-1/3 md:pr-4" data-cy="left-column">
-        <div className="m-4">
+        <h1 className="mb-5 mt-10 text-left text-3xl font-bold">CADAiD</h1>
+        <span className="my-10 text-left text-xl">
+          Her kan du laste opp og verifisere plantegningene dine.
+        </span>
+        <div className="mt-4">
           <label htmlFor=".application-id">
             Skriv inn en byggesaks-id (la den være tom for å lage en ny
             byggesak):
@@ -194,7 +198,7 @@ const CadaidPage: React.FC = () => {
       </div>
 
       {/* Right Column */}
-      <div className="w-full md:w-2/3" data-cy="right-column">
+      <div className="w-full pt-10 md:w-2/3" data-cy="right-column">
         <FilePreview files={files} />
       </div>
     </div>

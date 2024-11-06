@@ -24,4 +24,4 @@ docker compose down
 
 ## Documentation
 * [Developer Setup](/docs/manuals/developer_setup.md)
-* [T3 Start Guide](/docs/manuals/t3_guild.md)
+* [T3 Start Guide](/docs/manuals/t3_guide.md)

@@ -91,7 +91,7 @@ const Navbar = () => {
                               <h3 className="text-xl font-bold mb-2">{subgroup.title}</h3>
                               <div className={`flex flex-wrap ${subgroup.links.length > 3 ? '' : 'flex-col'}`}> {/* Adjust flex direction based on number of links */}
                                 {subgroup.links.map((link, linkIndex) => (
-                                  <div key={linkIndex} className={`${subgroup.links.length > 3 ? 'w-1/2' : 'w-full'} py-1`}>
+                                  <div key={linkIndex} className={`${subgroup.links.length > 3 ? 'w-1/2' : 'w-full'} py-2 pr-4`}>
                                     <a
                                       data-cy={`link-${subgroupIndex}-${linkIndex}`} // Added data-cy for each link
                                       href={link.url}
@@ -100,6 +100,11 @@ const Navbar = () => {
                                       {link.label}
                                       {subgroup.arrow && <Icons name="ArrowRight_sm" />}
                                     </a>
+                                    {link.text && (
+                                      <a className='text-xs font-light py-1 flex flex-row gap-4'>
+                                        {link.text}
+                                      </a>
+                                    )}
                                   </div>
                                 ))}
                               </div>

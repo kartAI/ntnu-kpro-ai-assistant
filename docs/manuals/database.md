@@ -10,7 +10,8 @@ If you get a question of whether or not to create a password, choose `yes`.
 
 After the script is done running, the `DATABASE_URL` field in your `.env` file should look something like this.
 
-To populate the database with mock data, run the `webapp/populate-database.sh` script.
+To populate the database with mock data, run the `populate-database.sh` script from the `webapp` folder. Ensure that you are in the `webapp` folder due to filepath restrictions in Python. For the underlying Python script to function, ensure you have the mysql-connector package - install this using the command
+`pip3 install mysql-connector-python`, alternatively `pip install mysql-connector-python`.
 
 ```yml
 DATABASE_URL="mysql://root:{password}@localhost:3306/ntnu-kpro-ai-assistant"
