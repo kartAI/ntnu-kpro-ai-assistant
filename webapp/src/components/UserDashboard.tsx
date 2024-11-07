@@ -68,15 +68,19 @@ export default function UserDashboard() {
             setHasInputDigitalTiltaksdataWidget={setHasInputDigitalTiltaksdataWidget}
           />
           <ArkivGPTWidget hasInputPickAddress={hasInputPickAddress}/>
-          <div className=" lg:flex gap-10">
+          <div className=" grid grid-cols-1 lg:flex gap-10 w-full lg:col-span-6">
             <ThreeDVisningWidget
               setHasInputThreeDVisningWidget={setHasInputThreeDVisningWidget}
               hasInputThreeDVisningWidget={hasInputThreeDVisningWidget}
             />
-            <CaseDocumentsComponent
-              data-cy="document-overview"
-              documents={documentList}
-            />
+            <div>
+                <CaseDocumentsComponent
+                    data-cy="document-overview"
+                    documents={documentList}
+                    />
+
+            </div>
+
             <Button data-cy="start-application-button" 
               className="bg-kartAI-blue"
               onClick={handleNavigation}>

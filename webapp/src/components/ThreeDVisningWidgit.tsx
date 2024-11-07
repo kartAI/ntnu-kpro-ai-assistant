@@ -47,14 +47,14 @@ export function ThreeDVisningWidget({setHasInputThreeDVisningWidget, hasInputThr
     const toggleOverlay = () => setIsOverlayOpen(!isOverlayOpen);
     return(
         <section data-cy="3d-visning-widget"
-            className={`border rounded-md p-4 shadow-md hover:shadow-lg transition-all cursor-pointer w-auto ${hasInputThreeDVisningWidget? "flex-1" :  "flex-none"}`}
+            className={`border rounded-md p-4 shadow-md hover:shadow-lg transition-all cursor-pointer ${hasInputThreeDVisningWidget? "flex-1" :  "flex-none"}`}
             onClick={toggleOverlay}>
             
             {hasInputThreeDVisningWidget? 
             <EmbeddedFrame data-cy="tiltaksvisning"  
                 src={url} 
                 title="3D tiltaksvisning"
-                height={"50"}
+                height={"100"}
                  /> 
             :
             <div> 
@@ -70,8 +70,6 @@ export function ThreeDVisningWidget({setHasInputThreeDVisningWidget, hasInputThr
                 
                 <p className="underline">KLIKK HER:</p>
                 <p>Leg til lenke av din 3d visning</p>
-                
-             
             </div>
             }
 
