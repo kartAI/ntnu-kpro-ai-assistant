@@ -56,7 +56,7 @@ const shortcuts: ShortcutLink[] = [
                     { label: 'Søknadsinformasjon', url: '/for-soknad/soknadsinfo', text: "Se detaljert analyse av, og informasjon rundt, din byggesøknad" },
                     { label: 'Tiltakskart', url: '/under-soknad/tiltakskart', text: "Se tiltakene rundt deg" },
                     { label: '3D-situasjonsmodell', url: '/under-soknad/3d-situasjon', text: "Se ditt tiltak i 3D kart" },
-                    { label: 'Saken oppsummert', url: '/under-soknad/byggeideer/dashbord', text: "Få totaloversikt over søknaden din" },
+                    { label: 'Min byggeidee', url: '/under-soknad/byggeideer/dashbord', text: "Organiser informasjonen rundt din byggesøknad" },
                 ],
             },
             {
