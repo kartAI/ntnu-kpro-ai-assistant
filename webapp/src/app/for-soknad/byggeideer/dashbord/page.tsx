@@ -10,8 +10,6 @@ import CaseDocumentsComponent from "~/components/CaseDocuments";
 import { ArkivGPTWidget } from "~/components/ArkivGPTWidget";
 import { useRouter } from 'next/navigation';
 
-
-
 export default function Dashboard() {
   const [hasInputPickAddress, setHasInputPickAddress] = useState<boolean>(false);
   const [hasInputCadaidWidget, setHasInputCadaidWidget] = useState<boolean>(false);
@@ -42,7 +40,7 @@ export default function Dashboard() {
   ];
 
     return(
-      <div className="ml-14  mr-14">
+      <div className="ml-14 mr-14 min-h-screen">
         <h1 data-cy="title" 
           className="text-3xl">
             <strong>Organiser min byggeidee</strong>

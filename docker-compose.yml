@@ -8,7 +8,7 @@ services:
         NEXT_PUBLIC_CLIENTVAR: "clientvar"
     working_dir: /app
     ports:
-      - "80:3000"
+      - "3000:3000"
     image: t3-app
     environment:
       - DATABASE_URL=${DATABASE_URL}
