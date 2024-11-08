@@ -26,6 +26,7 @@ export default async function Home() {
             className="rounded-md xl:ml-20"  
           />
         </figure>
+
       </main>
   );
 }
