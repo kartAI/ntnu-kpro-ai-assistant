@@ -3,6 +3,7 @@ import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 import { applicationRouter } from "./routers/application";
 import { documentRouter } from "./routers/document";
 import { modelErrorRouter } from "./routers/model-error";
+import { planpratRouter } from "./routers/planprat";
 import { arkivGptRouter } from "./routers/arkivgpt";
 import { responseRouter } from "./routers/response";
 
@@ -15,6 +16,7 @@ export const appRouter = createTRPCRouter({
   model: modelRouter,
   application: applicationRouter,
   document: documentRouter,
+  planprat: planpratRouter,
   response: responseRouter,
   modelError: modelErrorRouter,
   arkivgpt: arkivGptRouter,

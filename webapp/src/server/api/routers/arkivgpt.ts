@@ -30,7 +30,7 @@ const mapToArkivGPTSummaryResponse = (
   };
 };
 
-const ARKIVGPT_URL = process.env.ARKIVGPT_URL;
+const ARKIVGPT_URL = process.env.ARKIVGPT_URL ?? "";
 
 export const arkivGptRouter = createTRPCRouter({
   fetchResponse: publicProcedure
@@ -44,25 +44,7 @@ export const arkivGptRouter = createTRPCRouter({
     .query(async ({ input }) => {
       const { gnr, bnr, snr } = input;
 
-      let responses: ArkivGPTSummaryResponse[] = [];
-
-      try {
-        responses = await fetchResponse(gnr, bnr, snr);
-      } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.error(
-            "Error fetching response for document:",
-            error.response?.data,
-          );
-          console.error(
-            "Failed to fetch ArkivGPT response",
-            error.response?.data,
-          );
-        }
-        console.error(
-          "An unknown error occurred while fetching response for document",
-        );
-      }
+      const responses = await fetchResponse(gnr, bnr, snr);
 
       return responses;
     }),
@@ -116,14 +98,7 @@ const fetchResponse = async (gnr: number, bnr: number, snr: number) => {
     return mappedResponses;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      console.error(
-        "Error fetching response for document:",
-        error.response?.data,
-      );
-      throw new Error("Failed to fetch ArkivGPT response");
+      console.error("Failed to fetch ArkivGPT response:", error.message);
     }
-    throw new Error(
-      "An unknown error occurred while fetching response for document",
-    );
   }
 };

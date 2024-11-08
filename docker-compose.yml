@@ -11,8 +11,12 @@ services:
       - "3000:3000"
     image: t3-app
     environment:
+      - ARKIVGPT_URL=http://host.docker.internal:80/api
+      - PLANPRAT_URL=http://host.docker.internal:8000/plan-prat/
       - DATABASE_URL=${DATABASE_URL}
       - NEXTAUTH_URL=${NEXTAUTH_URL}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   api:
     platform: "linux/amd64"
     build:
