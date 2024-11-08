@@ -125,7 +125,6 @@ export function PickAddress({setHasInputPickAddress, hasInputPickAddress}: pickA
                             Aksepter
                         </Button> 
                     </div>
-                   
                 </div>
             </div>
         )}
