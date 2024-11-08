@@ -5,6 +5,7 @@ import { documentRouter } from "./routers/document";
 import { modelErrorRouter } from "./routers/model-error";
 import { planpratRouter } from "./routers/planprat";
 import { arkivGptRouter } from "./routers/arkivgpt";
+import { responseRouter } from "./routers/response";
 
 /**
  * This is the primary router for your server.
@@ -15,9 +16,9 @@ export const appRouter = createTRPCRouter({
   model: modelRouter,
   application: applicationRouter,
   document: documentRouter,
-  response: modelErrorRouter,
-  modelErrors: modelErrorRouter,
   planprat: planpratRouter,
+  response: responseRouter,
+  modelError: modelErrorRouter,
   arkivgpt: arkivGptRouter,
 });
 

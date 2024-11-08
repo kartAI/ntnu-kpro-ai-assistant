@@ -79,7 +79,10 @@ export default function ArkivGPTPage() {
   return (
     <div className={`relative flex min-h-screen flex-col`}>
       <div className="flex w-full flex-col">
-        <h1 className="px-20 py-10 text-left text-3xl font-bold">ArkivGPT</h1>
+        <h1 className="px-20 pt-10 text-left text-3xl font-bold">ArkivGPT</h1>
+        <span className="px-20 pb-10 pt-5 text-left text-xl">
+          Her kan du søke opp gårdsnummer og bruksnummer for din eiendom, og se hva som har blitt gjort på den eiendommen.
+        </span>
         <div className="my-2 flex w-auto items-center space-x-2 pl-20 text-gray-500">
           <Info className="h-5 w-5" />
           <span>Du må skrive gnr: 306, bnr: 146, snr: 0 for å få respons</span>
