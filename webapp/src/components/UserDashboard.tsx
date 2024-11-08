@@ -10,7 +10,11 @@ import CaseDocumentsComponent from "~/components/CaseDocuments";
 import { ArkivGPTWidget } from "~/components/ArkivGPTWidget";
 import { useRouter } from 'next/navigation';
 
-export default function UserDashboard() {
+interface UserDashboardProps {
+  BASE_URL: string;
+}
+
+export default function UserDashboard({BASE_URL}: UserDashboardProps) {
   const [hasInputPickAddress, setHasInputPickAddress] = useState<boolean>(false);
   const [hasInputCadaidWidget, setHasInputCadaidWidget] = useState<boolean>(false);
   const [hasInputDigitalTiltaksdataWidget, setHasInputDigitalTiltaksdataWidget] = useState<boolean>(false);
@@ -22,6 +26,7 @@ export default function UserDashboard() {
       router.push('https://www.kristiansand.kommune.no/');
   };
 
+
   const [documentList, setDocumentList] = useState<typeof documents>([]);
 
   useEffect(() => {
@@ -29,8 +34,6 @@ export default function UserDashboard() {
       setDocumentList(prevList => [...prevList, ...documents]);
     }
   }, [hasInputCadaidWidget]);
-
-  const BASE_URL = "/for-soknad/byggeideer/dashbord";
 
   const documents = [
     { name: 'Plantegning.pdf', url: BASE_URL + '/' + 'Plantegning.pdf' },

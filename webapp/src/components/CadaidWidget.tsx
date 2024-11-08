@@ -28,7 +28,7 @@ export function CadaidWidget({setHasInputCadaidWidget, hasInputCadaidWidget, rep
         handleNavigation();
         if (!hasInputCadaidWidget) {
             setHasInputCadaidWidget(true);
-            localStorage.setItem("CadaidRespons", JSON.stringify(cadaidRespons)) ;
+            localStorage.setItem("CadaidRespons", JSON.stringify(hardcodedRespons)) ;
              
         }
     }
