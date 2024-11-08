@@ -128,7 +128,6 @@ export function PickAddress({setHasInputPickAddress, hasInputPickAddress}: pickA
                 </div>
             </div>
         )}
-
         </section>
     )
 }
