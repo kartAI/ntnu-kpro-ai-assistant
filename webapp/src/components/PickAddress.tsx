@@ -78,12 +78,13 @@ export function PickAddress({setHasInputPickAddress, hasInputPickAddress}: pickA
                 Velg adresse og eiendom
             </Button>
             {showOverlay && (
-            <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
+            <div data-cy="pick-address-overlay"  
+                className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
                 <div className="bg-white p-6 rounded shadow-lg max-w-sm w-full">
                     <h2 className="text-xl font-semibold mb-4">Velg adresse og tomt</h2>
                     
                     {/* Input fields */}
-                    <input 
+                    <input data-cy="input-address"
                         type="text" 
                         placeholder="Adresse" 
                         className="border p-2 w-full" 
@@ -94,7 +95,7 @@ export function PickAddress({setHasInputPickAddress, hasInputPickAddress}: pickA
                     <p className="text-red-600 text-right">DU MÅ FYLLE UT ADRESSE</p>
                     :
                     null}
-                    <input 
+                    <input data-cy="input-bnr" 
                         type="text" 
                         placeholder="Bruksnummer (Bnr.)" 
                         className="border p-2 w-full mt-4" 
@@ -104,7 +105,7 @@ export function PickAddress({setHasInputPickAddress, hasInputPickAddress}: pickA
                     <p className="text-red-600 text-right">DU MÅ FYLLE UT BRUKSNUMMER (Bnr.)</p>
                     :
                     null}
-                    <input 
+                    <input data-cy="input-gnr" 
                         type="text" 
                         placeholder="Gårdsnummer (Gnr.)" 
                         className="border p-2 w-full mt-4" 
@@ -115,12 +116,13 @@ export function PickAddress({setHasInputPickAddress, hasInputPickAddress}: pickA
                     :
                     null}
                     <div className="flex justify-end gap-4 mt-4">
-                        <Button 
+                        <Button data-cy="overlay-cancel-button"
                             className=" bg-kartAI-blue hover:bg-red-600"
                             onClick={handleToggleOverlay}>
                             Lukk
                         </Button>
-                        <Button className=" bg-kartAI-blue"
+                        <Button data-cy="overlay-confirm-button"
+                            className=" bg-kartAI-blue"
                             onClick={setAdressAndProperty}>
                             Aksepter
                         </Button> 

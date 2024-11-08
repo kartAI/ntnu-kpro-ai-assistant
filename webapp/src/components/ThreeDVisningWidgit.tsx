@@ -88,13 +88,14 @@ export function ThreeDVisningWidget({setHasInputThreeDVisningWidget, hasInputThr
                             >
                                 Lukk
                             </Button>
-                            <Button
-                                onClick={applyInput}
+                            <Button data-cy="apply-3d-url-button"
+                                onClick={() => {
+                                    setUrl(mockUrl)
+                                    applyInput()}}
                                 className="bg-kartAI-blue"
                             >
                                 Leg til lenke
                             </Button>
-
                         </div>
                     </div>
                 </div>

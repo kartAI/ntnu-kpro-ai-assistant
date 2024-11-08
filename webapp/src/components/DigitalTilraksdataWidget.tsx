@@ -56,7 +56,8 @@ export function DigitalTiltaksdataWidget({hasInputDigitalTiltaksdataWidget, setH
                     height={30}/> 
 
             </div>
-            <ul className="text-red-600">
+            <ul data-cy="map-feedback"
+                className="text-red-600">
                 <li>Høy konsentrasjon av radon</li>
                 <li>Nær fuldyrket jord</li>
                 <li>Nær maringrense</li>
@@ -84,9 +85,14 @@ export function DigitalTiltaksdataWidget({hasInputDigitalTiltaksdataWidget, setH
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                     <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
                         <h1><strong>Trykk på kartet for å merkere hvor du vil bygge</strong></h1>
-                        <Image src="/actionMap.png" alt="kart" height={500} width={500} onClick={applyInput}></Image>
+                        <Image data-cy="mock-map"
+                            src="/actionMap.png" 
+                            alt="kart" 
+                            height={500} 
+                            width={500} 
+                            onClick={applyInput}/>
                         <div className="flex justify-end gap-4">
-                            <Button
+                            <Button data-cy="cancel-3d-widget"
                                 onClick={toggleOverlay}
                                 className="bg-kartAI-blue hover:bg-red-600 mt-2"
                             >
