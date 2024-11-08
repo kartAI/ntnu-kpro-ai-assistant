@@ -24,13 +24,14 @@ export function CadaidWidget({setHasInputCadaidWidget, hasInputCadaidWidget, rep
             {message: "Du mangler snit", type: "MISSING"}, 
             {message: "Du mangler situasjons kart", type: "MISSING" }]
     
-            const handleClick = () => {
-                handleNavigation();
-                if (!hasInputCadaidWidget) {
-                    setHasInputCadaidWidget(true);
-                    setCadaidRespons(hardcodedRespons); // set to hardcodedRespons here
-                }
-            }
+    const handleClick = () => {
+        handleNavigation();
+        if (!hasInputCadaidWidget) {
+            setHasInputCadaidWidget(true);
+            localStorage.setItem("CadaidRespons", JSON.stringify(cadaidRespons)) ;
+             
+        }
+    }
     useEffect(() => {
         if (cadaidRespons.length > 0) {
             localStorage.setItem("CadaidRespons", JSON.stringify(cadaidRespons)) ;
