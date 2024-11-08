@@ -114,7 +114,6 @@ export function PickAddress({setHasInputPickAddress, hasInputPickAddress}: pickA
                     <p className="text-red-600 text-right">DU MÅ FYLLE UT GÅRDSNUMMER (Gnr.)</p>
                     :
                     null}
-
                     <div className="flex justify-end gap-4 mt-4">
                         <Button 
                             className=" bg-kartAI-blue hover:bg-red-600"
