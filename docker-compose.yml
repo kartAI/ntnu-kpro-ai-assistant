@@ -10,8 +10,6 @@ services:
     ports:
       - "3000:3000"
     image: t3-app
-    env_file:
-      - ./webapp/.env
     environment:
       - ARKIVGPT_URL=http://host.docker.internal:80/api
       - PLANPRAT_URL=http://host.docker.internal:8000/plan-prat/
