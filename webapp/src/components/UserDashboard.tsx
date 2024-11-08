@@ -9,6 +9,7 @@ import { Button } from "~/components/ui/button";
 import CaseDocumentsComponent from "~/components/CaseDocuments";
 import { ArkivGPTWidget } from "~/components/ArkivGPTWidget";
 import { useRouter } from 'next/navigation';
+import { PlanPrat } from "~/components/PlanPrat";
 
 interface UserDashboardProps {
   BASE_URL: string;
@@ -62,10 +63,11 @@ export default function UserDashboard({BASE_URL}: UserDashboardProps) {
             hasInputCadaidWidget={hasInputCadaidWidget}
             reportUrl={BASE_URL + "/cadaid"}
           />
+          
           <div data-cy="planprat" 
-            className="Border rounded-md p-4 shadow-md hover:shadow-lg transition-all cursor-pointer row-span-3 lg:col-span-2">
-            <h1>planprat</h1>
-          </div>
+            className="row-span-3 lg:col-span-2">
+            <PlanPrat/>
+          </div> 
           <DigitalTiltaksdataWidget
             hasInputDigitalTiltaksdataWidget={hasInputDigitalTiltaksdataWidget}
             setHasInputDigitalTiltaksdataWidget={setHasInputDigitalTiltaksdataWidget}

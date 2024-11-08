@@ -55,10 +55,9 @@ export function PlanPrat() {
     }
   };
   return (
-    <div className="bg-white p-10">
       <section className="rounded-lg shadow-lg">
         <h1 className="w-full rounded-lg bg-kartAI-blue pb-6 pt-1 text-center text-white">
-          PlanPrat
+          PlanChat
         </h1>
         <div id="planprat-input-output" className="relative w-full p-2">
           <ul
@@ -104,6 +103,5 @@ export function PlanPrat() {
         </div>
         <p className="py-4 text-center text-red-500">{error}</p>
       </section>
-    </div>
   );
 }
