@@ -1,9 +1,10 @@
-"use client";
-import UserDashboard from "~/components/UserDashboard";
+import CadaidPage from "~/components/CADAiD";
 
-export default function Dashboard() {
-    return(
-      <UserDashboard/>
+export default async function PlantegningsAnalyse() {
+    return (
+      <div>
+          <CadaidPage/>
+      </div>
     );
-
-}
+  }
+  
