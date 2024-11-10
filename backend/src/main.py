@@ -1,7 +1,7 @@
 import logging
 from fastapi import FastAPI, HTTPException, Query, UploadFile
 from fastapi import status
-from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 
 from src.types import SummaryResponse, PlanPratRequest, PlanPratResponse
@@ -10,7 +10,26 @@ from src.services.readers.factory import create_reader
 from src.services.agent import invoke_agent, invoke_plan_agent
 from src.services.external_ai_models import query_cad_aid
 
-app = FastAPI()
+
+app = FastAPI(
+    title="KPRO API AI system",
+    description="retrives tekst from user and returns an answer based on building regulations.",
+    version="1.0.0",
+)
+
+ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:80",
+    "http://localhost",
+]
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=ORIGINS,
+    allow_credentials=True,
+    allow_methods=["POST", "GET", "OPTIONS"],
+    allow_headers=["*"],
+)
 
 
 logging.basicConfig(filename="summary-assistant.log", level=logging.INFO)

@@ -44,10 +44,10 @@ def invoke_plan_agent(query: str) -> str:
 
         """
     )
-    print(f"context: {_retrieve_law_context()}", flush=True)
+    logger.info(f"context: {_retrieve_law_context()}")
     generate = prompt | llm
     response = generate.invoke({"query": query, "context": _retrieve_law_context()})
-    print(f"Response: {response}", flush=True)
+    logger.info(f"Response: {response}")
     return response.content
 
 
