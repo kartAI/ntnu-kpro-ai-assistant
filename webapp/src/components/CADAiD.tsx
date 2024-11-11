@@ -5,8 +5,6 @@ import FileList from "./FileList";
 import Results from "./Results";
 import FilePreview from "./FilePreview";
 import type { Detection } from "~/types/detection";
-import { api } from "~/trpc/react";
-import { Input } from "./ui/input";
 
 async function fetchDetection(formData: FormData): Promise<Detection[]> {
   const response = await fetch("http://localhost:5001/detect/", {
@@ -26,12 +24,6 @@ const CadaidPage: React.FC = () => {
   const [files, setFiles] = useState<File[]>([]);
   const [results, setResults] = useState<Detection[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [applicationId, setApplicationId] = useState<number | null>(null);
-  const createApplicationMutation =
-    api.application.createApplication.useMutation();
-  const createResponseMutation = api.response.createResponse.useMutation();
-  const createModelMutation = api.model.createModel.useMutation();
-  const utils = api.useUtils();
 
   /**
    * Handles file upload by sending selected files to the backend.
@@ -67,55 +59,6 @@ const CadaidPage: React.FC = () => {
       try {
         const detections = await fetchDetection(formData);
         setResults((prevResults) => [...prevResults, ...detections]);
-
-        // Add detections to the database
-        const modelData = await utils.model.getModelsByName.ensureData({
-          modelName: "CADAiD",
-        });
-
-        // Kind of awful, maybe change the getModelsByName to return a single model, since the names are unique, but have to change schema for that
-        let model = modelData.find((model) => model.modelName === "CADAiD");
-
-        if (!model) {
-          console.log("CREATING MODEL");
-          const newModel = await createModelMutation.mutateAsync({
-            modelName: "CADAiD",
-          });
-          model = newModel;
-        }
-
-        if (!modelData) {
-          // Model doesn't exist, create it
-          createModelMutation.mutate({ modelName: model.modelName });
-        }
-
-        // Use a local variable to hold the application ID from state
-        let applicationIdToUse = applicationId;
-
-        if (!applicationIdToUse) {
-          // User hasn't entered an application ID, create a new application
-          const application = await createApplicationMutation.mutateAsync({
-            status: "NEW",
-            address: "Adresseveien 123",
-            municipality: "Oslo",
-            submissionDate: new Date(),
-          });
-          setApplicationId(application.applicationID);
-          applicationIdToUse = application.applicationID;
-        }
-
-        detections.forEach((detection) => {
-          createResponseMutation
-            .mutateAsync({
-              response: JSON.stringify(detection),
-              modelID: model.modelID,
-              applicationID: applicationIdToUse,
-            })
-            .catch((error) => {
-              console.error(error);
-              setErrorMessage("En feil oppsto under lagring av responsen.");
-            });
-        });
       } catch (error) {
         console.error(error);
         setErrorMessage("En feil oppsto under opplasting av filer.");
@@ -136,18 +79,6 @@ const CadaidPage: React.FC = () => {
     );
   };
 
-  const handleApplicationIdChanged = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    try {
-      setApplicationId(parseInt(event.target.value));
-    } catch (error) {
-      setErrorMessage("Ugyldig byggesaks-id");
-      console.error(error);
-      setApplicationId(null);
-    }
-  };
-
   return (
     <div
       className="flex min-h-screen flex-col p-6 md:flex-row"
@@ -159,18 +90,6 @@ const CadaidPage: React.FC = () => {
         <span className="my-10 text-left text-xl">
           Her kan du laste opp og verifisere plantegningene dine.
         </span>
-        <div className="mt-4">
-          <label htmlFor=".application-id">
-            Skriv inn en byggesaks-id (la den være tom for å lage en ny
-            byggesak):
-          </label>
-          <Input
-            className="mt-2"
-            id="application-id"
-            onChange={handleApplicationIdChanged}
-            placeholder="Byggesaks-id"
-          />
-        </div>
         <FileList
           files={files}
           onRemove={handleFileRemove}
