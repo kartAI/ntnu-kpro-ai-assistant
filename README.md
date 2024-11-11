@@ -28,6 +28,8 @@ To stop the containers, you can use the following command:
 docker compose down
 ```
 
+**Important:** In order to achieve the full functionality of the application, the AI models from the KartAI project must also be running. In our development we have ran them as docker containers locally on our machines. Though in the future, these will hopefully be available as public APIs.
+
 ## Documentation
 
 - [Developer Setup](/docs/manuals/developer_setup.md)
