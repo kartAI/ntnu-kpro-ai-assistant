@@ -80,7 +80,7 @@ export function PlanPrat() {
           </ul>
           <textarea
             id="planprat-input"
-            className="mt-2 w-full rounded-lg p-2 pr-12 text-black shadow-inner"
+            className="mt-2 w-full min-h-14 rounded-lg p-2 pr-12 text-black shadow-inner"
             placeholder="Still meg et spørsmål ..."
             value={text}
             onChange={handleTextChange}
