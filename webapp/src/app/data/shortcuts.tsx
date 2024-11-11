@@ -28,6 +28,7 @@ const shortcuts: ShortcutLink[] = [
                     { label: 'Planchat', url: '/for-soknad/planprat', text: "Få oversikt over hva du har lov å gjøre med denne chatbotten" },
                     { label: 'Tiltakskart', url: '/for-soknad/tiltakskart', text: "Se tiltakene rundt deg"},
                     { label: '3D-situasjonsmodell', url: '/for-soknad/3d-situasjon', text: "Se ditt tiltak i 3D kart" },
+                    { label: 'Min byggeidé', url: '/for-soknad/byggeideer/dashbord', text: "Organiser informasjonen rundt din byggesøknad" },
                 ],
             },
             {
@@ -55,7 +56,7 @@ const shortcuts: ShortcutLink[] = [
                     { label: 'Søknadsinformasjon', url: '/for-soknad/soknadsinfo', text: "Se detaljert analyse av, og informasjon rundt, din byggesøknad" },
                     { label: 'Tiltakskart', url: '/under-soknad/tiltakskart', text: "Se tiltakene rundt deg" },
                     { label: '3D-situasjonsmodell', url: '/under-soknad/3d-situasjon', text: "Se ditt tiltak i 3D kart" },
-                    { label: 'Saken oppsummert', url: '/under-soknad/oppsummering', text: "Få totaloversikt over søknaden din" },
+                    { label: 'Min byggeidé', url: '/under-soknad/byggeideer/dashbord', text: "Organiser informasjonen rundt din byggesøknad" },
                 ],
             },
             {

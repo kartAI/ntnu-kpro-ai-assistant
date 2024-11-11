@@ -55,10 +55,9 @@ export function PlanPrat() {
     }
   };
   return (
-    <div className="bg-white p-10">
       <section className="rounded-lg shadow-lg">
         <h1 className="w-full rounded-lg bg-kartAI-blue pb-6 pt-1 text-center text-white">
-          PlanPrat
+          PlanChat
         </h1>
         <div id="planprat-input-output" className="relative w-full p-2">
           <ul
@@ -81,7 +80,7 @@ export function PlanPrat() {
           </ul>
           <textarea
             id="planprat-input"
-            className="mt-2 w-full rounded-lg p-2 pr-12 text-black shadow-inner"
+            className="mt-2 w-full min-h-14 rounded-lg p-2 pr-12 text-black shadow-inner"
             placeholder="Still meg et spørsmål ..."
             value={text}
             onChange={handleTextChange}
@@ -104,6 +103,5 @@ export function PlanPrat() {
         </div>
         <p className="py-4 text-center text-red-500">{error}</p>
       </section>
-    </div>
   );
 }
