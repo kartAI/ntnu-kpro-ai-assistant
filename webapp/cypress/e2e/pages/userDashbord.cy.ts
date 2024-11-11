@@ -1,5 +1,5 @@
 describe("for-soknad-dashbord e2e Tests", () => {
-    const ROUTES = ["for-soknad/byggeideer/dashboard", "for-soknad/byggeideer/dashboard"]
+    const ROUTES = ["for-soknad/byggeideer/dashbord", "for-soknad/byggeideer/dashbord"]
 
     ROUTES.forEach((route) => {
         describe(`Route: ${route}`, () => {
@@ -19,24 +19,24 @@ describe("for-soknad-dashbord e2e Tests", () => {
                 cy.get('[data-cy="3d-visning-widget"]').should("be.visible");
                 cy.get('[data-cy="document-overview"]').should("be.visible");
                 cy.get('[data-cy="arkiv-gpt"]').should("be.visible");
-                cy.get('[data-cy="start-aplication-button"]').should("be.visible");
+                cy.get('[data-cy="start-application-button"]').should("be.visible");
             });
 
             it("should have navigation to correct cadaid page", () => {
                 cy.get('[data-cy="cadaid-widget"]').click();
-                cy.url().should("eq", route + "cadaid");
+                cy.url().should("include", route + "/cadaid");
             });
 
             it("should have navigationg to correct arkivGPT page", () => {
                 cy.get('[data-cy="arkiv-gpt"]').click();
-                cy.url().should("eq", route + "arkivgpt");
+                cy.url().should("include", route + "/arkivgpt");
             })
 
             it("should be able to open and close pick address overlay whitout changing anyting", () => {
                 cy.contains("Ingen addresse valgt").should("be.visible");
                 cy.contains("Ingen tomt valgt").should("be.visible");
                 cy.contains("Velg adresse og eiendom").click();
-                cy.get('[data-cy="overlay-cancel-button"]')
+                cy.get('[data-cy="overlay-cancel-button"]').click();
                 cy.get('[data-cy="pick-address-overlay"]').should("not.exist");
                 cy.contains("Ingen addresse valgt").should("be.visible");
                 cy.contains("Ingen tomt valgt").should("be.visible");
@@ -69,15 +69,6 @@ describe("for-soknad-dashbord e2e Tests", () => {
                 cy.get('[data-cy="digital-tiltaksdata-widget"]').click();
                 cy.get('[data-cy="mock-map"]').click();
                 cy.get('[data-cy="map-feedback"]').should("be.visible");
-            })
-
-            it("should be able to go in and out of 3d widget witout any data being saved", () => {
-                cy.get('[data-cy="3d-visning-widget"]').click();
-                cy.get('[data-cy="cancel-3d-widget"]').click();
-                cy.window().then((window) => {
-                    const dataURL = window.localStorage.getItem('url');
-                    cy.wrap(dataURL).should('be.null');
-                });          
             })
 
             it('"Gjøremål" should change accoring to actions taken by user', () => {

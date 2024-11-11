@@ -63,7 +63,7 @@ export function PickAddress({setHasInputPickAddress, hasInputPickAddress}: pickA
     };
 
     return(
-        <section id="pick-address"
+        <section data-cy="pick-address"
             className="flex gap-6">
             <section>
                 <h1>Adresse:</h1>

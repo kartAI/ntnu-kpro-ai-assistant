@@ -78,9 +78,8 @@ export default function UserDashboard({BASE_URL}: UserDashboardProps) {
               setHasInputThreeDVisningWidget={setHasInputThreeDVisningWidget}
               hasInputThreeDVisningWidget={hasInputThreeDVisningWidget}
             />
-            <div>
+            <div data-cy="document-overview">
                 <CaseDocumentsComponent
-                    data-cy="document-overview"
                     documents={documentList}
                     />
 
