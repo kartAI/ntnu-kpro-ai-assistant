@@ -55,7 +55,16 @@ describe("for-soknad-dashbord e2e Tests", () => {
                 cy.contains("Gnr. TestGnr, Bnr. TestBnr").should("be.visible")
             })
 
-            it("should be able to pick building area and recive feedback", () => {
+            it("should be able to close popup for analyze build area without any data being saved to local storage", () => {
+                cy.get('[data-cy="digital-tiltaksdata-widget"]').click();
+                cy.get('[data-cy="cancel-3d-widget"]').click();
+                cy.window().then((window) => {
+                    const data = window.localStorage.getItem('hasInputDigitalTiltaksdataWidget');
+                    cy.wrap(data).should('be.null');
+                }); 
+            })
+
+            it("should be able to pick building area and receive feedback", () => {
                 cy.get('[data-cy="map-feedback"]').should("not.exist");
                 cy.get('[data-cy="digital-tiltaksdata-widget"]').click();
                 cy.get('[data-cy="mock-map"]').click();
@@ -65,10 +74,11 @@ describe("for-soknad-dashbord e2e Tests", () => {
             it("should be able to go in and out of 3d widget witout any data being saved", () => {
                 cy.get('[data-cy="3d-visning-widget"]').click();
                 cy.get('[data-cy="cancel-3d-widget"]').click();
-                //check local storage
-                
+                cy.window().then((window) => {
+                    const dataURL = window.localStorage.getItem('url');
+                    cy.wrap(dataURL).should('be.null');
+                });          
             })
-
 
             it('"Gjøremål" should change accoring to actions taken by user', () => {
                 cy.get('[data-cy="address-text"]').should("be.visible");

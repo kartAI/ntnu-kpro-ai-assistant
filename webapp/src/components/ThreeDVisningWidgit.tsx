@@ -82,7 +82,6 @@ export function ThreeDVisningWidget({setHasInputThreeDVisningWidget, hasInputThr
                         <div className="flex justify-end gap-4">
                             <Button
                                 onClick={() => {
-                                    setUrl(mockUrl)
                                     toggleOverlay()}}
                                 className="bg-kartAI-blue hover:bg-red-600"
                             >
