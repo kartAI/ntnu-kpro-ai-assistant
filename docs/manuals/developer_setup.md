@@ -14,7 +14,7 @@ Before you start, make sure the following tools are installed on your system:
 
 Start by making a copy of the `.env.example` file and renaming it to `.env`. This file contains the environment variables that the application needs to run. You can change the values of the variables to match your environment.
 
-Run the following command in the `webapp/`
+Run the following command in the `/webapp`
 folder to copy the `.env.example` file:
 
 ```bash
@@ -39,7 +39,8 @@ ln -s ../../scripts/pre-commit .git/hooks/pre-commit
 
 ## Usage
 
-To run the project, you can use the following commands:
+To run the project, you can use the following commands in the `/webapp`
+folder:
 
 ```bash
 npm install; npm run dev
