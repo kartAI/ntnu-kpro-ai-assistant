@@ -21,7 +21,13 @@ rectangle "AI Assistant API" {
             [Reader] <|-- [OCRReader]
 
             [create_reader] --> [Reader] : "Create Reader Instance <<Factory Pattern>>"
-            [extract_text] --> [create_reader] : "Read File Using Strategy <<Strategy Pattern>>"
+            [extract_text] --> [create_reader] : "Read File and Extract Text"
+
+            ' Adding a note to Reader
+            note right of Reader
+                <<Strategy Pattern>>
+                Defines the strategy for reading different document types
+            end note
         }
         
         rectangle "AI Agent Services" {
