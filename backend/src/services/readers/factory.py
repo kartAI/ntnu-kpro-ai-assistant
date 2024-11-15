@@ -1,6 +1,5 @@
 import logging
 from fastapi import UploadFile
-from fastapi import UploadFile
 
 from src.services.reader import Reader
 from src.services.readers.digital_pdf_reader import PdfReader
