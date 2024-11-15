@@ -9,12 +9,14 @@ import logging
 logging.basicConfig(level="INFO")
 logger = logging.getLogger(__name__)
 
+
 def read_file_content(file_path):
-    with open(file_path, 'r', encoding='utf-8') as file:
+    with open(file_path, "r", encoding="utf-8") as file:
         content = file.read()
         # logger.info("Raw file content:")  # Debugging line
         # logger.info(repr(content))  # Use repr to see whitespace and special characters
         return content
+
 
 def extract_info_from_xml(main_form_path):
     # Read and logger.info file content for debugging
@@ -39,25 +41,27 @@ def extract_info_from_xml(main_form_path):
         main_root = main_tree.getroot()
 
         # Extract the address for the application
-        address = main_root.find('.//ns:adresse/ns:adresselinje1', namespace)
+        address = main_root.find(".//ns:adresse/ns:adresselinje1", namespace)
         if address is not None:
             address_text = address.text
         else:
             address_text = "Address not found"
 
         # Extract the municipality (kommune)
-        municipality = main_root.find('.//ns:kommunenavn', namespace)
+        municipality = main_root.find(".//ns:kommunenavn", namespace)
         if municipality is not None:
             municipality_text = municipality.text
         else:
             municipality_text = "Municipality not found"
 
         # Fake submission date for demonstration
-        submission_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        submission_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-        application_id = save_application_to_prisma(address_text, municipality_text, submission_date)
+        application_id = save_application_to_prisma(
+            address_text, municipality_text, submission_date
+        )
         save_document_to_prisma(main_form_path, application_id)
-        
+
         logger.info("For Application")
         logger.info(f"Submission date: {submission_date}")
         logger.info(f"Address for the application: {address_text}")
@@ -66,35 +70,35 @@ def extract_info_from_xml(main_form_path):
     except ET.ParseError as e:
         logger.info(f"Error parsing MainForm in {main_form_path}: {e}")
 
+
 def process_all_xml_files(folder_path):
     # Iterate through all XML files in the specified folder
     for file_name in os.listdir(folder_path):
-        if file_name.endswith('.xml'):
+        if file_name.endswith(".xml"):
             file_path = os.path.join(folder_path, file_name)
             logger.info("")
             logger.info(f"Processing file: {file_path}")
             extract_info_from_xml(file_path)
-            
+
+
 def get_database_connection():
     # Extract database connection parameters from DATABASE_URL
-    load_dotenv(dotenv_path='.env')
+    load_dotenv(dotenv_path=".env")
     db_url = os.getenv("DATABASE_URL")
     if db_url:
         # Parse the URL
         import re
+
         match = re.match(r"mysql://([^:]+):([^@]+)@([^:]+):(\d+)/(.+)", db_url)
         if match:
             user, password, host, port, database = match.groups()
             # Create a database connection
             connection = mysql.connector.connect(
-                user=user,
-                password=password,
-                host=host,
-                port=port,
-                database=database
+                user=user, password=password, host=host, port=port, database=database
             )
             return connection
     return None
+
 
 def save_application_to_prisma(address, municipality, submission_date):
     connection = get_database_connection()
@@ -114,29 +118,32 @@ def save_application_to_prisma(address, municipality, submission_date):
 
             # Get the generated application ID
             application_id = cursor.lastrowid
-            
+
             logger.info("Data saved successfully.")
 
             return application_id  # Return the application ID
-            
+
         except mysql.connector.Error as err:
             logger.info(f"Error: {err}")
         finally:
             cursor.close()
             connection.close()
         logger.info("Failed to connect to the database.")
-    
+
     return None
+
 
 def save_document_to_prisma(path, applicationID):
     connection = get_database_connection()
     if connection:
         # Read the document file and encode it in base64
         try:
-            with open(path, 'rb') as file:
+            with open(path, "rb") as file:
                 document_content = file.read()
                 # Encode the content to base64
-                encoded_document = base64.b64encode(document_content).decode('utf-8')  # Convert to string
+                encoded_document = base64.b64encode(document_content).decode(
+                    "utf-8"
+                )  # Convert to string
 
         except FileNotFoundError:
             logger.info(f"File not found: {path}")
@@ -150,7 +157,7 @@ def save_document_to_prisma(path, applicationID):
         INSERT INTO Document (type, document, applicationID)
         VALUES (%s, %s, %s)
         """
-        
+
         try:
             cursor = connection.cursor()
             cursor.execute(sql, ("XML", encoded_document, applicationID))
@@ -167,10 +174,12 @@ def save_document_to_prisma(path, applicationID):
     else:
         logger.info("Failed to connect to the database.")
 
+
 def __main__():
     # File paths (adjust the paths as necessary)
-    folder_path = 'src/app/data/byggesak_xml'
+    folder_path = "src/app/data/byggesak_xml"
     process_all_xml_files(folder_path)
-    
+
+
 if __name__ == "__main__":
     __main__()
