@@ -20,7 +20,7 @@ node "Server Machine" as ServerMachine {
     WebAppContainer -[#red,thickness=2]-> DockerVolume : Docker Network Bridge
 }
 
-ClientDevice -[#blue,thickness=2]-> WebAppContainer : HTTPS / tRPC
-WebAppContainer -[#green,thickness=2]-> AIDockerContainer : HTTP/HTTPS (REST API)
+ClientDevice -[#blue,thickness=2]-> WebAppContainer : HTTP (tRPC)
+WebAppContainer -[#green,thickness=2]-> AIDockerContainer : HTTP (REST API)
 
 @enduml
