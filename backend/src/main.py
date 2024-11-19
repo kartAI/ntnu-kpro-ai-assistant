@@ -100,3 +100,8 @@ def plan_prat(question: PlanPratRequest) -> PlanPratResponse:
 
     response = invoke_plan_agent(question.query)
     return PlanPratResponse(answer=response)
+
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
