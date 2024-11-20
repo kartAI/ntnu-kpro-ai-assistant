@@ -24,7 +24,7 @@ api_version = os.getenv("API_VERSION")
 deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
 
 # TODO: add correct elements to the AzureOpenAI class
-API_KEY = os.getenv("OPENAI_API_KEY")
+API_KEY = os.getenv("AZURE_OPENAI_API_KEY")
 
 llm = ChatOpenAI(temperature=0, api_key=API_KEY)
 

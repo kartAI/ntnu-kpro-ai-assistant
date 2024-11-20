@@ -13,6 +13,7 @@ services:
     environment:
       - ARKIVGPT_URL=http://host.docker.internal:80/api # Overrides the URLs set in .env to use host.docker.internal instead of localhost
       - PLANPRAT_URL=http://host.docker.internal:8000/plan-prat/
+      - CADAID_URL=${CADAID_URL}
       - DATABASE_URL=${DATABASE_URL}
       - NEXTAUTH_URL=${NEXTAUTH_URL}
     extra_hosts:
@@ -26,3 +27,11 @@ services:
       - "8000:8000"
     volumes:
       - ./backend:/code
+    environment:
+      - AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}
+      - AZURE_OPENAI_API_BASE=${AZURE_OPENAI_API_BASE}
+      - AZURE_OPENAI_DEPLOYMENT_NAME=${AZURE_OPENAI_DEPLOYMENT_NAME}
+      - API_VERSION=${API_VERSION}
+      - ARKIVGPT_URL=${ARKIVGPT_URL}
+      - CADAID_URL=${CADAID_URL}
+
