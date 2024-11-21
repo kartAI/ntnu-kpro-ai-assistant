@@ -1,0 +1,91 @@
+@startuml
+left to right direction
+
+' Set general font settings
+skinparam {
+  DefaultFontName Arial
+  DefaultFontSize 12
+}
+
+' Customize the appearance of misuse cases
+skinparam usecase {
+  ArrowThickness 1
+  ActorBorderColor black
+  ActorFontStyle normal
+  ArrowColor black
+  UsecaseBorderColor black
+  UsecaseBackgroundColor #FFFFFF
+  UsecaseFontStyle normal
+}
+
+skinparam misusecase {
+  BackgroundColor #000000
+  BorderColor #000000
+  FontColor #FFFFFF
+}
+
+' Actors
+actor "Applicant" as Applicant
+
+' Normal Use Cases
+rectangle "Applicant Use Cases" as ApplicantUC {
+  usecase "Upload Relevant\nDocuments" as UC2
+  usecase "Receive Application\nSummary" as UC6
+}
+
+' System Processes Package
+package "System Processes" {
+  usecase "Validate Documents\nwith CADAiD" as UC5
+  usecase "Analyse with ArkivGPT" as UC9_1
+  usecase "Analyse with Planprat" as UC9_2
+  usecase "Analyse with CADAiD" as UC9_3
+}
+
+' Group Analysis Use Cases
+usecase "Analysis Processes" as UC9
+UC9_1 --> UC9
+UC9_2 --> UC9
+UC9_3 --> UC9
+
+' Misuse Cases Package
+package "Misuse Cases" {
+  usecase "Upload Malicious\nDocuments" as MUC1 <<Misuse>>
+  usecase "Intercept Application\nSummary" as MUC2 <<Misuse>>
+  usecase "Bypass Document\nValidation" as MUC3 <<Misuse>>
+  usecase "Denial of Service by\nSending Too Many Files" as MUC5 <<Misuse>>
+  usecase "Manipulate Analysis\nProcesses" as MUC4 <<Misuse>>
+  usecase "Send Malicious Prompts\nto Analysis Modules" as MUC6 <<Misuse>>
+}
+
+' Malicious Actor on the right
+actor "Malicious Actor" as Malicious <<Malicious>> #red
+
+
+
+' Relationships - Applicant to Use Cases
+Applicant --> UC2
+Applicant --> UC6
+
+' Relationships - Malicious Actor to Misuse Cases
+Malicious --> MUC1
+Malicious --> MUC5
+Malicious --> MUC3
+Malicious --> MUC2
+Malicious --> MUC4
+Malicious --> MUC6
+
+' Relationships - Normal Use Cases
+UC2 --> UC5 : triggers
+UC5 --> UC9 : uses
+UC6 --> UC5 : triggers
+UC6 --> UC9 : includes
+
+' Relationships - Misuse Cases to Use Cases
+MUC1 -[#black,dashed]-> UC2 : <<extends>>
+MUC5 -[#black,dashed]-> UC2 : <<extends>>
+MUC3 -[#black,dashed]-> UC5 : <<extends>>
+MUC2 -[#black,dashed]-> UC6 : <<extends>>
+MUC4 -[#black,dashed]-> UC9 : <<extends>>
+MUC6 -[#black,dashed]-> UC5 : <<extends>>
+
+@enduml
