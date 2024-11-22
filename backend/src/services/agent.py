@@ -13,7 +13,12 @@ from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 
 from src.configuration import API_KEY
-from src.types import PropertyIdentifiers, SummaryResponse, Detection
+from src.types import (
+    ApplicationSummary,
+    PropertyIdentifiers,
+    SummaryResponse,
+    Detection,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -101,11 +106,34 @@ def invoke_agent(
 
     """
     # TODO: Implement the agent logic
+    summary = summarize_application_documents(file_contents)
     return SummaryResponse(
-        summary=file_contents[0],
+        summary=summary,
         cad_aid_summary="",
         arkivgpt_summary="",
     )
+
+
+def summarize_application_documents(documents: list[str]) -> list[str]:
+    # Define the parser
+    summarization_parser = PydanticOutputParser(pydantic_object=ApplicationSummary)
+
+    # Define the prompt template
+    prompt = PromptTemplate(
+        template="Write a concise summary using this format: \n\n{format_instructions}\n\nof the following application:\n\n{context}",
+        input_variables=["context"],
+        partial_variables={
+            "format_instructions": summarization_parser.get_format_instructions(),
+        },
+    )
+
+    # Initialize the LLM (adjust parameters as needed)
+
+    chain = prompt | llm | summarization_parser
+
+    # Generate the summary
+    wrapper: ApplicationSummary = chain.invoke({"context": "\n\n".join(documents)})
+    return wrapper.summary
 
 
 class GraphState(TypedDict):
