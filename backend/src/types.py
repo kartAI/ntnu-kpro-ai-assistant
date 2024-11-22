@@ -1,11 +1,17 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List, Optional, Union
 
 
 class SummaryResponse(BaseModel):
-    summary: str
+    summary: list[str] = Field(description="The summary of the application documents.")
     cad_aid_summary: Optional[str]
     arkivgpt_summary: Optional[str]
+
+
+class ApplicationSummary(BaseModel):
+    summary: list[str] = Field(
+        description="A concise summary of the application documents."
+    )
 
 
 class PlanPratRequest(BaseModel):
