@@ -1,9 +1,15 @@
 from pydantic import BaseModel, Field
 from typing import List, Optional, Union
 
+from src.services.agent import MarkedCheckpoint
+
 
 class SummaryResponse(BaseModel):
     summary: list[str] = Field(description="The summary of the application documents.")
+    marked_checklist: list[MarkedCheckpoint] = Field(
+        description="The marked checklist items.",
+        default_factory=list,
+    )
     cad_aid_summary: Optional[str]
     arkivgpt_summary: Optional[str]
 
