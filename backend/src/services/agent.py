@@ -3,6 +3,8 @@ from typing import Annotated
 from typing_extensions import TypedDict
 from dotenv import load_dotenv
 
+import os
+from langchain_openai import AzureChatOpenAI, AzureOpenAI
 from langchain_core.prompts import PromptTemplate
 from langchain_openai import AzureOpenAI
 from langgraph.graph import StateGraph
@@ -22,7 +24,19 @@ from src.types import (
 
 logger = logging.getLogger(__name__)
 
-llm = ChatOpenAI(temperature=0, api_key=API_KEY)
+
+client = AzureOpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+    api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
+)
+
+llm = AzureChatOpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    deployment_name=os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME"),
+    api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
+    azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+)
 
 
 def invoke_plan_agent(query: str) -> str:
