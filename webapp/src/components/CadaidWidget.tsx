@@ -78,7 +78,6 @@ export function CadaidWidget({setHasInputCadaidWidget, hasInputCadaidWidget, rep
                 </ul>   
                 : 
                 <div>
-                    <p className="underline">KLIKK HER: </p>
                     <p>Laste opp plantegning for å få se hva som må legges til før du skriver søknad</p>
                 </div>}
 

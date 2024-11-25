@@ -16,8 +16,8 @@ export function TodoList({hasInputPickAddress,
     const arkivGPTText = "- Du kan bruke arkiv gpt til å se på hva som har skjed på tomta før"
     const cadaidText = "- Om du allerede har plantegninger så kan du skjekke hva de inneholder."
     const digitalTilraksdataText = "- Om du vet hvor du vil bygge kan du tegne dette området og se om det er noen hinder for å bygge der."    
-    const threeDVisningText = "- Om du har en 3d tegning av hva du ønsker å bygge kan du legge in denne og se den."
-    const planpratText = "- Om du ikke er helt sikker på hva du vil bygge men trenger å vite noe om byggelover så slå av en prat med PlanPrat"
+    const threeDVisningText = "- Om du har en 3D tegning av hva du ønsker å bygge kan du legge in denne og se den."
+    const planpratText = "- Om du ikke er helt sikker på hva du vil bygge men trenger å vite noe om byggelover så slå av en prat med PlanChat"
     
 
     return(

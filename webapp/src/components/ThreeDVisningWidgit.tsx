@@ -59,7 +59,7 @@ export function ThreeDVisningWidget({setHasInputThreeDVisningWidget, hasInputThr
             :
             <div> 
                 <div className="flex justify-between items-center">
-                    <h1 className="font-bold text-xl">Last opp 3d visning</h1>
+                    <h1 className="font-bold text-xl">Last opp 3D visning</h1>
                     <Image src={hasInputThreeDVisningWidget? "/Ikoner/Dark/SVG/Check, Success.svg" : "/Ikoner/Dark/SVG/Warning.svg"}
                         alt={hasInputThreeDVisningWidget? "hake" : "varselsymbol"}
                         className="bg-kartAI-blue rounded-sm p-1"
@@ -68,8 +68,7 @@ export function ThreeDVisningWidget({setHasInputThreeDVisningWidget, hasInputThr
 
                 </div>
                 
-                <p className="underline">KLIKK HER:</p>
-                <p>Legg til lenke av din 3d visning</p>
+                <p>Legg til lenke av din 3D visning</p>
             </div>
             }
 
@@ -77,7 +76,7 @@ export function ThreeDVisningWidget({setHasInputThreeDVisningWidget, hasInputThr
             {isOverlayOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                     <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-                        <h1><strong>Legg til din 3d visnings lenke</strong></h1>
+                        <h1><strong>Legg til din 3D visnings lenke</strong></h1>
                         <p className="text-lg mb-4">Lenke: /for-soknad/3d-situasjon</p>
                         <div className="flex justify-end gap-4">
                             <Button
