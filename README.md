@@ -23,7 +23,7 @@ Start by going into the `/webapp` folder, making a copy of the `.env.example` fi
 To run the project, you can use the following commands:
 
 ```bash
-docker compose --env-file ./webapp/.env up --build -d
+docker compose --env-file ./webapp/.env  --env-file ./backend/.env up --build -d
 ```
 
 This command will build the Docker images (if necessary) and run the containers in the background. You can access the clientside code at [http://localhost:3000](http://localhost:3000) and the API at [http://localhost:8000](http://localhost:8000).
@@ -34,6 +34,8 @@ To stop the containers, you can use the following command:
 ```bash
 docker compose down
 ```
+
+**Important:** In order to achieve the full functionality of the application, the AI models from the KartAI project must also be running. In our development we have ran them as docker containers locally on our machines. Though in the future, these will hopefully be available as public APIs.
 
 ## Documentation
 

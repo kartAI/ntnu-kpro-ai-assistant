@@ -1,0 +1,49 @@
+@startuml
+!define RECTANGLE_BACK_COLOR #EEEEEE
+skinparam shadowing false
+skinparam rectangle {
+    BackgroundColor RECTANGLE_BACK_COLOR
+    BorderColor #333333
+    FontStyle bold
+    FontSize 13
+}
+
+rectangle "AI Assistant API" {
+    rectangle "Endpoints" {
+        [Summarize Endpoint]
+        [PlanChat Endpoint]
+    }
+
+    rectangle "Services" {
+        rectangle "Document Reader" {
+            [Reader] <|-- [PdfReader]
+            [Reader] <|-- [XmlReader]
+            [Reader] <|-- [OCRReader]
+
+            [create_reader] --> [Reader] : "Create Reader Instance <<Factory Pattern>>"
+            [extract_text] --> [create_reader] : "Read File and Extract Text"
+
+            ' Adding a note to Reader
+            note right of Reader
+                <<Strategy Pattern>>
+                Defines the strategy for reading different document types
+            end note
+        }
+        
+        rectangle "AI Agent Services" {
+            [invoke_agent]
+            [invoke_plan_agent]
+        }
+        rectangle "External AI Models" {
+            [query_cad_aid]
+            [query_arkivgpt]
+        }
+    }
+}
+
+[Summarize Endpoint] --> [extract_text] : "Trigger Text Extraction"
+[Summarize Endpoint] --> [External AI Models] : "Send Data to External AI Models"
+[Summarize Endpoint] --> [invoke_agent] : "Invoke Agent Chain with Extracted Text"
+[PlanChat Endpoint] --> [invoke_plan_agent] : "Invoke Plan Agent Chain with User Query"
+
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+actor User
+
+participant "React Application" as ReactApp
+participant "tRPC Module" as tRPC
+participant "Prisma ORM" as Prisma
+participant "MySQL Database" as Database
+participant "External AI Model" as AIModel
+
+User -> ReactApp : Interacts with UI (e.g., Submit Form)
+ReactApp -> tRPC : Call tRPC Procedure 
+tRPC --> AIModel : API Request (HTTP)
+AIModel --> tRPC : AI Model Response (HTTP)
+tRPC --> Prisma : Save Response (Prisma ORM Create)
+Prisma --> Database : SQL Insert Query
+Database -> Prisma : Data Confirmation
+Prisma -> tRPC : Success Message
+tRPC --> ReactApp : Data Response
+ReactApp --> User : Display AI Model Results
+
+@enduml
