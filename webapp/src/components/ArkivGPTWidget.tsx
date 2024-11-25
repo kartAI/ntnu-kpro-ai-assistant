@@ -29,7 +29,6 @@ export function ArkivGPTWidget({hasInputPickAddress}: ArkivGPTWidgetProps) {
             </div>
             {hasInputPickAddress? 
             <div>
-                <p className="underline">KLIKK HER:</p>
                 <p>Les tidligere saker relatert til tomten</p>
             </div> 
             : 
