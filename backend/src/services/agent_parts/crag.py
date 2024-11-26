@@ -234,7 +234,13 @@ def web_search(state):
     # Web search
     docs = web_search_tool.invoke({"query": question})
     print(f"Web search results: {docs}")
-    web_results = "\n".join([d.get("content", "No result") for d in docs])
+    web_results = ""
+    for d in docs:
+        if isinstance(d, str):
+            web_results += d + "\n"
+        else:
+            web_results += d.get("content", "No result")
+
     web_results = Document(page_content=web_results)
     documents.append(web_results)
     retrieval_state = {"documents": documents, "question": question}
