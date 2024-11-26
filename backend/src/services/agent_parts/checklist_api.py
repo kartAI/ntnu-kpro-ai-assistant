@@ -17,7 +17,7 @@ class Utfalltekst(BaseModel):
 
 class Utfall(BaseModel):
     Utfallverdi: bool
-    Utfalltype: str
+    Utfalltype: Optional[str]
     Utfalltypekode: str
     Utfalltekst: Optional[Utfalltekst]
 

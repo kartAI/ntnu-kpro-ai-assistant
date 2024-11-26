@@ -164,7 +164,7 @@ def invoke_agent(
                 "web_search": "",
                 "documents": [],
             },
-            "checklist": point,
+            "checklist": [point],
             "marked_checklist": [],
             "reflection": "",
             "grading": "",
@@ -230,11 +230,14 @@ def fill_out_checklist_responder(state):
     # Determine if laws are available
     laws_available = bool(laws_and_regulations.strip())
 
+    print(f"Checklist: {checklist}", flush=True)
     for idx, checkpoint in enumerate(checklist):
         # Extract the checkpoint text from the tuple
-        checkpoint_text = checkpoint[
-            0
-        ]  # Use the correct index based on your data structure
+        # checkpoint_text = checkpoint[idx]
+        checkpoint: Sjekkpunkt
+        print(f"Processing checkpoint {idx + 1}", flush=True)
+        print(f"Checkpoint: {checkpoint}", flush=True)
+        checkpoint_text = checkpoint.model_dump()
 
         # If there is feedback for this checkpoint, use it
         if feedback:
@@ -330,7 +333,7 @@ ONLY provide the JSON object. Do not include any markdown formatting like triple
         try:
             result = json.loads(response)
             marked_checkpoint = MarkedCheckpoint(
-                check_point_name=result.get("check_point_name", checkpoint_text),
+                check_point_name=result.get("check_point_name", checkpoint.Navn),
                 status=result.get("status", "Uncertain"),
                 reason=result.get("reason", "No reason provided."),
             )
@@ -343,7 +346,7 @@ ONLY provide the JSON object. Do not include any markdown formatting like triple
             # If parsing fails, mark as Uncertain and set retrieval flag only if laws are not available
             print(f"Error parsing LLM response after cleanup: {response}")
             marked_checkpoint = MarkedCheckpoint(
-                check_point_name=checkpoint_text,
+                check_point_name=checkpoint.Navn,
                 status="Uncertain",
                 reason="Could not parse LLM response.",
             )
@@ -418,12 +421,12 @@ def marked_checklist_revisor(state):
     """Node that revises the marked checklist and provides feedback."""
     print("\n---Marked Checklist Revisor---")
     marked_checklist: list[MarkedCheckpoint] = state["marked_checklist"]
-    checklist: list = state["checklist"]
+    checklist: list[Sjekkpunkt] = state["checklist"]
     application_text = "\n\n".join(state["user_application_documents"])
     # Prepare the checklist items for review
     checklist_with_marks = [
         {
-            "checkpoint": checkpoint[0],  # Extract the text from the tuple
+            "checkpoint": checkpoint.Navn,  # Extract the text from the tuple
             "status": marked_checkpoint.status,
             "reason": marked_checkpoint.reason,
         }

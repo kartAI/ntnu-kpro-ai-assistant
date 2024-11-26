@@ -108,12 +108,6 @@ question_rewriter = re_write_prompt | llm | StrOutputParser()
 
 ### Search
 
-from langchain_community.tools.tavily_search import TavilySearchResults
-
-
-def retrieve_relevant_documents(state):
-    return []
-
 
 def retrieve(state):
     """
