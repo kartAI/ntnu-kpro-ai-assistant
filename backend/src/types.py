@@ -1,7 +1,13 @@
 from pydantic import BaseModel, Field
 from typing import List, Optional, Union
 
-from src.services.agent import MarkedCheckpoint
+
+class MarkedCheckpoint(BaseModel):
+    check_point_name: str = Field(description="The name of the correlated checkpoint.")
+    status: str = Field(
+        description="The status of the checkpoint either being Correct, Uncertain, or Incorrect based on the content of the application."
+    )
+    reason: str = Field(description="The reason for the status of the checkpoint.")
 
 
 class SummaryResponse(BaseModel):

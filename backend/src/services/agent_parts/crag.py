@@ -1,7 +1,8 @@
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.vectorstores import Chroma
-from langchain_openai import OpenAIEmbeddings
+
+from src.services.agent_parts.generator import llm, embedder, web_search_tool
 
 urls = [
     "https://lovdata.no/dokument/NL/lov/2008-06-27-71/*#&#x2a;",
@@ -20,7 +21,7 @@ doc_splits = text_splitter.split_documents(docs_list)
 vectorstore = Chroma.from_documents(
     documents=doc_splits,
     collection_name="rag-chroma",
-    embedding=OpenAIEmbeddings(),
+    embedding=embedder,
 )
 retriever = vectorstore.as_retriever()
 
@@ -28,8 +29,7 @@ retriever = vectorstore.as_retriever()
 ### Retrieval Grader
 
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.pydantic_v1 import BaseModel, Field
-from langchain_openai import ChatOpenAI
+from pydantic import BaseModel, Field
 
 
 # Data model
@@ -42,7 +42,6 @@ class GradeDocuments(BaseModel):
 
 
 # LLM with function call
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 structured_llm_grader = llm.with_structured_output(GradeDocuments)
 
 # Prompt
@@ -81,9 +80,6 @@ Answer:""",
     ]
 )
 
-# LLM
-llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0)
-
 
 # Post-processing
 def format_docs(docs):
@@ -93,15 +89,6 @@ def format_docs(docs):
 # Chain
 rag_chain = prompt | llm | StrOutputParser()
 
-# Run
-generation = rag_chain.invoke({"context": docs, "question": question})
-print(generation)
-
-
-### Question Re-writer
-
-# LLM
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
 # Prompt
 system = """You a question re-writer that converts an input question to a better version that is optimized \n 
@@ -122,8 +109,6 @@ question_rewriter = re_write_prompt | llm | StrOutputParser()
 ### Search
 
 from langchain_community.tools.tavily_search import TavilySearchResults
-
-web_search_tool = TavilySearchResults(k=3)
 
 
 def retrieve_relevant_documents(state):

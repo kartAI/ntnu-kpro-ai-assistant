@@ -1,29 +1,20 @@
 import logging
-from typing import Annotated
 from pydantic import Field
 from typing_extensions import TypedDict
-from dotenv import load_dotenv
 
-import os
-from langchain_openai import AzureChatOpenAI, AzureOpenAI
 from langchain_core.prompts import PromptTemplate
 from langchain_openai import AzureOpenAI
 from langgraph.graph import StateGraph
-from langgraph.graph.message import add_messages
-from langchain_core.output_parsers import StrOutputParser
 from langchain.output_parsers import PydanticOutputParser
 from langchain_core.prompts import PromptTemplate
-from langchain_openai import ChatOpenAI
-import os
 
-from dotenv import load_dotenv
 from typing import List
 from typing_extensions import TypedDict
 
-from langchain_openai import ChatOpenAI
 from langgraph.graph import StateGraph, START, END
 
 
+from src.services.agent_parts.generator import llm
 from src.services.agent_parts.checklist_api import (
     Sjekkpunkt,
     retrieve_current_national_checklist,
@@ -36,42 +27,16 @@ from src.services.agent_parts.crag import (
     transform_query,
     web_search,
 )
-from src.configuration import (
-    AZURE_API_KEY,
-    AZURE_API_VERSION,
-    AZURE_DEPLOYMENT_NAME,
-    AZURE_OPENAI_ENDPOINT,
-)
+
 from src.types import (
     ApplicationSummary,
+    MarkedCheckpoint,
     PropertyIdentifiers,
     SummaryResponse,
     Detection,
 )
 
 logger = logging.getLogger(__name__)
-
-
-client = AzureOpenAI(
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
-    api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
-)
-
-llm = AzureChatOpenAI(
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    deployment_name=os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME"),
-    api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
-    azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
-)
-
-
-class MarkedCheckpoint(BaseModel):
-    check_point_name: str = Field(description="The name of the correlated checkpoint.")
-    status: str = Field(
-        description="The status of the checkpoint either being Correct, Uncertain, or Incorrect based on the content of the application."
-    )
-    reason: str = Field(description="The reason for the status of the checkpoint.")
 
 
 class RetrievalState(TypedDict):
