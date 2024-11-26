@@ -1,8 +1,11 @@
+import logging
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.vectorstores import Chroma
 
 from src.services.agent_parts.generator import llm, embedder, web_search_tool
+
+logger = logging.getLogger(__name__)
 
 urls = [
     "https://lovdata.no/dokument/NL/lov/2008-06-27-71/*#&#x2a;",
@@ -119,9 +122,9 @@ def retrieve(state):
     Returns:
         state (dict): New key added to state, documents, that contains retrieved documents
     """
-    print("---RETRIEVE---")
+    logger.info("---RETRIEVE---")
     question = state["retrieval_state"]["question"]
-    print(f"Question: {question}")
+    logger.info(f"Question: {question}")
 
     # Retrieval
     documents = retriever.get_relevant_documents(question)
@@ -140,7 +143,7 @@ def generate(state):
     Returns:
         state (dict): New key added to state, generation, that contains LLM generation
     """
-    print("---GENERATE---")
+    logger.info("---GENERATE---")
     question = state["retrieval_state"]["question"]
     documents = state["retrieval_state"]["documents"]
 
@@ -166,7 +169,7 @@ def grade_documents(state):
         state (dict): Updates documents key with only filtered relevant documents
     """
 
-    print("---CHECK DOCUMENT RELEVANCE TO QUESTION---")
+    logger.info("---CHECK DOCUMENT RELEVANCE TO QUESTION---")
     question = state["retrieval_state"]["question"]
     documents = state["retrieval_state"]["documents"]
 
@@ -179,10 +182,10 @@ def grade_documents(state):
         )
         grade = score.binary_score
         if grade == "yes":
-            print("---GRADE: DOCUMENT RELEVANT---")
+            logger.info("---GRADE: DOCUMENT RELEVANT---")
             filtered_docs.append(d)
         else:
-            print("---GRADE: DOCUMENT NOT RELEVANT---")
+            logger.info("---GRADE: DOCUMENT NOT RELEVANT---")
             web_search = "Yes"
             continue
     retrieval_state = {
@@ -205,7 +208,7 @@ def transform_query(state):
         state (dict): Updates question key with a re-phrased question
     """
 
-    print("---TRANSFORM QUERY---")
+    logger.info("---TRANSFORM QUERY---")
     question = state["retrieval_state"]["question"]
     documents = state["retrieval_state"]["documents"]
 
@@ -227,13 +230,13 @@ def web_search(state):
         state (dict): Updates documents key with appended web results
     """
 
-    print("---WEB SEARCH---")
+    logger.info("---WEB SEARCH---")
     question = state["retrieval_state"]["question"]
     documents = state["retrieval_state"]["documents"]
 
     # Web search
     docs = web_search_tool.invoke({"query": question})
-    print(f"Web search results: {docs}")
+    logger.info(f"Web search results: {docs}")
     web_results = ""
     for d in docs:
         if isinstance(d, str):
@@ -262,7 +265,7 @@ def decide_to_generate(state):
         str: Binary decision for next node to call
     """
 
-    print("---ASSESS GRADED DOCUMENTS---")
+    logger.info("---ASSESS GRADED DOCUMENTS---")
     state["retrieval_state"]["question"]
     web_search = state["retrieval_state"]["web_search"]
     state["retrieval_state"]["documents"]
@@ -270,11 +273,11 @@ def decide_to_generate(state):
     if web_search == "Yes":
         # All documents have been filtered check_relevance
         # We will re-generate a new query
-        print(
+        logger.info(
             "---DECISION: ALL DOCUMENTS ARE NOT RELEVANT TO QUESTION, TRANSFORM QUERY---"
         )
         return "transform_query"
     else:
         # We have relevant documents, so generate answer
-        print("---DECISION: GENERATE---")
+        logger.info("---DECISION: GENERATE---")
         return "generate"

@@ -82,13 +82,13 @@ def extract_text(file: UploadFile) -> str:
 @app.post("/plan-prat", response_model=PlanPratResponse)
 def plan_prat(question: PlanPratRequest) -> PlanPratResponse:
     """
-    PlanPrat a query.
+        PlanPrat a query.
 
-    Args:
-        question (PlanPratRequest): The query to PlanPrat.
-    Returns:
-        PlanPratResponse: The PlanPrat response.
-backend/src/main.py
+        Args:
+            question (PlanPratRequest): The query to PlanPrat.
+        Returns:
+            PlanPratResponse: The PlanPrat response.
+    backend/src/main.py
     """
 
     logger.info(f"Query: {question}")
@@ -96,7 +96,6 @@ backend/src/main.py
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail="Query is empty"
         )
-    print(f"Query: {question.query}", flush=True)
 
     response = invoke_plan_agent(question.query)
     return PlanPratResponse(answer=response)

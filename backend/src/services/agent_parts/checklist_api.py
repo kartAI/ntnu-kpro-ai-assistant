@@ -1,7 +1,10 @@
+import logging
 import requests
 import json
 from pydantic import BaseModel
 from typing import List, Optional
+
+logger = logging.getLogger(__name__)
 
 
 class Lovhjemmel(BaseModel):
@@ -43,13 +46,12 @@ def retrieve_current_national_checklist() -> list[Sjekkpunkt]:
     data = response.json()
     json_data = [json.dumps(item) for item in data]
     checklist = []
-    print(len(json_data))
+    logger.info(f"Amount of items: {len(json_data)}")
     for item in json_data:
         try:
             checklist.append(Sjekkpunkt.model_validate_json(item))
         except Exception as e:
-            print(f"Error: {e}")
-            print(f"Item: {item}")
+            logger.error(f"Error: {e} for Item: {item}")
 
     unique_checklist = set()
     for item in set(checklist):

@@ -210,7 +210,7 @@ import json
 
 
 def fill_out_checklist_responder(state):
-    print("\n---Filling out Checklist---")
+    logger.info("\n---Filling out Checklist---")
     user_applications = state["user_application_documents"]
     checklist = state["checklist"]
     retrieval_state = state["retrieval_state"]
@@ -230,13 +230,13 @@ def fill_out_checklist_responder(state):
     # Determine if laws are available
     laws_available = bool(laws_and_regulations.strip())
 
-    print(f"Checklist: {checklist}", flush=True)
+    logger.info(f"Checklist: {checklist}")
     for idx, checkpoint in enumerate(checklist):
         # Extract the checkpoint text from the tuple
         # checkpoint_text = checkpoint[idx]
         checkpoint: Sjekkpunkt
-        print(f"Processing checkpoint {idx + 1}", flush=True)
-        print(f"Checkpoint: {checkpoint}", flush=True)
+        logger.info(f"Processing checkpoint {idx + 1}")
+        logger.info(f"Checkpoint: {checkpoint}")
         checkpoint_text = checkpoint.model_dump()
 
         # If there is feedback for this checkpoint, use it
@@ -344,7 +344,7 @@ ONLY provide the JSON object. Do not include any markdown formatting like triple
                 need_retrieval = True
         except json.JSONDecodeError:
             # If parsing fails, mark as Uncertain and set retrieval flag only if laws are not available
-            print(f"Error parsing LLM response after cleanup: {response}")
+            logger.error(f"Error parsing LLM response after cleanup: {response}")
             marked_checkpoint = MarkedCheckpoint(
                 check_point_name=checkpoint.Navn,
                 status="Uncertain",
@@ -359,14 +359,14 @@ ONLY provide the JSON object. Do not include any markdown formatting like triple
     state["should_retrieve"] = need_retrieval
 
     if need_retrieval:
-        print("Writing questions for retrieval.")
+        logger.info("Writing questions for retrieval.")
         uncertain_checkpoints = [
             cp.check_point_name for cp in marked_checklist if cp.status == "Uncertain"
         ]
         response = llm.predict(
             f"For the following checkpoints marked as 'Uncertain', ask max 3 questions to clarify the applicability of laws and regulations:\n\n{uncertain_checkpoints}"
         )
-        print(f"Question for retrieval: {response}")
+        logger.info(f"Question for retrieval: {response}")
         state["retrieval_state"]["question"] = response
         state["retrieval_performed"] = True  # Mark that retrieval has been performed
 
@@ -386,10 +386,10 @@ ONLY provide the JSON object. Do not include any markdown formatting like triple
 def decide_next_step_after_fill_out(state):
     """Decide whether to proceed to 'retrieve' or 'marked_checklist_revisor'."""
     if state["should_retrieve"]:
-        print("---DECISION: Need more information, proceeding to 'retrieve'---")
+        logger.info("---DECISION: Need more information, proceeding to 'retrieve'---")
         return "retrieve"
     else:
-        print(
+        logger.info(
             "---DECISION: Enough information, proceeding to 'marked_checklist_revisor'---"
         )
         return "marked_checklist_revisor"
@@ -399,7 +399,7 @@ def decide_to_continue_after_revisor(state):
     """Decide whether to continue processing or end."""
     # Check if the revision count has reached the limit
     if state.get("revision_count", 0) >= 3:
-        print(
+        logger.info(
             f"---DECISION: Maximum revision count reached ({state['revision_count']}), ending process---"
         )
         return END
@@ -407,19 +407,21 @@ def decide_to_continue_after_revisor(state):
     if state.get("should_continue"):
         # Check if retrieval has already been performed
         if state.get("retrieval_performed", False):
-            print("---DECISION: Retrieval already performed, ending process---")
+            logger.info("---DECISION: Retrieval already performed, ending process---")
             return END
         else:
-            print("---DECISION: Looping back to 'fill_out_checklist_responder'---")
+            logger.info(
+                "---DECISION: Looping back to 'fill_out_checklist_responder'---"
+            )
             return "fill_out_checklist_responder"
     else:
-        print("---DECISION: Process complete---")
+        logger.info("---DECISION: Process complete---")
         return END
 
 
 def marked_checklist_revisor(state):
     """Node that revises the marked checklist and provides feedback."""
-    print("\n---Marked Checklist Revisor---")
+    logger.info("\n---Marked Checklist Revisor---")
     marked_checklist: list[MarkedCheckpoint] = state["marked_checklist"]
     checklist: list[Sjekkpunkt] = state["checklist"]
     application_text = "\n\n".join(state["user_application_documents"])
@@ -482,7 +484,7 @@ ONLY provide the JSON array. Do not include any markdown formatting like triple 
 
     if "All good" in response.strip():
         # No revisions needed
-        print("No revisions needed.")
+        logger.info("No revisions needed.")
         state["should_continue"] = False
     else:
         try:
@@ -490,9 +492,9 @@ ONLY provide the JSON array. Do not include any markdown formatting like triple 
             # Store the feedback in the state
             state["revisor_feedback"] = revised_items
             state["should_continue"] = True
-            print("Feedback provided by revisor.")
+            logger.info("Feedback provided by revisor.")
         except json.JSONDecodeError:
-            print(
+            logger.error(
                 f"Could not parse revision response after cleanup. LLM Response:\n{response}"
             )
             state["should_continue"] = False  # End process if parsing failed
