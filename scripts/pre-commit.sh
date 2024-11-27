@@ -3,7 +3,7 @@
 cd webapp
 npm run lint --fix
 
-cd backend
+cd api
 black .
 
 # mypy

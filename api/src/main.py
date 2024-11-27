@@ -82,13 +82,12 @@ def extract_text(file: UploadFile) -> str:
 @app.post("/plan-prat", response_model=PlanPratResponse)
 def plan_prat(question: PlanPratRequest) -> PlanPratResponse:
     """
-        PlanPrat a query.
+    PlanPrat a query.
 
-        Args:
-            question (PlanPratRequest): The query to PlanPrat.
-        Returns:
-            PlanPratResponse: The PlanPrat response.
-    backend/src/main.py
+    Args:
+        question (PlanPratRequest): The query to PlanPrat.
+    Returns:
+        PlanPratResponse: The PlanPrat response.
     """
 
     logger.info(f"Query: {question}")
