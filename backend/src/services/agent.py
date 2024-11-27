@@ -214,7 +214,8 @@ def fill_out_checklist_responder(state):
     user_applications = state["user_application_documents"]
     checklist = state["checklist"]
     retrieval_state = state["retrieval_state"]
-    documents = retrieval_state.get("documents", [])  # Retrieved laws and regulations
+    # Retrieved laws and regulations
+    documents = retrieval_state.get("documents", [])
 
     # Combine all application documents into one string
     application_text = "\n\n".join(user_applications)
@@ -233,7 +234,6 @@ def fill_out_checklist_responder(state):
     logger.info(f"Checklist: {checklist}")
     for idx, checkpoint in enumerate(checklist):
         # Extract the checkpoint text from the tuple
-        # checkpoint_text = checkpoint[idx]
         checkpoint: Sjekkpunkt
         logger.info(f"Processing checkpoint {idx + 1}")
         logger.info(f"Checkpoint: {checkpoint}")
@@ -368,7 +368,8 @@ ONLY provide the JSON object. Do not include any markdown formatting like triple
         )
         logger.info(f"Question for retrieval: {response}")
         state["retrieval_state"]["question"] = response
-        state["retrieval_performed"] = True  # Mark that retrieval has been performed
+        # Mark that retrieval has been performed
+        state["retrieval_performed"] = True
 
     # Clear the feedback after using it
     if "revisor_feedback" in state:
