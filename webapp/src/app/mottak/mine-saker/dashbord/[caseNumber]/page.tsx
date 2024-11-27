@@ -89,8 +89,6 @@ export default function CaseDashboard() {
   const detections = fetchDetections();
   const checklist = transformDetectionToChecklist(detections);
 
-  /** Convert from string to number for getCase function */
-  // const caseNumberAsNumber = Number(caseNumber);
 
   const ApplicationData: CaseData | undefined = getCase(100239);
 

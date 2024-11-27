@@ -13,8 +13,6 @@ logger = logging.getLogger(__name__)
 def read_file_content(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
         content = file.read()
-        # logger.info("Raw file content:")  # Debugging line
-        # logger.info(repr(content))  # Use repr to see whitespace and special characters
         return content
 
 
