@@ -11,13 +11,13 @@ services:
       - "3000:3000"
     image: t3-app
     environment:
-      - ARKIVGPT_URL=http://host.docker.internal:80/api # Overrides the URLs set in .env to use host.docker.internal instead of localhost
+      - ARKIVGPT_URL=http://host.docker.internal:80/api 
       - PLANPRAT_URL=http://host.docker.internal:8000/plan-prat/
       - CADAID_URL=${CADAID_URL}
       - DATABASE_URL=${DATABASE_URL}
       - NEXTAUTH_URL=${NEXTAUTH_URL}
     extra_hosts:
-      - "host.docker.internal:host-gateway" # Needed to override URLs on Linux
+      - "host.docker.internal:host-gateway"
   api:
     platform: "linux/amd64"
     build:
@@ -31,7 +31,12 @@ services:
       - AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}
       - AZURE_OPENAI_API_BASE=${AZURE_OPENAI_API_BASE}
       - AZURE_OPENAI_DEPLOYMENT_NAME=${AZURE_OPENAI_DEPLOYMENT_NAME}
-      - API_VERSION=${API_VERSION}
+      - AZURE_OPENAI_API_VERSION=${AZURE_OPENAI_API_VERSION}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - TAVILY_API_KEY=${TAVILY_API_KEY}
+      - LANGCHAIN_API_KEY=${LANGCHAIN_API_KEY}
+      - LANGCHAIN_TRACING_V2=${LANGCHAIN_TRACING_V2}
       - ARKIVGPT_URL=${ARKIVGPT_URL}
       - CADAID_URL=${CADAID_URL}
+
 

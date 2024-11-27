@@ -40,7 +40,7 @@ describe("Admin dashboard page displays correctly", () => {
           .should("exist")
           .invoke("text")
           .should("match", /\w+\.(pdf|xml|jpg)/);
-  
+
         cy.get(".points")
           .invoke("text")
           .then((pointsText) => {
@@ -51,7 +51,7 @@ describe("Admin dashboard page displays correctly", () => {
       });
     });
   });
-  
+
   it("should correctly sum the total points and update the progress dynamically", () => {
     let totalPoints = 0;
 
@@ -62,7 +62,7 @@ describe("Admin dashboard page displays correctly", () => {
           .invoke("text")
           .then((pointsText) => {
             const match = /\d+/.exec(pointsText);
-            const points = match ? Number(match[0]) : 0;            
+            const points = match ? Number(match[0]) : 0;
             totalPoints += points;
           });
       })
@@ -81,7 +81,7 @@ describe("Admin dashboard page displays correctly", () => {
             const expectedProgressPercentage = (totalPoints / 10) * 100;
 
             // Check that the aria-valuenow correctly matches the progress percentage logic
-            expect(parseInt($progressBar.attr("aria-valuenow") ?? '')).to.equal(
+            expect(parseInt($progressBar.attr("aria-valuenow") ?? "")).to.equal(
               totalPoints,
             );
             expect(expectedProgressPercentage).to.equal(
@@ -220,17 +220,6 @@ describe("Admin dashboard page displays correctly", () => {
       .and("be.visible");
   });
 
-  /* it("should render the document list dynamically", () => {
-    // Fetch all document titles dynamically
-    cy.get("a").each(($el, index, $list) => {
-      // Get the filename from the href attribute
-      const documentName = $el.attr("href").split("/").pop();
-
-      // Assert that the document name is displayed in the component
-      cy.contains(documentName).should("exist");
-    });
-  }); */
-
   it("should have clickable links for each document dynamically", () => {
     // Fetch all document links dynamically and ensure they are clickable
     cy.get("a").each(($el) => {
@@ -253,213 +242,181 @@ describe("Admin dashboard page displays correctly", () => {
         .and("be.visible");
     });
 
-  
-    it('should allow typing feedback', () => {
+    it("should allow typing feedback", () => {
       // Target the textarea and type some feedback
-      cy.get('textarea').type('Dette er en testtilbakemelding');
-      
+      cy.get("textarea").type("Dette er en testtilbakemelding");
+
       // Verify if the text was entered correctly
-      cy.get('textarea').should('have.value', 'Dette er en testtilbakemelding');
+      cy.get("textarea").should("have.value", "Dette er en testtilbakemelding");
     });
-  
-    it('should have buttons that work', () => {
+
+    it("should have buttons that work", () => {
       // Check if all the buttons are rendered with correct labels
-      cy.contains('Delvis godkjenn').should('exist');
-      cy.contains('Delvis avslå søknad').should('exist');
-      cy.contains('Avslå søknad').should('exist');
-  
+      cy.contains("Delvis godkjenn").should("exist");
+      cy.contains("Delvis avslå søknad").should("exist");
+      cy.contains("Avslå søknad").should("exist");
+
       // Click on the "Delvis godkjenn" button
-      cy.contains('Delvis godkjenn').click();
+      cy.contains("Delvis godkjenn").click();
       // Perform any assertion based on expected behavior
-  
+
       // Click on the "Delvis avslå søknad" button
-      cy.contains('Delvis avslå søknad').click();
+      cy.contains("Delvis avslå søknad").click();
       // Perform any assertion based on expected behavior
-  
+
       // Click on the "Avslå søknad" button
-      cy.contains('Avslå søknad').click();
+      cy.contains("Avslå søknad").click();
       // Perform any assertion based on expected behavior
     });
-  
-    it('should allow sending feedback', () => {
+
+    it("should allow sending feedback", () => {
       // Type some feedback
-      cy.get('textarea').type('Sending feedback test.');
-  
+      cy.get("textarea").type("Sending feedback test.");
+
       // Click the "Send tilbakemelding" button
-      cy.contains('Send tilbakemelding').click();
-  
+      cy.contains("Send tilbakemelding").click();
+
       // Check if sending feedback triggers expected behavior
       // cy.intercept('/api/feedback', { statusCode: 200 }).as('sendFeedback');
     });
-    
+
     /* Tests for plan situation*/
-    const external_component_url = "https://www.arealplaner.no/vennesla4223/arealplaner/53?knr=4223&gnr=5&bnr=547&teigid=214401611";
+    const external_component_url =
+      "https://www.arealplaner.no/vennesla4223/arealplaner/53?knr=4223&gnr=5&bnr=547&teigid=214401611";
     const BASE_URL = "/mottak/dine-saker/dashbord/1/";
 
-
-    describe('Iframe Tests', () => {
+    describe("Iframe Tests", () => {
       beforeEach(() => {
         // Intercept the GET request for the iframe's src URL and alias it as 'iframeLoad'
-        cy.intercept('GET', `${external_component_url}*`).as('iframeLoad');
+        cy.intercept("GET", `${external_component_url}*`).as("iframeLoad");
 
         // Visit the target page after setting up the intercept
         cy.visit(BASE_URL);
       });
 
-      it('should load the iframe without errors', () => {
+      it("should load the iframe without errors", () => {
         const timeout = 10_000;
         cy.get('[data-cy="plansituasjon"]', { timeout: timeout })
-          .should('exist')
-          .and('have.attr', 'src', external_component_url)
-          .and('be.visible')
-          .as('embedding');
+          .should("exist")
+          .and("have.attr", "src", external_component_url)
+          .and("be.visible")
+          .as("embedding");
 
         // Wait for the iframe's network request to complete and assert the response status
-        cy.wait('@iframeLoad', { timeout: timeout })
-          .its('response.statusCode')
-          .should('eq', 200);
+        cy.wait("@iframeLoad", { timeout: timeout })
+          .its("response.statusCode")
+          .should("eq", 200);
 
-        cy.get('@embedding').should('be.visible');
+        cy.get("@embedding").should("be.visible");
       });
-      });
+    });
 
-
-      it("The page must ", () => {
-        it("should load the title", () => {
-          cy.visit(BASE_URL)
-          cy.get('[data-cy="title"]')
+    it("The page must ", () => {
+      it("should load the title", () => {
+        cy.visit(BASE_URL);
+        cy.get('[data-cy="title"]')
           .should("exist")
           .and("contain.text", "Plansituasjon:")
-          .and('be.visible')
-        }
-        )
-      })
+          .and("be.visible");
+      });
+    });
 
-      /* Tests for case documents component */
-      it("Has case documents header", () => {
+    /* Tests for case documents component */
+    it("Has case documents header", () => {
       cy.get('[data-cy="case-documents-header"]')
         .should("exist")
         .and("contain.text", "Sakens dokumenter")
-        .and("be.visible")
+        .and("be.visible");
+    });
+
+    it("should have clickable links for each document dynamically", () => {
+      // Fetch all document links dynamically and ensure they are clickable
+      cy.get("a").each(($el) => {
+        // Get the href attribute and make sure it's a valid link
+        cy.wrap($el)
+          .should("have.attr", "href")
+          .and("match", /(\.pdf|\.jpg|\.xml)$/); // Ensure it ends with .pdf, .jpg or .xml
+
+        // Optionally, click the link (without actually navigating)
+        cy.wrap($el).click({ force: true });
       });
+    });
 
-      /* it('should render the document list dynamically', () => {
-        // Fetch all document titles dynamically
-        cy.get('a').each(($el, index, $list) => {
-          // Get the filename from the href attribute
-          const documentName = $el.attr('href').split('/').pop();
-          
-          // Assert that the document name is displayed in the component
-          cy.contains(documentName).should('exist');
-        });
-      }); */
-    
-      it('should have clickable links for each document dynamically', () => {
-        // Fetch all document links dynamically and ensure they are clickable
-        cy.get('a').each(($el) => {
-          // Get the href attribute and make sure it's a valid link
-          cy.wrap($el)
-            .should('have.attr', 'href')
-            .and('match', /(\.pdf|\.jpg|\.xml)$/);  // Ensure it ends with .pdf, .jpg or .xml
-    
-          // Optionally, click the link (without actually navigating)
-          cy.wrap($el).click({ force: true });
-        });
-      });
-
-
-      /* Tests for AI results components */
-      describe('ArchiveGPT Component Tests', () => {
-    
-        it('Has ArchiveGPT header', () => {
-          cy.get('[data-cy="component-title"]')
+    /* Tests for AI results components */
+    describe("ArchiveGPT Component Tests", () => {
+      it("Has ArchiveGPT header", () => {
+        cy.get('[data-cy="component-title"]')
           .should("exist")
           .and("contain.text", "Arkiv-GPT")
-          .and("be.visible")
-        })
-    
-        it('should display the correct status icon and dynamic feedback text', () => {
-            // Check if the status is a success or failure
-            cy.get('[data-cy=status-indicator]').then(($statusIndicator) => {
-                if ($statusIndicator.hasClass('success')) {
-                    // Success case: Check for a check mark and non-empty feedback text
-                    cy.get('[data-cy=icon]').should('have.class', 'icon-checkmark');
-                    cy.get('[data-cy=feedback-text]')
-                        .invoke('text')
-                        .then((feedback) => {
-                          expect(feedback.trim()).to.not.be.empty.and.to.be.a("string");
-                          cy.log(`Success feedback: ${feedback}`); // Log feedback for reference
-                      });
-                } else if ($statusIndicator.hasClass('failure')) {
-                    // Failure case: Check for a warning icon and non-empty feedback text
-                    cy.get('[data-cy=icon]').should('have.class', 'icon-warning');
-                    cy.get('[data-cy=feedback-text]')
-                        .invoke('text')
-                        .then((feedback) => {
-                          expect(feedback.trim()).to.not.be.empty.and.to.be.a("string");
-                            cy.log(`Failure feedback: ${feedback}`); // Log feedback for reference
-                        });
-                }
-            });
+          .and("be.visible");
+      });
+
+      it("should display the correct status icon and dynamic feedback text", () => {
+        // Check if the status is a success or failure
+        cy.get("[data-cy=status-indicator]").then(($statusIndicator) => {
+          if ($statusIndicator.hasClass("success")) {
+            // Success case: Check for a check mark and non-empty feedback text
+            cy.get("[data-cy=icon]").should("have.class", "icon-checkmark");
+            cy.get("[data-cy=feedback-text]")
+              .invoke("text")
+              .then((feedback) => {
+                expect(feedback.trim()).to.not.be.empty.and.to.be.a("string");
+                cy.log(`Success feedback: ${feedback}`); // Log feedback for reference
+              });
+          } else if ($statusIndicator.hasClass("failure")) {
+            // Failure case: Check for a warning icon and non-empty feedback text
+            cy.get("[data-cy=icon]").should("have.class", "icon-warning");
+            cy.get("[data-cy=feedback-text]")
+              .invoke("text")
+              .then((feedback) => {
+                expect(feedback.trim()).to.not.be.empty.and.to.be.a("string");
+                cy.log(`Failure feedback: ${feedback}`); // Log feedback for reference
+              });
+          }
         });
-    
-        it('should navigate to the detailed report page when clicked', () => {
-            // Simulate clicking the component and ensure it navigates to the detailed page
-            cy.get('[data-cy=archiveGPT-component]')
-                .click()
-                .location('pathname')  // TODO: Add route to report page
-                .should('include', '/report-page');  // Adjust this to the actual report page route
-        });
+      });
+
+      it("should navigate to the detailed report page when clicked", () => {
+        // Simulate clicking the component and ensure it navigates to the detailed page
+        cy.get("[data-cy=archiveGPT-component]")
+          .click()
+          .location("pathname") // TODO: Add route to report page
+          .should("include", "/report-page"); // Adjust this to the actual report page route
+      });
     });
 
-  /* CAD-AiD */
-  describe('CAD-AiD Component Tests', () => {
-    
-    it('Has CAD-AiD header', () => {
-      cy.get('[data-cy="component-title"]')
-      .should("exist")
-      .and("contain.text", "CAD-AiD")
-      .and("be.visible")
-    });
+    /* CAD-AiD */
+    describe("CAD-AiD Component Tests", () => {
+      it("Has CAD-AiD header", () => {
+        cy.get('[data-cy="component-title"]')
+          .should("exist")
+          .and("contain.text", "CAD-AiD")
+          .and("be.visible");
+      });
 
-    it('should display the correct status icon and dynamic feedback text', () => {
-        cy.get('[data-cy=status-indicator]').then(($statusIndicator) => {
-            if ($statusIndicator.hasClass('success')) {
-                // Success case: Check for a check mark and non-empty feedback text
-                cy.get('[data-cy=icon]').should('have.class', 'icon-checkmark');
-                cy.get('[data-cy=feedback-text]')
-                    .invoke('text')
-                    .then((feedback) => {
-                      expect(feedback.trim()).to.not.be.empty.and.to.be.a("string");
-                      cy.log(`Success feedback: ${feedback}`); // Log feedback for reference
-                    });
-            } else if ($statusIndicator.hasClass('failure')) {
-                // Failure case: Check for a warning icon and non-empty feedback text
-                cy.get('[data-cy=icon]').should('have.class', 'icon-warning');
-                cy.get('[data-cy=feedback-text]')
-                    .invoke('text')
-                    .then((feedback) => {
-                      expect(feedback.trim()).to.not.be.empty.and.to.be.a("string");
-                      cy.log(`Failure feedback: ${feedback}`); // Log feedback for reference
-                    });
-            }
+      it("should display the correct status icon and dynamic feedback text", () => {
+        cy.get("[data-cy=status-indicator]").then(($statusIndicator) => {
+          if ($statusIndicator.hasClass("success")) {
+            // Success case: Check for a check mark and non-empty feedback text
+            cy.get("[data-cy=icon]").should("have.class", "icon-checkmark");
+            cy.get("[data-cy=feedback-text]")
+              .invoke("text")
+              .then((feedback) => {
+                expect(feedback.trim()).to.not.be.empty.and.to.be.a("string");
+                cy.log(`Success feedback: ${feedback}`); // Log feedback for reference
+              });
+          } else if ($statusIndicator.hasClass("failure")) {
+            // Failure case: Check for a warning icon and non-empty feedback text
+            cy.get("[data-cy=icon]").should("have.class", "icon-warning");
+            cy.get("[data-cy=feedback-text]")
+              .invoke("text")
+              .then((feedback) => {
+                expect(feedback.trim()).to.not.be.empty.and.to.be.a("string");
+                cy.log(`Failure feedback: ${feedback}`); // Log feedback for reference
+              });
+          }
         });
+      });
     });
-
-    /* it('should navigate to the detailed report page when clicked', () => {
-      const url = 'mottak/mine-saker/dashbord/' + VALID_CASE_ID + '/cadaid';
-        cy.get('[data-cy=cadaid-component]')
-            .click()
-            .location(url)  
-            .should('include', '/report-page');  // Adjust this to the actual report page route
-    }); */
-
-    /* it("should navigate to the detailed report page when clicked", () => {
-      cy.get("[data-test=dok-component]")
-        .click()
-        .location("pathname") // TODO: Add path to report page
-        .should("include", "/report-page"); // Adjust this to the actual report page route
-    }); */
   });
-});
 });

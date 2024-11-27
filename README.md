@@ -1,5 +1,12 @@
 # NTNU KPRO AI Assistant
 
+The scope of the project consists of two primary objectives:
+
+* **Develop a Web Application:** This platform will serve as a centralized hub, integrating the various AI models available through the KartAI project. By bringing these models together, the application will serve as a proof-of-concept (PoC), allowing KartAI to display their assortment of AI tools for different stages of the application process.
+
+* **Create a Summary AI Assistant:** This AI-driven tool analyze documents from submitted applications and generate concise summaries, highlighting key points. The system implements a checklist matching feature. It cross-reference the building application with an official checklist and relevant regulations and inform about the quality of the application. This functionality is designed to support both applicants and case workers, enhancing the overall efficiency and clarity of the application process
+
+
 ## Prerequisites
 
 Before you start, make sure the following tools are installed on your system:

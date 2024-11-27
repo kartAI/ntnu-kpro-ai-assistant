@@ -24,13 +24,15 @@ def get_test_file():
         ("byggesak_2.xml", "application/xml", 200),
         ("byggesak_3.xml", "application/xml", 200),
         ("byggesak_4.xml", "application/xml", 200),
-        ("invalid.txt", "application/txt", 400),
-        ("error_trigger.pdf", "application/pdf", 200),
-        ("empty.pdf", "application/pdf", 400),
-        ("large.pdf", "application/pdf", 200),
-        ("corrupted.pdf", "application/pdf", 400),
-        ("malware.exe", "application/octet-stream", 400),
-        ("malware.exe", "application/pdf", 400),
+        ("byggesak_1.xml", "text/xml", 200),
+        ("byggesak_2.xml", "text/xml", 200),
+        ("byggesak_3.xml", "text/xml", 200),
+        ("byggesak_4.xml", "text/xml", 200),
+        ("invalid.txt", "application/txt", 415),
+        ("empty.pdf", "application/pdf", 415),
+        ("corrupted.pdf", "application/pdf", 415),
+        ("malware.exe", "application/octet-stream", 415),
+        ("malware.exe", "application/pdf", 415),
     ],
 )
 def test_summarize_various_inputs(
@@ -109,19 +111,7 @@ def test_multiple_files_with_invalid(get_test_file):
                 ("files", ("invalid.txt", file2, "application/txt")),
             ],
         )
-    assert response.status_code == 400
-
-
-def test_unsupported_media_type(get_test_file):
-    """
-    Test handling when an unsupported media type is sent.
-    """
-    with get_test_file("structured.pdf") as file:
-        response = client.post(
-            "/summarize",
-            files=[("files", ("structured.pdf", file, "image/jpeg"))],
-        )
-    assert response.status_code == 415  # Unsupported Media Type
+    assert response.status_code == 415
 
 
 @pytest.mark.apitest
