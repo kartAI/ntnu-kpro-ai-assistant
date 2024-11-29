@@ -147,7 +147,7 @@ The team behind this project is a group of students at NTNU in Trondheim. The te
          <td align="center">
                <a href="https://github.com/johanneeo">
                   <img src="https://github.com/johanneeo.png?size=100" width="100px;" alt="Johanne Eide Omland"/><br />
-                  <sub><b>Johanne Eide Olsnes</b></sub>
+                  <sub><b>Johanne Eide Omland</b></sub>
                </a>
          </td>
          <td align="center">
