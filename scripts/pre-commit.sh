@@ -1,9 +1,8 @@
 #!/bin/sh
 # Run linter on staged JavaScript, TypeScript files
-cd webapp
-npm run lint --fix
 
-cd backend
+
+cd api
 black .
 
 # mypy

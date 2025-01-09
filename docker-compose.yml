@@ -21,12 +21,12 @@ services:
   api:
     platform: "linux/amd64"
     build:
-      context: ./backend
+      context: ./api
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
     volumes:
-      - ./backend:/code
+      - ./api:/code
     environment:
       - AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}
       - AZURE_OPENAI_API_BASE=${AZURE_OPENAI_API_BASE}
